@@ -1,0 +1,42 @@
+{
+  "name": "geared-app",
+  "version": "1.0.0",
+  "description": "sports trading card app",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon server/index",
+    "data:import": "node server/seeder",
+    "data:destroy": "node server/seeder -d",
+    "debug": "open 'rndebugger://set-debugger-loc?host=localhost&port=19000'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taliahwh/geared-app.git"
+  },
+  "author": "taliah wharton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/taliahwh/geared-app/issues"
+  },
+  "homepage": "https://github.com/taliahwh/geared-app#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "cloudinary": "^1.30.1",
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "expo-server-sdk": "^3.6.0",
+    "express": "^4.18.1",
+    "express-async-handler": "^1.2.0",
+    "express-validator": "^6.14.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.4",
+    "mongoose": "^6.3.5",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.16",
+    "socket.io": "^4.5.1"
+  }
+}
