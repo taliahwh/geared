@@ -76,8 +76,6 @@ const ExploreRoute = () => {
     dispatch(getExplorePosts());
   }, [dispatch, successLikePost, successSavePost]);
 
-  // useEffect(() => {}, [dispatch, successLikePost]);
-
   return (
     <>
       {errorExplorePosts && <AlertMessage>{errorExplorePosts}</AlertMessage>}
