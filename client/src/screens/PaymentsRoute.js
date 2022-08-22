@@ -1,9 +1,22 @@
 import React from 'react';
-import { ScrollView, View, Text, StyleSheet, Image } from 'react-native';
+import {
+  ScrollView,
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import paypal from '../../assets/paypal-logo.png';
 
 const PaymentRoute = () => {
+  const navigation = useNavigation();
+
+  const navigateToPayPalScreen = () => {
+    navigation.navigate('ConnectPayPal');
+  };
   return (
     <ScrollView style={styles.container}>
       <View style={styles.topContainer}>
@@ -29,7 +42,12 @@ const PaymentRoute = () => {
             />
           </View>
         </View>
-        <View style={styles.manageSettingBtn}>
+
+        <TouchableOpacity
+          onPress={navigateToPayPalScreen}
+          activeOpacity={0.7}
+          style={styles.manageSettingBtn}
+        >
           <View style={styles.leftOfBtn}>
             <FontAwesome
               name="paypal"
@@ -37,10 +55,11 @@ const PaymentRoute = () => {
               color="black"
               style={styles.btnIcon}
             />
+
             <Text style={styles.btnTitle}>Manage Paypal settings</Text>
           </View>
           <Ionicons name="chevron-forward-outline" size={24} color="black" />
-        </View>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -131,6 +150,7 @@ const styles = StyleSheet.create({
     width: 100,
   },
   manageSettingBtn: {
+    width: 100,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
