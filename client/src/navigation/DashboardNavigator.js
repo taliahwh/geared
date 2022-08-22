@@ -4,6 +4,7 @@ import { TransitionPresets } from '@react-navigation/stack';
 
 import DashboardScreen from '../screens/DashboardScreen';
 import CreateListingScreen from '../screens/CreateListingScreen';
+import ConnectPayPalScreen from '../screens/ConnectPayPalScreen';
 
 import { HeaderBack } from '../components/HeaderBackImages';
 
@@ -32,6 +33,15 @@ const DashboardNavigator = () => {
           headerBackTitleVisible: false,
           headerBackImage: HeaderBack,
           ...TransitionPresets.ModalSlideFromBottomIOS,
+        }}
+      />
+      <Stack.Screen
+        name="ConnectPayPal"
+        component={ConnectPayPalScreen}
+        options={{
+          headerTitle: 'PayPal',
+          headerBackTitleVisible: false,
+          headerBackImage: HeaderBack,
         }}
       />
     </Stack.Navigator>
