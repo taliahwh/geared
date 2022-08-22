@@ -7,9 +7,11 @@ import {
   Text,
   ActivityIndicator,
   RefreshControl,
+  TouchableOpacity,
 } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useScrollToTop } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
 
 // Components
 import TradingCardPost from '../components/TradingCardPost';
@@ -43,6 +45,10 @@ const FollowingRoute = () => {
     setTimeout(() => setIsRefreshing(false), 2000);
     dispatch(getFollowingPosts());
   }, []);
+
+  const refreshPage = () => {
+    dispatch(getFollowingPosts());
+  };
 
   const renderItem = ({ item }) => {
     return (
@@ -96,6 +102,15 @@ const FollowingRoute = () => {
 
       {posts && posts.length === 0 && (
         <View style={styles.centered}>
+          <TouchableOpacity onPress={refreshPage} activeOpacity={0.7}>
+            <Ionicons
+              name="ios-refresh-outline"
+              size={25}
+              color="black"
+              style={{ marginBottom: 7 }}
+            />
+          </TouchableOpacity>
+
           <Text>Not following anyone yet.</Text>
         </View>
       )}
