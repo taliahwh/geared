@@ -7,15 +7,17 @@ import {
   Image,
   TouchableOpacity,
   ActivityIndicator,
+  Dimensions,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
-// Styles
-// import styles from '../styles/PostDetailsScreenStyles';
+const footerHeight = Dimensions.get('window').height / 15;
 
+// Styles
+import theme from '../styles/styles.theme';
 // Components
 import AlertMessage from '../components/AlertMessage';
 import PostDetailsCard from '../components/PostDetailsCard';
@@ -47,25 +49,6 @@ const PostDetailsScreen = ({ route, forSale, offers }) => {
     postDetails,
     error: errorPostDetails,
   } = useSelector((state) => state.postDetails);
-
-  const Likes = ({ userLikedPost, likeCount }) => {
-    // const userLikedPost = postDetails.likes.includes(signedInUserId);
-    return (
-      <>
-        {userLikedPost ? (
-          <View style={styles.likeBtnContainer}>
-            <Ionicons name="thumbs-up" size={26} color="black" />
-            <Text style={styles.likeCount}>{likeCount}</Text>
-          </View>
-        ) : (
-          <View style={styles.likeBtnContainer}>
-            <Ionicons name="thumbs-up-outline" size={26} color="black" />
-            <Text style={styles.likeCount}>{likeCount}</Text>
-          </View>
-        )}
-      </>
-    );
-  };
 
   useEffect(() => {
     dispatch(getPostDetails(postId));
@@ -107,6 +90,14 @@ const PostDetailsScreen = ({ route, forSale, offers }) => {
             .toUpperCase()}
         />
       )}
+      <View style={styles.footerContainer}>
+        <Text style={styles.price}>$600</Text>
+
+        <View style={styles.btnContainer}>
+          <Text style={styles.makeOfferBtn}>Make offer</Text>
+          <Text style={styles.buyBtn}>Buy</Text>
+        </View>
+      </View>
     </>
   );
 };
@@ -117,6 +108,47 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  footerContainer: {
+    height: footerHeight,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    backgroundColor: '#fff',
+    borderColor: theme.BORDER_COLOR,
+  },
+  price: {
+    fontSize: 16,
+    fontWeight: '700',
+  },
+  btnContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  makeOfferBtn: {
+    marginRight: 10,
+    fontSize: 15,
+    fontWeight: '700',
+    borderWidth: 2,
+    borderRadius: 3,
+    padding: 7,
+  },
+  buyBtn: {
+    color: '#fff',
+    backgroundColor: '#000',
+    fontSize: 15,
+    fontWeight: '700',
+    paddingVertical: 7,
+    paddingHorizontal: 20,
+    borderRadius: 3,
+    overflow: 'hidden',
+    borderWidth: 2,
   },
 });
 
