@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, Dimensions } from 'react-native';
+import React from 'react';
+import { Text, StyleSheet, Dimensions } from 'react-native';
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import { StatusBar } from 'expo-status-bar';
 
@@ -23,7 +23,7 @@ const renderTabBar = (props) => (
   />
 );
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = () => {
   const [index, setIndex] = React.useState(0);
   const [routes] = React.useState([
     { key: 'explore', title: 'Explore' },
