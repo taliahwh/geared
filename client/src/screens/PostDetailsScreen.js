@@ -9,8 +9,7 @@ import {
   ActivityIndicator,
   Dimensions,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 
@@ -32,6 +31,7 @@ import {
 const PostDetailsScreen = ({ route, forSale, offers }) => {
   // Hooks
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   // Params from navigation
   const { postId } = route.params;
@@ -49,6 +49,14 @@ const PostDetailsScreen = ({ route, forSale, offers }) => {
     postDetails,
     error: errorPostDetails,
   } = useSelector((state) => state.postDetails);
+
+  const navigateToOfferScreen = () => {
+    navigation.navigate('Offer');
+  };
+
+  const navigateToCheckoutScreen = () => {
+    navigation.navigate('Checkout');
+  };
 
   useEffect(() => {
     dispatch(getPostDetails(postId));
@@ -94,8 +102,16 @@ const PostDetailsScreen = ({ route, forSale, offers }) => {
         <Text style={styles.price}>$600</Text>
 
         <View style={styles.btnContainer}>
-          <Text style={styles.makeOfferBtn}>Make offer</Text>
-          <Text style={styles.buyBtn}>Buy</Text>
+          <TouchableOpacity onPress={navigateToOfferScreen} activeOpacity={0.8}>
+            <Text style={styles.makeOfferBtn}>Make offer</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            onPress={navigateToCheckoutScreen}
+            activeOpacity={0.8}
+          >
+            <Text style={styles.buyBtn}>Buy</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </>
