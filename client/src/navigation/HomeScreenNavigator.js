@@ -1,7 +1,5 @@
 import React from 'react';
-import { createStackNavigator, Header } from '@react-navigation/stack';
-import { View } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
@@ -10,12 +8,19 @@ import PostDetailsScreen from '../screens/PostDetailsScreen';
 import CommentsScreen from '../screens/CommentsScreen';
 import FollowingScreen from '../screens/FollowingScreen';
 import FollowersScreen from '../screens/FollowersScreen';
+import ChatScreen from '../screens/ChatScreen';
+import OfferScreen from '../screens/OfferScreen';
+import CheckoutScreen from '../screens/CheckoutScreen';
+import ShippingAddressScreen from '../screens/ShippingAddressScreen';
 
 import {
   HeaderBack,
   HeaderClose,
   HeaderNotification,
 } from '../components/HeaderBackImages';
+
+// Styles
+import theme from '../styles/styles.theme';
 
 const Stack = createStackNavigator();
 
@@ -92,6 +97,30 @@ const HomeScreenNavigator = () => {
             // headerLeft: HeaderNotification,
           }}
         />
+        <Stack.Screen
+          name="Chat"
+          component={ChatScreen}
+          options={{
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen
+          name="EditShippingAddress"
+          component={ShippingAddressScreen}
+          options={{
+            headerTitle: 'Add new address',
+            headerBackTitleVisible: false,
+            headerBackImage: HeaderBack,
+            headerTitleStyle: {
+              fontWeight: '700',
+            },
+            headerStyle: {
+              borderColor: theme.BORDER_COLOR,
+              borderWidth: 0.3,
+              backgroundColor: '#F4F4F4',
+            },
+          }}
+        />
       </Stack.Group>
 
       {/* Modals */}
@@ -103,6 +132,39 @@ const HomeScreenNavigator = () => {
             headerTitle: 'Comments',
             headerBackTitleVisible: false,
             headerBackImage: HeaderClose,
+          }}
+        />
+        <Stack.Screen
+          name="Offer"
+          component={OfferScreen}
+          options={{
+            headerTitle: 'Make an offer',
+            headerTitleStyle: {
+              fontWeight: '700',
+            },
+            headerBackTitleVisible: false,
+            headerBackImage: HeaderClose,
+            headerStyle: {
+              borderColor: theme.BORDER_COLOR,
+              borderWidth: 0.3,
+              backgroundColor: '#F4F4F4',
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Checkout"
+          component={CheckoutScreen}
+          options={{
+            headerTitle: 'Checkout',
+            headerTitleStyle: {
+              fontWeight: '700',
+            },
+            headerBackTitleVisible: false,
+            headerBackImage: HeaderClose,
+            headerStyle: {
+              borderColor: theme.BORDER_COLOR,
+              borderWidth: 0.3,
+            },
           }}
         />
       </Stack.Group>
