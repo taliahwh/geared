@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   View,
   Image,
   TouchableOpacity,
   ScrollView,
-  Touchable,
+  Modal,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+
+// Components
+import SelectAddressModal from '../components/SelectAddressModal';
 
 // Styles
 import styles from '../styles/CheckoutScreenStyles';
@@ -17,6 +20,8 @@ import theme from '../styles/styles.theme';
 const CheckoutScreen = () => {
   // Hooks
   const navigation = useNavigation();
+
+  const [modalVisible, setModalVisible] = useState(false);
 
   const navigateToEditAddress = () => {
     navigation.navigate('EditShippingAddress');
@@ -44,7 +49,10 @@ const CheckoutScreen = () => {
 
       <Text style={styles.containerTitle}>Shipping address</Text>
       <View style={styles.sectionContainer}>
-        <TouchableOpacity onPress={navigateToEditAddress} activeOpacity={0.8}>
+        <TouchableOpacity
+          onPress={() => setModalVisible(true)}
+          activeOpacity={0.8}
+        >
           <View style={styles.section}>
             <Ionicons
               style={styles.alertIcon}
@@ -121,6 +129,19 @@ const CheckoutScreen = () => {
           />
         </View>
       </View> */}
+
+      {/* Modal */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          console.log('Modal has been closed.');
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <SelectAddressModal />
+      </Modal>
     </ScrollView>
   );
 };
