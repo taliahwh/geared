@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, Text, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import RNPickerSelect from 'react-native-picker-select';
 
@@ -10,7 +11,10 @@ import {
   styles,
   pickerSelectStyles,
 } from '../styles/ShippingAddressScreenStyles';
+
 const ShippingAddressScreen = () => {
+  const navigation = useNavigation();
+
   const [address, setAddress] = useState('');
   const [addressLineTwo, setAddressLineTwo] = useState('');
   const [city, setCity] = useState('');
@@ -28,7 +32,7 @@ const ShippingAddressScreen = () => {
       sport,
     };
 
-    console.log(newAddress);
+    navigation.navigate('ConfirmShipping');
   };
 
   const placeholder = {
