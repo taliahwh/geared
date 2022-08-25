@@ -3,4 +3,5 @@ export default {
   BORDER_COLOR: '#d4d4d4',
   DARK_GRAY: '#404040',
   PAYPAL_COLOR: '#1F2650',
+  ALERT_COLOR: '#ef4444',
 };
