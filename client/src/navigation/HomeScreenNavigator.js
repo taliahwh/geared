@@ -12,6 +12,7 @@ import ChatScreen from '../screens/ChatScreen';
 import OfferScreen from '../screens/OfferScreen';
 import CheckoutScreen from '../screens/CheckoutScreen';
 import ShippingAddressScreen from '../screens/ShippingAddressScreen';
+import ConfirmShippingScreen from '../screens/ConfirmShippingScreen';
 
 import {
   HeaderBack,
@@ -118,6 +119,19 @@ const HomeScreenNavigator = () => {
               borderColor: theme.BORDER_COLOR,
               borderWidth: 0.3,
               backgroundColor: '#F4F4F4',
+            },
+          }}
+        />
+        <Stack.Screen
+          name="ConfirmShipping"
+          component={ConfirmShippingScreen}
+          options={{
+            headerTitle: '',
+            headerBackTitleVisible: false,
+            headerBackImage: HeaderBack,
+            headerTransparent: true,
+            headerStyle: {
+              backgroundColor: 'transparent',
             },
           }}
         />
