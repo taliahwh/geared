@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     fontSize: 15,
     borderBottomWidth: 0.5,
     borderColor: theme.BORDER_COLOR,
-    marginBottom: 36,
+    marginBottom: 25,
   },
   btnContainer: {
     marginTop: 40,
@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
   },
   continueBtn: {
     color: 'white',
-    fontSize: 17,
+    fontSize: 16,
     fontWeight: '700',
     textAlign: 'center',
   },
