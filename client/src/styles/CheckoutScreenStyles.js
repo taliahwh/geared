@@ -2,6 +2,8 @@ import { StyleSheet, Dimensions } from 'react-native';
 import theme from '../styles/styles.theme';
 
 const imageWidth = Dimensions.get('window').width / 7;
+const modalWidth = Dimensions.get('window').width;
+const modalHeight = Dimensions.get('window').height * 0.7;
 
 const styles = StyleSheet.create({
   container: {
