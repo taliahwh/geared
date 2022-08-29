@@ -26,7 +26,13 @@ const CheckoutScreen = () => {
   const navigateToEditAddress = () => {
     navigation.navigate('EditShippingAddress');
   };
+
+  const navigateOrderConfirmation = () => {
+    navigation.navigate('OrderConfirmation');
+  };
+
   const navigateToPaymentTypeScreen = () => {};
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.itemAvailableContainer}>
@@ -105,6 +111,18 @@ const CheckoutScreen = () => {
         <Text style={styles.checkoutText}>Checkout</Text>
       </View>
 
+      <TouchableOpacity onPress={navigateOrderConfirmation}>
+        <View style={styles.paypalCheckoutBtn}>
+          <Image
+            style={styles.paypalCheckoutBtnIcon}
+            source={{
+              uri: 'https://brandslogos.com/wp-content/uploads/images/large/paypal-logo-black-and-white.png',
+            }}
+          />
+          <Text style={styles.checkoutText}>Order Confirmation</Text>
+        </View>
+      </TouchableOpacity>
+
       <Text style={styles.paymentProcessedText}>
         This payment will be processed by PayPal
       </Text>
@@ -140,7 +158,7 @@ const CheckoutScreen = () => {
           setModalVisible(!modalVisible);
         }}
       >
-        <SelectAddressModal />
+        <SelectAddressModal hideModal={() => setModalVisible(false)} />
       </Modal>
     </ScrollView>
   );
