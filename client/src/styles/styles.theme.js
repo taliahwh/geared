@@ -4,4 +4,5 @@ export default {
   DARK_GRAY: '#404040',
   PAYPAL_COLOR: '#1F2650',
   ALERT_COLOR: '#ef4444',
+  SWIPE_BAR_COLOR: 'rgba(0, 0, 0, 0.48)',
 };
