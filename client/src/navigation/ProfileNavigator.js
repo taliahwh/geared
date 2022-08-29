@@ -1,5 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 
+// Screens
 import ProfileScreen from '../screens/ProfileScreen';
 import PostDetailsScreen from '../screens/PostDetailsScreen';
 import CommentsScreen from '../screens/CommentsScreen';
@@ -7,8 +8,18 @@ import NotificationsScreen from '../screens/NotificationsScreen';
 import FollowersScreen from '../screens/FollowersScreen';
 import FollowingScreen from '../screens/FollowingScreen';
 import ViewUserProfileScreen from '../screens/ViewUserProfileScreen';
+import PurchasedScreen from '../screens/PurchasedScreen';
+import OrderReceiptScreen from '../screens/OrderReceiptScreen';
 
-import { HeaderBack, HeaderNotification } from '../components/HeaderBackImages';
+// Components
+import {
+  HeaderBack,
+  HeaderNotification,
+  HeaderPurchased,
+} from '../components/HeaderBackImages';
+
+// Styles
+import theme from '../styles/styles.theme';
 
 const Stack = createStackNavigator();
 
@@ -19,7 +30,9 @@ const ProfileNavigator = () => {
         name="UserProfile"
         component={ProfileScreen}
         options={{
-          headerTitle: () => <HeaderNotification />,
+          headerLeft: () => <HeaderNotification />,
+          headerRight: () => <HeaderPurchased />,
+          headerTitle: '',
           headerStyle: {
             elevation: 0,
             shadowOpacity: 0,
@@ -84,6 +97,28 @@ const ProfileNavigator = () => {
             elevation: 0,
             shadowOpacity: 0,
             borderBottomWidth: 0,
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Purchased"
+        component={PurchasedScreen}
+        options={{
+          headerTitle: 'Purchased',
+          headerBackTitleVisible: false,
+          headerBackImage: HeaderBack,
+        }}
+      />
+      <Stack.Screen
+        name="OrderReceipt"
+        component={OrderReceiptScreen}
+        options={{
+          headerTitle: 'Purchase',
+          headerBackTitleVisible: false,
+          headerBackImage: HeaderBack,
+          headerStyle: {
+            borderColor: theme.BORDER_COLOR,
+            borderWidth: 0.3,
           },
         }}
       />
