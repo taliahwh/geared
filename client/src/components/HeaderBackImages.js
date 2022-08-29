@@ -35,3 +35,33 @@ export const HeaderNotification = () => {
     </View>
   );
 };
+
+export const HeaderConfirm = () => {
+  const navigation = useNavigation();
+
+  return (
+    <View style={{ marginRight: 15 }}>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        onPress={() => navigation.navigate('Home')}
+      >
+        <Ionicons name="checkmark-sharp" size={25} color="black" />
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+export const HeaderPurchased = () => {
+  const navigation = useNavigation();
+
+  return (
+    <View style={{ marginRight: 15 }}>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        onPress={() => navigation.navigate('Purchased')}
+      >
+        <Ionicons name="receipt-outline" size={24} color="black" />
+      </TouchableOpacity>
+    </View>
+  );
+};
