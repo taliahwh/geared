@@ -13,11 +13,13 @@ import OfferScreen from '../screens/OfferScreen';
 import CheckoutScreen from '../screens/CheckoutScreen';
 import ShippingAddressScreen from '../screens/ShippingAddressScreen';
 import ConfirmShippingScreen from '../screens/ConfirmShippingScreen';
+import OrderConfirmationScreen from '../screens/OrderConfirmationScreen';
 
 import {
   HeaderBack,
   HeaderClose,
   HeaderNotification,
+  HeaderConfirm,
 } from '../components/HeaderBackImages';
 
 // Styles
@@ -133,6 +135,21 @@ const HomeScreenNavigator = () => {
             headerStyle: {
               backgroundColor: 'transparent',
             },
+          }}
+        />
+        <Stack.Screen
+          name="OrderConfirmation"
+          component={OrderConfirmationScreen}
+          options={{
+            headerTitle: '',
+            headerBackTitleVisible: false,
+            headerBackImage: HeaderBack,
+            headerStyle: {
+              borderColor: theme.BORDER_COLOR,
+              borderWidth: 0.3,
+            },
+            headerLeft: () => null,
+            headerRight: HeaderConfirm,
           }}
         />
       </Stack.Group>
