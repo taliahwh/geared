@@ -55,7 +55,7 @@ const OfferScreen = () => {
           onChangeText={(price) => setOffer(price)}
           placeholder={'$ 0.00'}
           placeholderTextColor={theme.DARK_GRAY}
-          keyboardType="number-pad"
+          keyboardType="decimal-pad"
         />
         <Text style={styles.additionalShipping}>+ $15 shipping</Text>
         <Text style={styles.tip}>
