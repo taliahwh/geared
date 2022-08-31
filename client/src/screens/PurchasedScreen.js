@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -15,8 +15,9 @@ import AlertMessage from '../components/AlertMessage';
 
 // Actions
 
-const FollowersScreen = ({ route }) => {
+const PurchasedScreen = ({ route }) => {
   // Hooks
+
   const scrollRef = useRef(null);
   useScrollToTop(scrollRef);
   const dispatch = useDispatch();
@@ -102,4 +103,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FollowersScreen;
+export default PurchasedScreen;
