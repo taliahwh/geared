@@ -43,7 +43,7 @@ const Modal = ({
                 </Pressable>
               ) : (
                 <Pressable onPress={closeModal}>
-                  <Ionicons name="close-outline" size={26} color="#ef4444" />
+                  <Ionicons name="close-outline" size={27} color="#ef4444" />
                 </Pressable>
               )}
 
