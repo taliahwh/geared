@@ -406,7 +406,7 @@ const ProfileSettingsRoute = () => {
                   clearModalIcon={
                     <Ionicons
                       name="ios-close-outline"
-                      size={24}
+                      size={25}
                       color="black"
                     />
                   }
