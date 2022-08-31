@@ -8,7 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 export const HeaderClose = () => {
   return (
     <View style={{ marginLeft: 15 }}>
-      <Ionicons name="close-outline" size={28} color="black" />
+      <Ionicons name="close-outline" size={27} color="black" />
     </View>
   );
 };
