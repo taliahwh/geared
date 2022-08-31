@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   modalView: {
     height: modalHeight,
     width: modalWidth,
-    backgroundColor: 'white',
+    backgroundColor: '#fff',
     borderRadius: 10,
   },
   headerContainer: {
@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     backgroundColor: theme.DARK_GRAY,
     borderRadius: 3,
+    marginHorizontal: 15,
   },
   addAddressBtn: {
     color: 'white',
