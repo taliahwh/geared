@@ -61,14 +61,14 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   label: {
-    color: '#27272a',
+    color: theme.LIGHT_GRAY,
     fontWeight: '600',
   },
   indicator: {
-    backgroundColor: theme.PRIMARY_COLOR,
+    backgroundColor: theme.LIGHT_GRAY,
   },
   tabBar: {
-    backgroundColor: 'white',
+    backgroundColor: theme.DARK_MODE,
   },
 });
 

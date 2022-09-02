@@ -21,6 +21,7 @@ import AlertMessage from '../components/AlertMessage';
 
 // Styles
 import styles from '../styles/ProfileSettingsRouteStyles';
+import theme from '../styles/styles.theme';
 
 // Actions
 import {
@@ -214,11 +215,12 @@ const ProfileSettingsRoute = () => {
               <Text style={styles.inputTitle}>Username</Text>
 
               <TextInput
+                keyboardAppearance="dark"
                 style={styles.disabledInputSection}
                 // ref={register.username}
                 value={userDetails.username}
                 placeholder={userDetails.username}
-                placeholderTextColor={'#a1a1aa'}
+                placeholderTextColor={theme.LIGHT_GRAY}
                 maxLength={25}
                 autoCapitalize="none"
                 textContentType="username"
@@ -231,10 +233,11 @@ const ProfileSettingsRoute = () => {
               <Text style={styles.inputTitle}>Email</Text>
 
               <TextInput
+                keyboardAppearance="dark"
                 style={styles.disabledInputSection}
                 value={userDetails.email}
                 placeholder={userDetails.email}
-                placeholderTextColor={'#a1a1aa'}
+                placeholderTextColor={theme.LIGHT_GRAY}
                 maxLength={25}
                 autoCapitalize="none"
                 textContentType="emailAddress"
@@ -249,7 +252,7 @@ const ProfileSettingsRoute = () => {
                 <Ionicons
                   name="ios-chevron-forward-outline"
                   size={24}
-                  color="black"
+                  color={theme.MEDIUM_GRAY}
                 />
               </View>
             </TouchableOpacity>
@@ -282,12 +285,13 @@ const ProfileSettingsRoute = () => {
               <Text style={styles.inputTitle}>Full name</Text>
 
               <TextInput
+                keyboardAppearance="dark"
                 style={styles.inputSection}
                 defaultValue={userDetails.name}
                 onChangeText={(value) => setFullName(value)}
                 name="fullName"
                 placeholder={userDetails.name}
-                placeholderTextColor={'#a1a1aa'}
+                placeholderTextColor={theme.LIGHT_GRAY}
                 maxLength={25}
                 // autoCapitalize="none"
                 textContentType="name"
@@ -298,10 +302,11 @@ const ProfileSettingsRoute = () => {
               <Text style={styles.inputTitle}>Date of birth</Text>
 
               <TextInput
+                keyboardAppearance="dark"
                 style={styles.disabledInputSection}
                 defaultValue={userDetails.dateOfBirth}
                 onChangeText={(value) => onChange(value)}
-                placeholderTextColor={'#a1a1aa'}
+                placeholderTextColor={theme.LIGHT_GRAY}
                 editable={false}
               />
             </View>
@@ -314,7 +319,7 @@ const ProfileSettingsRoute = () => {
                 <Ionicons
                   name="ios-chevron-forward-outline"
                   size={24}
-                  color="black"
+                  color={theme.MEDIUM_GRAY}
                 />
               </View>
             </TouchableOpacity>
@@ -331,7 +336,7 @@ const ProfileSettingsRoute = () => {
                 <Ionicons
                   name="ios-chevron-forward-outline"
                   size={24}
-                  color="black"
+                  color={theme.MEDIUM_GRAY}
                 />
               </View>
             </TouchableOpacity>
@@ -340,6 +345,7 @@ const ProfileSettingsRoute = () => {
               <Text style={styles.inputTitle}>My website</Text>
 
               <TextInput
+                keyboardAppearance="dark"
                 style={styles.inputSection}
                 defaultValue={
                   userDetails.website ? userDetails.website : website
@@ -347,7 +353,7 @@ const ProfileSettingsRoute = () => {
                 onChangeText={(value) => setWebsite(value)}
                 name="website"
                 placeholder={userDetails.website || 'yoursite.com'}
-                placeholderTextColor={'#a1a1aa'}
+                placeholderTextColor={theme.LIGHT_GRAY}
                 autoComplete={'off'}
                 autoCapitalize="none"
               />
@@ -370,6 +376,7 @@ const ProfileSettingsRoute = () => {
                   modal={true}
                   input={
                     <TextInput
+                      keyboardAppearance="dark"
                       style={styles.textInput}
                       defaultValue={userDetails.bio ? userDetails.bio : bio}
                       onChangeText={(value) => setBio(value)}
@@ -378,7 +385,7 @@ const ProfileSettingsRoute = () => {
                           ? userDetails.bio
                           : 'Something about yourself...'
                       }
-                      placeholderTextColor={'#a1a1aa'}
+                      placeholderTextColor={theme.LIGHT_GRAY}
                       autoFocus={true}
                       name="bio"
                       autoCorrect={false}
@@ -407,7 +414,7 @@ const ProfileSettingsRoute = () => {
                     <Ionicons
                       name="ios-close-outline"
                       size={25}
-                      color="black"
+                      color={theme.MEDIUM_GRAY}
                     />
                   }
                   clearInterestInputs={clearInterests}
@@ -422,6 +429,7 @@ const ProfileSettingsRoute = () => {
 
                       <View style={styles.interestTagContainer}>
                         <TextInput
+                          keyboardAppearance="dark"
                           style={styles.interestInput}
                           defaultValue={
                             userDetails.interests[0].name
@@ -434,12 +442,13 @@ const ProfileSettingsRoute = () => {
                               ? userDetails.interests[0].name
                               : 'Stephen Curry'
                           }
-                          placeholderTextColor={'#a1a1aa'}
+                          placeholderTextColor={theme.MEDIUM_GRAY}
                           autoComplete={'off'}
                           autoCapitalize="words"
                           maxLength={128}
                         />
                         <TextInput
+                          keyboardAppearance="dark"
                           style={styles.interestInput}
                           defaultValue={
                             userDetails.interests[1].name
@@ -452,12 +461,13 @@ const ProfileSettingsRoute = () => {
                               ? userDetails.interests[1].name
                               : 'New York Yankees'
                           }
-                          placeholderTextColor={'#a1a1aa'}
+                          placeholderTextColor={theme.MEDIUM_GRAY}
                           autoComplete={'off'}
                           autoCapitalize="words"
                           maxLength={128}
                         />
                         <TextInput
+                          keyboardAppearance="dark"
                           style={styles.interestInput}
                           defaultValue={
                             userDetails.interests[2].name
@@ -470,12 +480,13 @@ const ProfileSettingsRoute = () => {
                               ? userDetails.interests[2].name
                               : 'Anthony Edwards'
                           }
-                          placeholderTextColor={'#a1a1aa'}
+                          placeholderTextColor={theme.MEDIUM_GRAY}
                           autoComplete={'off'}
                           autoCapitalize="words"
                           maxLength={128}
                         />
                         <TextInput
+                          keyboardAppearance="dark"
                           style={styles.interestInput}
                           defaultValue={
                             userDetails.interests[3].name
@@ -488,7 +499,7 @@ const ProfileSettingsRoute = () => {
                               ? userDetails.interests[3].name
                               : 'Phoenix Mercury'
                           }
-                          placeholderTextColor={'#a1a1aa'}
+                          placeholderTextColor={theme.MEDIUM_GRAY}
                           autoComplete={'off'}
                           autoCapitalize="words"
                           maxLength={128}
@@ -529,11 +540,12 @@ const ProfileSettingsRoute = () => {
                           </Text>
 
                           <TextInput
+                            keyboardAppearance="dark"
                             style={styles.modalInputSection}
                             secureTextEntry
                             onChangeText={(value) => setNewPassword(value)}
                             name="newPassword"
-                            placeholderTextColor={'#a1a1aa'}
+                            placeholderTextColor={theme.LIGHT_GRAY}
                             maxLength={25}
                           />
                         </View>
@@ -543,11 +555,12 @@ const ProfileSettingsRoute = () => {
                           </Text>
 
                           <TextInput
+                            keyboardAppearance="dark"
                             style={styles.modalInputSection}
                             secureTextEntry
                             onChangeText={(value) => setConfirmPassword(value)}
                             name="confirmNewPassword"
-                            placeholderTextColor={'#a1a1aa'}
+                            placeholderTextColor={theme.LIGHT_GRAY}
                             maxLength={25}
                           />
                         </View>
