@@ -19,6 +19,9 @@ import AlertMessage from '../components/AlertMessage';
 // Actions
 import { getLikedPosts } from '../actions/postActions';
 
+// Styles
+import theme from '../styles/styles.theme';
+
 const cardWidth = Dimensions.get('window').width / 4;
 
 const ImageRender = ({ src }) => {
@@ -89,6 +92,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     margin: 0.7,
+    backgroundColor: theme.FEED_BACKGROUND,
   },
   image: {
     justifyContent: 'center',
@@ -102,6 +106,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     fontSize: 15,
+    backgroundColor: theme.FEED_BACKGROUND,
   },
 });
 

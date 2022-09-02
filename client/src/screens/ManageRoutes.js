@@ -20,10 +20,13 @@ import AlertMessage from '../components/AlertMessage';
 // Actions
 import { getUserPosts } from '../actions/userActions';
 
+// Styles
+import theme from '../styles/styles.theme';
+
 const thirdWindowWidth = Dimensions.get('window').width / 3;
 
 const Separator = () => {
-  return <View style={{ width: 5, backgroundColor: '#fff' }} />;
+  return <View style={{ width: 5, backgroundColor: theme.DARK_MODE }} />;
 };
 
 const ManageRoute = () => {
@@ -58,7 +61,6 @@ const ManageRoute = () => {
         }
       : {
           id: 1,
-          src: 'https://creative-quartz.co.uk/wp-content/uploads/2020/12/Quartzforms-Absolute-Light-Grey.jpg',
         },
     posts && posts.length >= 2
       ? {
@@ -67,7 +69,6 @@ const ManageRoute = () => {
         }
       : {
           id: 2,
-          src: 'https://creative-quartz.co.uk/wp-content/uploads/2020/12/Quartzforms-Absolute-Light-Grey.jpg',
         },
     posts && posts.length >= 3
       ? {
@@ -76,7 +77,6 @@ const ManageRoute = () => {
         }
       : {
           id: 3,
-          src: 'https://creative-quartz.co.uk/wp-content/uploads/2020/12/Quartzforms-Absolute-Light-Grey.jpg',
         },
     posts && posts.length >= 4
       ? {
@@ -85,7 +85,6 @@ const ManageRoute = () => {
         }
       : {
           id: 4,
-          src: 'https://creative-quartz.co.uk/wp-content/uploads/2020/12/Quartzforms-Absolute-Light-Grey.jpg',
         },
   ];
 
@@ -111,7 +110,7 @@ const ManageRoute = () => {
                 <Ionicons
                   name="receipt-outline"
                   size={24}
-                  color="black"
+                  color={theme.LIGHT_GRAY}
                   style={styles.btnIcon}
                 />
                 <Text style={styles.btnTitle}>All sold items</Text>
@@ -119,7 +118,7 @@ const ManageRoute = () => {
               <Ionicons
                 name="chevron-forward-outline"
                 size={24}
-                color="black"
+                color={theme.LIGHT_GRAY}
               />
             </View>
           </View>
@@ -152,19 +151,20 @@ const ManageRoute = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F1F1F1',
+    backgroundColor: theme.FEED_BACKGROUND,
   },
   soldContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: theme.DARK_MODE,
     paddingVertical: 30,
     paddingHorizontal: 15,
   },
   sectionTitle: {
     fontWeight: '700',
     fontSize: 17,
+    color: theme.LIGHT_GRAY,
   },
   sellingContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: theme.DARK_MODE,
     marginTop: 10,
     paddingVertical: 30,
     paddingHorizontal: 15,
@@ -189,6 +189,7 @@ const styles = StyleSheet.create({
   },
   btnTitle: {
     fontSize: 16,
+    color: theme.LIGHT_GRAY,
   },
   flatlistContainer: {
     paddingTop: 15,
@@ -198,12 +199,12 @@ const styles = StyleSheet.create({
     width: thirdWindowWidth,
     borderRadius: 5,
     overflow: 'hidden',
-    backgroundColor: '#f5f5f5',
+    backgroundColor: theme.FEED_BACKGROUND,
   },
   listAnItemBtn: {
     textAlign: 'center',
     backgroundColor: '#404040',
-    color: '#fff',
+    color: theme.LIGHT_GRAY,
     fontWeight: '600',
     fontSize: 15,
     paddingVertical: 10,
