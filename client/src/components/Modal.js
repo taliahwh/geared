@@ -55,7 +55,7 @@ const Modal = ({
                   <Ionicons
                     name="ios-checkmark-sharp"
                     size={24}
-                    color="black"
+                    color={theme.LIGHT_GRAY}
                   />
                 </Pressable>
               )}
@@ -71,16 +71,15 @@ const Modal = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    backgroundColor: 'rgba(52, 52, 52, 0.9)',
     justifyContent: 'center',
     paddingHorizontal: 15,
   },
   inner: {
     paddingVertical: 5,
     borderRadius: 5,
-    // justifyContent: 'space-around',
-    backgroundColor: '#fff',
-    // height: containerHeight,
+    overflow: 'hidden',
+    backgroundColor: theme.DARK_MODE,
   },
   headerContainer: {
     display: 'flex',
@@ -89,12 +88,14 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderBottomWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.MEDIUM_GRAY,
     marginBottom: 5,
+    backgroundColor: theme.DARK_MODE,
   },
   headerTitle: {
     fontSize: 17,
     fontWeight: '700',
+    color: theme.LIGHT_GRAY,
   },
   headerIcon: {},
   textInput: {

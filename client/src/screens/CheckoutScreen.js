@@ -36,7 +36,7 @@ const CheckoutScreen = () => {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.itemAvailableContainer}>
-        <Text style={{ textAlign: 'center' }}>
+        <Text style={{ textAlign: 'center', color: theme.LIGHT_GRAY }}>
           <Text style={{ fontWeight: '700' }}>1</Text> item available from{' '}
           <Text style={{ fontWeight: '700' }}>antedwards</Text>
         </Text>
@@ -55,22 +55,19 @@ const CheckoutScreen = () => {
 
       <Text style={styles.containerTitle}>Shipping address</Text>
       <View style={styles.sectionContainer}>
-        <TouchableOpacity
-          onPress={() => setModalVisible(true)}
-          activeOpacity={0.8}
-        >
+        <TouchableOpacity onPress={navigateToEditAddress} activeOpacity={0.8}>
           <View style={styles.section}>
             <Ionicons
               style={styles.alertIcon}
               name="alert-circle-outline"
               size={24}
-              color="black"
+              color={theme.LIGHT_GRAY}
             />
             <Text style={styles.addNewAddress}>Add new address</Text>
             <Ionicons
               name="chevron-forward-outline"
               size={24}
-              color={theme.DARK_GRAY}
+              color={theme.MEDIUM_GRAY}
             />
           </View>
         </TouchableOpacity>
