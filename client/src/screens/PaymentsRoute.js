@@ -11,6 +11,9 @@ import { useNavigation } from '@react-navigation/native';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import paypal from '../../assets/paypal-logo.png';
 
+// Styles
+import theme from '../styles/styles.theme';
+
 const PaymentRoute = () => {
   const navigation = useNavigation();
 
@@ -52,13 +55,17 @@ const PaymentRoute = () => {
             <FontAwesome
               name="paypal"
               size={24}
-              color="black"
+              color={theme.MEDIUM_GRAY}
               style={styles.btnIcon}
             />
 
             <Text style={styles.btnTitle}>Manage Paypal settings</Text>
           </View>
-          <Ionicons name="chevron-forward-outline" size={24} color="black" />
+          <Ionicons
+            name="chevron-forward-outline"
+            size={24}
+            color={theme.MEDIUM_GRAY}
+          />
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -68,17 +75,17 @@ const PaymentRoute = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F1F1F1',
+    backgroundColor: theme.FEED_BACKGROUND,
   },
   topContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: theme.DARK_MODE,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     paddingBottom: 5,
   },
   paypalCard: {
-    backgroundColor: '#f3f4f6',
+    backgroundColor: theme.FEED_BACKGROUND,
     padding: 20,
     width: '75%',
     height: 170,
@@ -102,7 +109,7 @@ const styles = StyleSheet.create({
     width: '60%',
   },
   bottomContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: theme.DARK_MODE,
     marginTop: 10,
     display: 'flex',
     alignItems: 'center',
@@ -114,7 +121,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
     width: '100%',
-    backgroundColor: '#fff',
+    backgroundColor: theme.FEED_BACKGROUND,
     borderRadius: 5,
     shadowColor: '#000',
     shadowOffset: {
@@ -129,7 +136,7 @@ const styles = StyleSheet.create({
   paypalQuestion: {
     textAlign: 'center',
     paddingTop: 10,
-    color: '#737373',
+    color: theme.LIGHT_GRAY,
   },
   paypalBtn: {
     backgroundColor: '#ffcc00',
@@ -157,7 +164,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 20,
     borderWidth: 1,
-    borderColor: '#e4e4e7',
+    borderColor: theme.MEDIUM_GRAY,
     padding: 12,
     borderRadius: 5,
     width: '100%',
@@ -173,6 +180,7 @@ const styles = StyleSheet.create({
   },
   btnTitle: {
     fontSize: 16,
+    color: theme.LIGHT_GRAY,
   },
 });
 

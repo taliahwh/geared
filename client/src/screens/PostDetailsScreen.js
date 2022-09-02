@@ -136,11 +136,13 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderBottomWidth: 1,
     backgroundColor: '#fff',
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
+    backgroundColor: theme.FEED_BACKGROUND,
   },
   price: {
     fontSize: 16,
     fontWeight: '700',
+    color: theme.LIGHT_GRAY,
   },
   btnContainer: {
     display: 'flex',
@@ -154,10 +156,12 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 3,
     padding: 7,
+    borderColor: theme.LIGHT_GRAY,
+    color: theme.LIGHT_GRAY,
   },
   buyBtn: {
-    color: '#fff',
-    backgroundColor: '#000',
+    color: theme.LIGHT_GRAY,
+    backgroundColor: theme.DARK_MODE,
     fontSize: 15,
     fontWeight: '700',
     paddingVertical: 7,
@@ -165,6 +169,7 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     overflow: 'hidden',
     borderWidth: 2,
+    borderColor: theme.DARK_MODE,
   },
 });
 
