@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
-
+    backgroundColor: theme.DARK_MODE,
     elevation: 3,
   },
   smallText: {
@@ -40,26 +40,30 @@ const styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: '700',
     marginBottom: 10,
+    color: theme.LIGHT_GRAY,
   },
   address: {
-    color: theme.DARK_GRAY,
     marginBottom: 10,
+    color: theme.MEDIUM_GRAY,
   },
 
   // Form container
   formContainer: {
-    backgroundColor: '#fff',
+    backgroundColor: theme.FEED_BACKGROUND,
     paddingHorizontal: 30,
+    // borderBottomWidth: 0.5,
+    // borderBottomColor: theme.DARK_MODE_BORDER,
   },
   inputTitle: {
     fontSize: 14,
     marginBottom: 7,
+    color: theme.LIGHT_GRAY,
   },
   textInput: {
     height: 40,
     fontSize: 15,
     borderBottomWidth: 0.5,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
     marginBottom: 25,
   },
   inputContainer: {
@@ -68,11 +72,12 @@ const styles = StyleSheet.create({
   btnContainer: {
     marginTop: 40,
     paddingVertical: 10,
-    backgroundColor: theme.DARK_GRAY,
+    backgroundColor: theme.LIGHT_GRAY,
     borderRadius: 3,
   },
   confirmBtn: {
-    color: 'white',
+    color: theme.DARK_MODE,
+
     fontSize: 16,
     fontWeight: '700',
     textAlign: 'center',

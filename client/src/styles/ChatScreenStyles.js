@@ -1,23 +1,31 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import theme from './styles.theme';
+
+const chatContainerHeight = Dimensions.get('window').height * 0.73;
+const headerHeight = Dimensions.get('window').height * 0.06;
+const minCommentInputContainerHeight = Dimensions.get('window').height * 0.06;
+const productInfoContainerHeight = Dimensions.get('window').height * 0.12;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: theme.DARK_MODE,
     flex: 1,
-    // paddingHorizontal: 15,
   },
-
+  keyboardAware: {
+    // display: 'flex',
+    // justifyContent: 'space-between',
+  },
   header: {
     paddingHorizontal: 15,
     // backgroundColor: 'orange',
-    height: 50,
+    height: headerHeight,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     borderBottomWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
+    backgroundColor: theme.DARK_MODE,
     // flex: 2,
   },
   userImageAndPhotoContainer: {
@@ -29,13 +37,13 @@ const styles = StyleSheet.create({
     height: 30,
     width: 30,
     borderRadius: 30 / 2,
-    marginRight: 10,
     borderWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
   },
   username: {
     fontWeight: '700',
     fontSize: 16,
+    marginLeft: 7,
   },
   productInfoContainer: {
     display: 'flex',
@@ -44,8 +52,8 @@ const styles = StyleSheet.create({
     // backgroundColor: 'green',
     padding: 15,
     borderBottomWidth: 1,
-    borderColor: theme.BORDER_COLOR,
-    height: 100,
+    borderColor: theme.DARK_MODE_BORDER,
+    height: productInfoContainerHeight,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: {
@@ -75,28 +83,27 @@ const styles = StyleSheet.create({
   date: {
     textAlign: 'center',
     fontSize: 12,
-    color: theme.DARK_GRAY,
+    color: theme.MEDIUM_GRAY,
     paddingVertical: 10,
   },
   chatInputContainer: {
-    marginHorizontal: 10,
-    // backgroundColor: 'orange',
-    flex: 1,
-    // height: 400,
+    paddingHorizontal: 10,
+    backgroundColor: theme.FEED_BACKGROUND,
+    height: chatContainerHeight,
   },
 
   createCommentSection: {
-    minHeight: 55,
+    minHeight: minCommentInputContainerHeight,
     paddingHorizontal: 15,
     // backgroundColor: 'pink',
     // marginTop: 10,
-    // borderBottomWidth: 1,
-    // borderColor: theme.BORDER_COLOR,
+    borderBottomWidth: 1,
+    borderColor: theme.DARK_MODE_BORDER,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: 3,
+    // marginVertical: 3,
   },
   userImage: {
     height: 30,
@@ -104,11 +111,13 @@ const styles = StyleSheet.create({
     borderRadius: 30 / 2,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
   },
   textInput: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    // backgroundColor: /',
+    borderWidth: 0.5,
+    borderColor: theme.DARK_MODE_BORDER,
     paddingBottom: 10,
     paddingTop: 10,
     paddingHorizontal: 15,
