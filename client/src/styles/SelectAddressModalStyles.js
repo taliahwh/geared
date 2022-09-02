@@ -17,16 +17,16 @@ const styles = StyleSheet.create({
   modalView: {
     height: modalHeight,
     width: modalWidth,
-    backgroundColor: '#fff',
+    backgroundColor: theme.FEED_BACKGROUND,
     borderRadius: 10,
   },
   headerContainer: {
     borderBottomWidth: 0.5,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
     paddingVertical: 7,
   },
   swipeBar: {
-    backgroundColor: theme.SWIPE_BAR_COLOR,
+    backgroundColor: theme.MEDIUM_GRAY,
     width: swipeBarWidth,
     height: 7,
     borderRadius: 10,
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontWeight: '600',
     fontSize: 17,
+    color: theme.LIGHT_GRAY,
   },
   editText: {
     fontSize: 16,
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
   addressContainer: {
     paddingVertical: 15,
     borderBottomWidth: 0.5,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
     display: 'flex',
     flexDirection: 'row',
   },
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
     paddingRight: 5,
     flex: 2,
     fontSize: 15,
-    color: theme.DARK_GRAY,
+    color: theme.MEDIUM_GRAY,
   },
   chevronContainer: {
     width: chevronContainerWidth,
@@ -78,15 +79,16 @@ const styles = StyleSheet.create({
   },
   btnContainer: {
     paddingVertical: 10,
-    backgroundColor: theme.DARK_GRAY,
+    backgroundColor: theme.LIGHT_GRAY,
     borderRadius: 3,
     marginHorizontal: 15,
   },
   addAddressBtn: {
-    color: 'white',
+    // backgroundColor: theme.LIGHT_GRAY,
     fontSize: 16,
     fontWeight: '700',
     textAlign: 'center',
+    color: theme.FEED_BACKGROUND,
   },
 });
 

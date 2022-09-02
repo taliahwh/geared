@@ -6,4 +6,12 @@ export default {
   ALERT_COLOR: '#ef4444',
   SWIPE_BAR_COLOR: 'rgba(0, 0, 0, 0.48)',
   STAR_COLOR: '#fcd34d',
+
+  // Dark Mode
+  LIGHT_GRAY: 'rgba(255, 255, 255, 0.87)',
+  MEDIUM_GRAY: '#a1a1aa',
+  DARK_MODE: '#222222',
+  CARD_BACKGROUND: '#222222',
+  FEED_BACKGROUND: '#323232',
+  DARK_MODE_BORDER: '#57534e',
 };
