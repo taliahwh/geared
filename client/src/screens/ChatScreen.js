@@ -1,78 +1,172 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import geared from '../api/geared';
+import React, { useState, useEffect, useRef } from 'react';
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  SafeAreaView,
+  TextInput,
+  ScrollView,
+  Dimensions,
+  FlatList,
+} from 'react-native';
+import { NGROK_URL } from '../api/ngrok';
+import { io } from 'socket.io-client';
 import { Ionicons } from '@expo/vector-icons';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 // Styles
 import theme from '../styles/styles.theme';
+import styles from '../styles/ChatScreenStyles';
 
-const ChatScreen = ({ navigation }) => {
+import ChatInput from '../components/ChatInput';
+import { useSelector } from 'react-redux';
+
+const ChatScreen = ({ navigation, route }) => {
+  // const minCommentInputContainerHeight = Dimensions.get('window').height * 0.06;
+  const [messages, setMessages] = useState([]);
+  const [currentMessage, setCurrentMessage] = useState('');
+
+  const { username, profileImage, userId } = route.params;
+  const { authToken } = useSelector((state) => state.userSignIn);
+  const { _id: authUserId } = useSelector((state) => state.userSignIn.userInfo);
+
+  // const socket = io(NGROK_URL);
+
+  const navigateToMessagesHomeScreen = () => {
+    navigation.navigate('Home');
+  };
+
+  const renderItem = ({ item }) => {
+    // console.log(item);
+    return (
+      <ChatInput
+        sent={item.fromSelf}
+        recieved={item.fromSelf ? false : true}
+        message={item.message}
+      />
+    );
+  };
+
+  const handleSubmitComment = async () => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authToken}`,
+      },
+    };
+
+    await geared.post(
+      '/api/messages/send-message',
+      { from: authUserId, to: userId, message: currentMessage },
+      config
+    );
+    console.log(currentMessage);
+
+    // socket.emit('send_message', currentMessage);
+    // setMessages(currentMessage);
+
+    setCurrentMessage('');
+  };
+
+  useEffect(() => {
+    const getMessages = async () => {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${authToken}`,
+        },
+      };
+      const { data } = await geared.get(`/api/messages/${userId}`, config);
+      setMessages(data);
+    };
+    getMessages().catch(console.error);
+
+    // socket.on('receive_message', (messageData) => {
+    //   // setMessages(messageData);
+    //   console.log(`Received message: ${messageData}`);
+    // });
+
+    // return () => socket.disconnect();
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        onPress={() => {
-          /* 1. Navigate to the Details route with params */
-          navigation.navigate('PostDetails', {
-            itemId: 1,
-          });
-        }}
-      >
-        <View style={styles.productInfoContainer}>
-          <Image
-            style={styles.productImage}
-            source={require('../assets/test-images/IMG_1676.jpg')}
+    <SafeAreaView style={styles.container}>
+      {/* <KeyboardAwareScrollView extraHeight={minCommentInputContainerHeight}> */}
+      <View style={styles.header}>
+        <TouchableOpacity
+          onPress={navigateToMessagesHomeScreen}
+          activeOpacity={1}
+        >
+          <Ionicons
+            name="chevron-back-outline"
+            size={28}
+            color={theme.LIGHT_GRAY}
           />
-          <Text style={styles.description}>
-            2017-2018 Bam Adebayo Panini Contenders Rookie Auto 49/65
-          </Text>
-          <View style={styles.iconContainer}>
-            <Ionicons
-              name="chevron-forward-outline"
-              size={24}
-              color="#737373"
-            />
-          </View>
+        </TouchableOpacity>
+        <View style={styles.userImageAndPhotoContainer}>
+          <Image
+            style={styles.userImage}
+            source={{
+              uri: profileImage,
+            }}
+          />
+          <Text style={styles.username}>{username}</Text>
         </View>
-      </TouchableOpacity>
+        <Ionicons name="chevron-back-outline" size={28} color="transparent" />
+      </View>
 
-      {/* <View style={styles.productInfoContainer}>
-        <Text>Chat container</Text>
-      </View> */}
-    </View>
+      <View style={styles.createCommentSection}>
+        <Image
+          style={styles.userImage}
+          source={{
+            uri: 'https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg',
+          }}
+        />
+
+        <TextInput
+          style={styles.textInput}
+          value={currentMessage}
+          onChangeText={(text) => setCurrentMessage(text)}
+          placeholder={'Say something...'}
+          placeholderTextColor={'#a1a1aa'}
+          maxLength={400}
+          multiline
+        />
+        <TouchableOpacity onPress={handleSubmitComment}>
+          <Text style={styles.sendBtn}>SEND</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View style={styles.chatInputContainer}>
+        <Text style={styles.date}>11:35 AM</Text>
+        {/* <ChatInput recieved message={'How about 150?'} />
+          <ChatInput sent message={'Can you do 135?'} />
+          <ChatInput sent message={`It's brand new`} />
+          <ChatInput sent message={'Can you do 135?'} />
+          <ChatInput sent message={`It's brand new`} />
+          <ChatInput sent message={'Can you do 135?'} />
+          <ChatInput sent message={`It's brand new`} />
+          <ChatInput sent message={'Can you do 135?'} />
+          <ChatInput sent message={`It's brand new`} />
+          <ChatInput sent message={'Can you do 135?'} />
+          <ChatInput sent message={`It's brand new`} />
+          <ChatInput sent message={'Can you do 135?'} />
+          <ChatInput sent message={`It's brand new`} />
+          <ChatInput sent message={'Can you do 135?'} />
+          <ChatInput sent message={`It's brand new`} /> */}
+        <FlatList
+          // ref={scrollRef}
+          data={messages}
+          renderItem={renderItem}
+          keyExtractor={() => Math.floor(100000 + Math.random() * 900000)}
+        />
+      </View>
+
+      {/* </KeyboardAwareScrollView> */}
+    </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    flex: 1,
-    // paddingHorizontal: 15,
-  },
-  productInfoContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    marginTop: 15,
-    // backgroundColor: 'green',
-    padding: 15,
-    borderBottomWidth: 1.5,
-    borderColor: theme.BORDER_COLOR,
-    height: 100,
-    alignItems: 'center',
-  },
-  productImage: {
-    flex: 2,
-    height: '100%',
-  },
-  description: {
-    fontSize: 15,
-    flex: 7,
-    paddingLeft: 10,
-  },
-  iconContainer: {
-    // backgroundColor: 'pink',
-    flex: 1,
-    justifyContent: 'flex',
-    alignItems: 'flex-end',
-  },
-});
 
 export default ChatScreen;

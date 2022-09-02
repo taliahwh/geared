@@ -32,7 +32,7 @@ const ConfirmShippingScreen = () => {
             }}
           >
             <LinearGradient
-              colors={['transparent', 'rgba(255,255,255,1)']}
+              colors={['transparent', 'rgba(50,50,50,1)']}
               style={{
                 flex: 1,
                 justifyContent: 'center',
@@ -56,6 +56,7 @@ const ConfirmShippingScreen = () => {
           <View style={styles.inputContainer}>
             <Text style={styles.inputTitle}>First and last name</Text>
             <TextInput
+              keyboardAppearance="dark"
               style={styles.textInput}
               textContentType="name"
               value={fullName}
@@ -64,6 +65,7 @@ const ConfirmShippingScreen = () => {
 
             <Text style={styles.inputTitle}>Phone number</Text>
             <TextInput
+              keyboardAppearance="dark"
               style={styles.textInput}
               textContentType="telephoneNumber"
               keyboardType="numeric"
@@ -74,6 +76,7 @@ const ConfirmShippingScreen = () => {
 
             <Text style={styles.inputTitle}>Email</Text>
             <TextInput
+              keyboardAppearance="dark"
               style={styles.textInput}
               textContentType="emailAddress"
               value={email}
