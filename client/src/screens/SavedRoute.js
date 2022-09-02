@@ -19,6 +19,9 @@ import AlertMessage from '../components/AlertMessage';
 // Actions
 import { getSavedPosts } from '../actions/postActions';
 
+// Styles
+import theme from '../styles/styles.theme';
+
 const cardWidth = Dimensions.get('window').width / 4;
 
 const ImageRender = ({ src }) => {

@@ -46,6 +46,7 @@ const ShippingAddressScreen = () => {
       <View style={styles.container}>
         <Text style={styles.inputTitle}>Address line 1</Text>
         <TextInput
+          keyboardAppearance="dark"
           style={styles.textInput}
           textContentType="fullStreetAddress"
           value={address}
@@ -54,6 +55,7 @@ const ShippingAddressScreen = () => {
 
         <Text style={styles.inputTitle}>Address line 2</Text>
         <TextInput
+          keyboardAppearance="dark"
           placeholder="Optional"
           style={styles.textInput}
           value={addressLineTwo}
@@ -62,6 +64,7 @@ const ShippingAddressScreen = () => {
 
         <Text style={styles.inputTitle}>City</Text>
         <TextInput
+          keyboardAppearance="dark"
           style={styles.textInput}
           textContentType="addressCity"
           value={city}
@@ -80,6 +83,7 @@ const ShippingAddressScreen = () => {
 
         <Text style={styles.inputTitle}>Zip or postal code</Text>
         <TextInput
+          keyboardAppearance="dark"
           style={styles.textInput}
           textContentType="postalCode"
           value={zipCode}
