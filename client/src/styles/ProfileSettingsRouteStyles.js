@@ -8,12 +8,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: theme.DARK_MODE,
     paddingHorizontal: 15,
   },
   border: {
     borderTopWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.MEDIUM_GRAY,
     marginVertical: 20,
   },
   section: {
@@ -24,20 +24,21 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     fontSize: 17,
     paddingBottom: 5,
+    color: theme.LIGHT_GRAY,
   },
   inputContainer: {
     display: 'flex',
     flexDirection: 'row',
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.MEDIUM_GRAY,
   },
   imageInputContainer: {
     display: 'flex',
     flexDirection: 'row',
     paddingVertical: 7,
     borderBottomWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.MEDIUM_GRAY,
     alignItems: 'center',
   },
   dateInputContainer: {
@@ -45,25 +46,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.MEDIUM_GRAY,
   },
   slash: { paddingHorizontal: 5 },
   inputTitle: {
     width: '30%',
     // backgroundColor: 'pink',
     fontSize: 15,
+    color: theme.MEDIUM_GRAY,
   },
   inputSection: {
     // backgroundColor: 'orange',
     width: '70%',
     marginRight: 15,
-    color: '#000',
+    color: theme.LIGHT_GRAY,
   },
   disabledInputSection: {
     // backgroundColor: 'orange',
     width: '70%',
     marginRight: 15,
-    color: '#a1a1aa',
+    color: theme.LIGHT_GRAY,
   },
   flexInputContainer: {
     display: 'flex',
@@ -72,41 +74,42 @@ const styles = StyleSheet.create({
     // justifyContent: 'space-between',
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.MEDIUM_GRAY,
   },
   flexInputTitle: {
     flex: 3,
     // backgroundColor: 'pink',
     width: '30%',
     fontSize: 15,
+    color: theme.MEDIUM_GRAY,
   },
   flexInputSection: {
     // backgroundColor: 'orange',
     flex: 6,
     marginRight: 15,
-    color: '#000',
+    color: theme.LIGHT_GRAY,
   },
   flexPlaceholderSection: {
     // backgroundColor: 'orange',
     flex: 6,
     marginRight: 15,
-    color: '#a1a1aa',
+    color: theme.LIGHT_GRAY,
   },
   flexIcon: {
     // backgroundColor: 'pink',
     flex: 1,
-    color: '#000',
+    color: theme.MEDIUM_GRAY,
   },
   userImage: {
     height: 30,
     width: 30,
     borderWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.MEDIUM_GRAY,
     borderRadius: 100,
   },
   btn: {
-    backgroundColor: '#27272a',
-    color: '#fff',
+    backgroundColor: theme.LIGHT_GRAY,
+    color: theme.DARK_MODE,
     fontWeight: '700',
     fontSize: 15,
     textAlign: 'center',
@@ -119,7 +122,7 @@ const styles = StyleSheet.create({
   tagsContainer: {
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.MEDIUM_GRAY,
   },
 
   // Modal
@@ -149,14 +152,16 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 40,
-    borderColor: '#000000',
+    borderColor: theme.LIGHT_GRAY,
     paddingHorizontal: 10,
+    color: theme.LIGHT_GRAY,
   },
   modalInputTitle: {
     textAlign: 'center',
     fontSize: 13,
     fontWeight: '500',
     textTransform: 'uppercase',
+    color: theme.LIGHT_GRAY,
   },
 
   modalContainer: {
@@ -165,7 +170,7 @@ const styles = StyleSheet.create({
   },
   modalDisplayText: {
     fontSize: 15,
-    color: '#3f3f46',
+    color: theme.LIGHT_GRAY,
     textAlign: 'center',
   },
   interestTagContainer: {
@@ -173,10 +178,11 @@ const styles = StyleSheet.create({
   },
   interestInput: {
     borderBottomWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.MEDIUM_GRAY,
     marginVertical: 10,
     paddingVertical: 7,
     paddingHorizontal: 7,
+    color: theme.LIGHT_GRAY,
   },
   modalInputContainer: {
     display: 'flex',
@@ -185,7 +191,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'orange',
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.MEDIUM_GRAY,
   },
   modalInputTitle: {
     width: '100%',
@@ -200,7 +206,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'orange',
     width: '100%',
     // marginRight: 15,
-    color: '#000',
+    color: theme.LIGHT_GRAY,
   },
 });
 

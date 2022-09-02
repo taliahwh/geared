@@ -6,7 +6,7 @@ const SLIDER_HEIGHT = Dimensions.get('window').width + 10;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.DARK_MODE,
     display: 'flex',
   },
   headingContainer: {
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     height: 40,
     width: 40,
     borderWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
     borderRadius: 40 / 2,
   },
   usernameContainer: {
@@ -48,10 +48,12 @@ const styles = StyleSheet.create({
   username: {
     fontWeight: '600',
     fontSize: 14,
+    color: theme.LIGHT_GRAY,
   },
   usernameInDescription: {
     fontWeight: '500',
-    paddingRight: 5,
+    paddingRight: 7,
+    color: theme.LIGHT_GRAY,
   },
   location: {
     fontSize: 13,
@@ -82,6 +84,7 @@ const styles = StyleSheet.create({
   likeCount: {
     fontSize: 13,
     paddingLeft: 5,
+    color: theme.LIGHT_GRAY,
   },
   btn: {
     paddingLeft: 15,
@@ -115,7 +118,7 @@ const styles = StyleSheet.create({
   commentingUserImage: {
     height: 42,
     borderWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
     borderRadius: 100,
     backgroundColor: 'orange',
     flex: 1,
@@ -183,17 +186,22 @@ const styles = StyleSheet.create({
   specsLabel: {
     fontWeight: '600',
     marginLeft: 4,
+    color: theme.LIGHT_GRAY,
+  },
+  specsType: {
+    color: theme.LIGHT_GRAY,
   },
   uploadDate: {
     paddingLeft: 15,
     paddingTop: 4,
     fontSize: 10,
     paddingBottom: 5,
+    color: theme.MEDIUM_GRAY,
   },
   aboutTheSellerContainer: {
     marginHorizontal: 15,
     borderTopWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
     marginTop: 10,
   },
   aboutTheSellerTitle: {
@@ -211,7 +219,7 @@ const styles = StyleSheet.create({
     flex: 2,
     height: 55,
     borderWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
     borderRadius: 100,
   },
   sellerNameContainer: {
@@ -221,10 +229,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '700',
     marginLeft: 15,
+    color: theme.LIGHT_GRAY,
   },
   sellerMeta: {
     fontSize: 11,
     marginLeft: 15,
+    color: theme.LIGHT_GRAY,
   },
   sellerMenuContainer: {
     paddingTop: 10,
@@ -233,7 +243,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     borderBottomWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
     paddingVertical: 7,
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -251,14 +261,15 @@ const styles = StyleSheet.create({
   menuTitle: {
     fontSize: 17,
     paddingTop: 3,
+    color: theme.MEDIUM_GRAY,
   },
   menuQty: {
     marginRight: 20,
     fontSize: 16,
-    color: '#737373',
+    color: theme.MEDIUM_GRAY,
   },
   menuArrow: {
-    color: '#525252',
+    color: theme.MEDIUM_GRAY,
   },
 });
 

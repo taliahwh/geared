@@ -3,7 +3,7 @@ import theme from '../styles/styles.theme';
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: theme.DARK_MODE,
     paddingHorizontal: 15,
     paddingVertical: 10,
   },
@@ -31,10 +31,11 @@ const styles = StyleSheet.create({
   userDisplayName: {
     fontSize: 20,
     fontWeight: '700',
+    color: theme.LIGHT_GRAY,
   },
   username: {
     fontSize: 15,
-    color: '#737373',
+    color: theme.MEDIUM_GRAY,
   },
   ratingsContainer: {
     display: 'flex',
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
   },
   description: {
     marginTop: 10,
-    // fontSize: 15,
+    color: theme.LIGHT_GRAY,
   },
   followersAndShareContainer: {
     display: 'flex',
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   followingBtn: {
-    backgroundColor: '#fff',
+    backgroundColor: theme.DARK_MODE,
     borderWidth: 1,
     borderColor: theme.PRIMARY_COLOR,
     width: '100%',
@@ -110,6 +111,7 @@ const styles = StyleSheet.create({
   },
   count: {
     fontWeight: '600',
+    color: theme.LIGHT_GRAY,
   },
   menu: {
     borderRadius: 10,
