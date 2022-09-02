@@ -42,7 +42,7 @@ const MessagePreview = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: theme.DARK_MODE,
     paddingHorizontal: 15,
     paddingVertical: 15,
     display: 'flex',
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 90,
     borderBottomWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
   },
   userImage: {
     backgroundColor: 'pink',
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     width: 50,
     borderRadius: 50 / 2,
     borderWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
     borderRadius: 1000,
     // marginRight: 2,
   },
@@ -88,19 +88,20 @@ const styles = StyleSheet.create({
     flex: 1,
     display: 'flex',
     alignItems: 'flex-end',
-    color: '#a3a3a3',
+    color: theme.MEDIUM_GRAY,
   },
   userName: {
     fontWeight: '700',
     fontSize: 17,
+    color: theme.LIGHT_GRAY,
   },
   messagePreview: {
     fontSize: 14,
-    color: 'gray',
+    color: theme.MEDIUM_GRAY,
   },
   date: {
     fontSize: 10,
-    color: '#3f3f46',
+    color: theme.MEDIUM_GRAY,
   },
 });
 

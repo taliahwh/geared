@@ -7,6 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from './src/store';
 import { LogBox } from 'react-native';
 import * as Notifications from 'expo-notifications';
+import { StatusBar } from 'expo-status-bar';
 
 // Helper Functions
 import getNotificationsPermission from './src/utils/getNotificationsPermission';
@@ -53,7 +54,7 @@ const App = () => {
       }
     };
 
-    getToken();
+    // getToken();
 
     // This listener is fired whenever a notification is received while the app is foregrounded
     notificationListener.current =
@@ -75,6 +76,7 @@ const App = () => {
   return (
     <NavigationContainer ref={navigationRef}>
       {authToken === null ? <AuthNavigator /> : <MainNavigator />}
+      <StatusBar style="light" />
     </NavigationContainer>
   );
 };

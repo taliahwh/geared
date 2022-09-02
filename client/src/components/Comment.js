@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   },
   commentContainer: {
     flex: 10,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: theme.LIGHT_GRAY,
     borderRadius: 5,
     marginLeft: 10,
     // height: 80,

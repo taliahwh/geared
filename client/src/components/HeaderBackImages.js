@@ -5,10 +5,13 @@ import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 
+// Styles
+import theme from '../styles/styles.theme';
+
 export const HeaderClose = () => {
   return (
     <View style={{ marginLeft: 15 }}>
-      <Ionicons name="close-outline" size={27} color="black" />
+      <Ionicons name="close-outline" size={27} color={theme.LIGHT_GRAY} />
     </View>
   );
 };
@@ -16,7 +19,11 @@ export const HeaderClose = () => {
 export const HeaderBack = () => {
   return (
     <View style={{ marginLeft: 15 }}>
-      <Ionicons name="chevron-back-outline" size={28} color="black" />
+      <Ionicons
+        name="chevron-back-outline"
+        size={28}
+        color={theme.LIGHT_GRAY}
+      />
     </View>
   );
 };
@@ -30,7 +37,7 @@ export const HeaderNotification = () => {
         activeOpacity={0.8}
         onPress={() => navigation.navigate('Notifications')}
       >
-        <Ionicons name="ios-notifications" size={25} color="black" />
+        <Ionicons name="ios-notifications" size={25} color={theme.LIGHT_GRAY} />
       </TouchableOpacity>
     </View>
   );
@@ -45,7 +52,7 @@ export const HeaderConfirm = () => {
         activeOpacity={0.8}
         onPress={() => navigation.navigate('Home')}
       >
-        <Ionicons name="checkmark-sharp" size={25} color="black" />
+        <Ionicons name="checkmark-sharp" size={25} color={theme.LIGHT_GRAY} />
       </TouchableOpacity>
     </View>
   );
@@ -60,7 +67,7 @@ export const HeaderPurchased = () => {
         activeOpacity={0.8}
         onPress={() => navigation.navigate('Purchased')}
       >
-        <Ionicons name="receipt-outline" size={24} color="black" />
+        <Ionicons name="receipt-outline" size={24} color={theme.LIGHT_GRAY} />
       </TouchableOpacity>
     </View>
   );

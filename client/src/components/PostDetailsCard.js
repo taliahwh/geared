@@ -22,6 +22,9 @@ import AlertMessage from '../components/AlertMessage';
 // Actions
 import { likePostFromDetails, savePost } from '../actions/postActions';
 
+// Styles
+import theme from '../styles/styles.theme';
+
 const PostDetailsCard = ({
   postDetails,
   postId,
@@ -65,12 +68,16 @@ const PostDetailsCard = ({
       <>
         {userLikedPost ? (
           <View style={styles.likeBtnContainer}>
-            <Ionicons name="thumbs-up" size={26} color="black" />
+            <Ionicons name="thumbs-up" size={26} color={theme.LIGHT_GRAY} />
             <Text style={styles.likeCount}>{likeCount}</Text>
           </View>
         ) : (
           <View style={styles.likeBtnContainer}>
-            <Ionicons name="thumbs-up-outline" size={26} color="black" />
+            <Ionicons
+              name="thumbs-up-outline"
+              size={26}
+              color={theme.LIGHT_GRAY}
+            />
             <Text style={styles.likeCount}>{likeCount}</Text>
           </View>
         )}
@@ -82,9 +89,13 @@ const PostDetailsCard = ({
     return (
       <>
         {userSavedPost ? (
-          <Ionicons name="ios-bookmark" size={26} color="black" />
+          <Ionicons name="ios-bookmark" size={26} color={theme.LIGHT_GRAY} />
         ) : (
-          <Ionicons name="bookmark-outline" size={26} color="black" />
+          <Ionicons
+            name="bookmark-outline"
+            size={26}
+            color={theme.LIGHT_GRAY}
+          />
         )}
       </>
     );
@@ -106,7 +117,7 @@ const PostDetailsCard = ({
           <Ionicons
             name="ellipsis-horizontal"
             size={24}
-            color="black"
+            color={theme.LIGHT_GRAY}
             style={styles.ellipsis}
           />
         </View>
@@ -116,7 +127,7 @@ const PostDetailsCard = ({
       </View>
       <View style={styles.buttonContainer}>
         {/* <View style={styles.likeBtnContainer}>
-            <Ionicons name="thumbs-up-outline" size={26} color="black" />
+            <Ionicons name="thumbs-up-outline" size={26} color={theme.LIGHT_GRAY} />
             <Text style={styles.likeCount}>{postDetails.likes.length}</Text>
           </View> */}
         <TouchableOpacity activeOpacity={0.8} onPress={() => handleLikePost()}>
@@ -135,19 +146,19 @@ const PostDetailsCard = ({
             style={styles.btn}
             name="paper-plane-outline"
             size={26}
-            color="black"
+            color={theme.LIGHT_GRAY}
           />
           <Ionicons
             style={styles.btn}
             name="share-outline"
             size={26}
-            color="black"
+            color={theme.LIGHT_GRAY}
           />
         </View>
       </View>
       <Text style={styles.descriptionContainer}>
         <Text style={styles.usernameInDescription}>{`${username} `}</Text>
-        {description}
+        <Text style={{ color: theme.LIGHT_GRAY }}>{description}</Text>
       </Text>
       {/* <Text style={styles.viewComments}>View all 13 comments</Text> */}
       {numComments === 0 && (
@@ -169,11 +180,11 @@ const PostDetailsCard = ({
       )}
       <View style={styles.cardDetailsContainer}>
         <View style={styles.specsContainer}>
-          <Text>Condition</Text>
+          <Text style={styles.specsType}>Condition</Text>
           <Text style={styles.specsLabel}>{condition}</Text>
         </View>
         <View style={styles.specsContainer}>
-          <Text>Sport</Text>
+          <Text style={styles.specsType}>Sport</Text>
           <Text style={styles.specsLabel}>{sport}</Text>
         </View>
       </View>
@@ -209,7 +220,7 @@ const PostDetailsCard = ({
             <Ionicons
               name="chevron-forward-outline"
               size={24}
-              color="black"
+              color={theme.LIGHT_GRAY}
               style={styles.menuArrow}
             />
           </View>
@@ -221,7 +232,7 @@ const PostDetailsCard = ({
             <Ionicons
               name="chevron-forward-outline"
               size={24}
-              color="black"
+              color={theme.LIGHT_GRAY}
               style={styles.menuArrow}
             />
           </View>
@@ -233,7 +244,7 @@ const PostDetailsCard = ({
             <Ionicons
               name="chevron-forward-outline"
               size={24}
-              color="black"
+              color={theme.LIGHT_GRAY}
               style={styles.menuArrow}
             />
           </View>
