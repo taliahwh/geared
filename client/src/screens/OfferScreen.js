@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { View, Text, Image, Dimensions, TextInput } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  Dimensions,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 // Styles
@@ -7,6 +14,8 @@ import styles from '../styles/OfferScreenStyles';
 import theme from '../styles/styles.theme';
 
 const thirdWindowWidth = Dimensions.get('window').width / 3;
+
+const sendOffer = () => {};
 
 const OfferScreen = () => {
   const [offer, setOffer] = useState('');
@@ -33,7 +42,7 @@ const OfferScreen = () => {
           style={styles.icon}
           name="alarm-outline"
           size={30}
-          color="black"
+          color={theme.MEDIUM_GRAY}
         />
         <View style={styles.alertMessageContainer}>
           <Text style={styles.alertMessageTitle}>
@@ -49,6 +58,7 @@ const OfferScreen = () => {
       <View style={styles.offerContainer}>
         <Text style={styles.offerTitle}>Your offer</Text>
         <TextInput
+          keyboardAppearance="dark"
           autoFocus
           style={styles.offerInput}
           value={offer}
@@ -65,7 +75,9 @@ const OfferScreen = () => {
           </Text>
         </Text>
 
-        <Text style={styles.sendOfferBtn}>Send offer</Text>
+        <TouchableOpacity onPress={sendOffer} activeOpacity={0.8}>
+          <Text style={styles.sendOfferBtn}>Send offer</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

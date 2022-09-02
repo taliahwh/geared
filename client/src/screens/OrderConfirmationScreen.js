@@ -4,6 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 // Styles
 import styles from '../styles/OrderConfirmationScreenStyles';
+import theme from '../styles/styles.theme';
 
 const OrderConfirmationScreen = () => {
   return (
@@ -17,7 +18,7 @@ const OrderConfirmationScreen = () => {
       </View>
       <View style={styles.infoContainer}>
         <View style={styles.iconContainer}>
-          <Ionicons name="mail-outline" size={24} color="black" />
+          <Ionicons name="mail-outline" size={24} color={theme.LIGHT_GRAY} />
         </View>
 
         <View style={styles.textContainer}>
@@ -34,7 +35,7 @@ const OrderConfirmationScreen = () => {
 
       <View style={styles.infoContainer}>
         <View style={styles.iconContainer}>
-          <Ionicons name="receipt-outline" size={24} color="black" />
+          <Ionicons name="receipt-outline" size={24} color={theme.LIGHT_GRAY} />
         </View>
 
         <View style={styles.textContainer}>

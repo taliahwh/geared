@@ -11,8 +11,15 @@ import { useNavigation } from '@react-navigation/native';
 // Components
 import MessagePreview from '../components/MessagePreview';
 
+// Styles
+import theme from '../styles/styles.theme';
+
 const MessagesScreen = () => {
   const navigation = useNavigation();
+
+  const navigateToTestScreen = () => {
+    navigation.navigate('Test');
+  };
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <TouchableOpacity
@@ -43,15 +50,17 @@ const MessagesScreen = () => {
           'https://cdn-wp.thesportsrush.com/2022/04/e44aae51-untitled-design-1.jpg'
         }
       />
-      <MessagePreview
-        name="C Webb"
-        messagePreview={'Open 2 trade?'}
-        dateSent={'YESTERDAY'}
-        // productImage={'https://i.pinimg.com/originals/d8/aa/8f/d8aa8f6987714957e06ce0fb416641ef.jpg'}
-        senderImage={
-          'https://www.gannett-cdn.com/presto/2021/05/16/PDTF/ea67f359-089b-48a2-a9a2-8053a53b5969-dfpm27031.jpg?crop=1409,792,x430,y146&width=660&height=372&format=pjpg&auto=webp'
-        }
-      />
+      <TouchableOpacity onPress={navigateToTestScreen}>
+        <MessagePreview
+          name="C Webb"
+          messagePreview={'Open 2 trade?'}
+          dateSent={'YESTERDAY'}
+          // productImage={'https://i.pinimg.com/originals/d8/aa/8f/d8aa8f6987714957e06ce0fb416641ef.jpg'}
+          senderImage={
+            'https://www.gannett-cdn.com/presto/2021/05/16/PDTF/ea67f359-089b-48a2-a9a2-8053a53b5969-dfpm27031.jpg?crop=1409,792,x430,y146&width=660&height=372&format=pjpg&auto=webp'
+          }
+        />
+      </TouchableOpacity>
     </ScrollView>
   );
 };
@@ -59,7 +68,7 @@ const MessagesScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.FEED_BACKGROUND,
   },
   text: {
     fontWeight: '500',
