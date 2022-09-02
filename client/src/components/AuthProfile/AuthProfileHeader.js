@@ -121,7 +121,7 @@ const AuthProfileHeader = () => {
                 <Ionicons name="star" size={15} color={theme.PRIMARY_COLOR} />
                 <Ionicons name="star" size={15} color={theme.PRIMARY_COLOR} />
                 <Ionicons name="star" size={15} color={theme.PRIMARY_COLOR} />
-                <Text>(13)</Text>
+                <Text style={{ color: theme.LIGHT_GRAY }}>(13)</Text>
                 {/* <Ionicons name="star-half" size={15} color={theme.PRIMARY_COLOR} /> */}
               </View>
             </View>
@@ -136,7 +136,7 @@ const AuthProfileHeader = () => {
                     <Ionicons
                       name="ellipsis-horizontal"
                       size={24}
-                      color="black"
+                      color={theme.LIGHT_GRAY}
                     />
                   </MenuTrigger>
                   <MenuOptions style={styles.menu}>
@@ -199,7 +199,7 @@ const AuthProfileHeader = () => {
                   <Text style={styles.count}>
                     {userDetails.following.length}
                   </Text>
-                  <Text>following</Text>
+                  <Text style={{ color: theme.LIGHT_GRAY }}>following</Text>
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
@@ -210,7 +210,7 @@ const AuthProfileHeader = () => {
                   <Text style={styles.count}>
                     {userDetails.followers.length}
                   </Text>
-                  <Text>followers</Text>
+                  <Text style={{ color: theme.LIGHT_GRAY }}>followers</Text>
                 </View>
               </TouchableOpacity>
             </View>

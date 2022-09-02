@@ -83,7 +83,7 @@ const ProfileHeader = ({
             <Ionicons name="star" size={15} color={theme.PRIMARY_COLOR} />
             <Ionicons name="star" size={15} color={theme.PRIMARY_COLOR} />
             <Ionicons name="star" size={15} color={theme.PRIMARY_COLOR} />
-            <Text>(13)</Text>
+            <Text style={{ color: theme.LIGHT_GRAY }}>(13)</Text>
           </View>
         </View>
 
@@ -94,7 +94,11 @@ const ProfileHeader = ({
           >
             <Menu>
               <MenuTrigger>
-                <Ionicons name="ellipsis-horizontal" size={24} color="black" />
+                <Ionicons
+                  name="ellipsis-horizontal"
+                  size={24}
+                  color={theme.MEDIUM_GRAY}
+                />
               </MenuTrigger>
               <MenuOptions style={styles.menu}>
                 <MenuOption onSelect={handleLogout}>
@@ -150,7 +154,7 @@ const ProfileHeader = ({
           >
             <View>
               <Text style={styles.count}>{followingCount}</Text>
-              <Text>following</Text>
+              <Text style={{ color: theme.LIGHT_GRAY }}>following</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity
@@ -159,7 +163,7 @@ const ProfileHeader = ({
           >
             <View>
               <Text style={styles.count}>{followersCount}</Text>
-              <Text>followers</Text>
+              <Text style={{ color: theme.LIGHT_GRAY }}>followers</Text>
             </View>
           </TouchableOpacity>
         </View>

@@ -7,6 +7,7 @@ import moment from 'moment';
 
 // Styles
 import styles from '../styles/TradingCardPostStyles';
+import theme from '../styles/styles.theme';
 
 // Components
 import CarouselCards from './carousel/CarouselCards';
@@ -18,7 +19,7 @@ const TagRender = ({ item }) => {
   return <Text style={styles.postTags}>{item}</Text>;
 };
 const Separator = () => {
-  return <View style={{ width: 1, backgroundColor: '#fff' }} />;
+  return <View style={{ width: 1, backgroundColor: theme.DARK_MODE }} />;
 };
 
 /**
@@ -56,12 +57,16 @@ const TradingCardPost = ({
       <>
         {userLikedPost ? (
           <View style={styles.likeBtnContainer}>
-            <Ionicons name="thumbs-up" size={26} color="black" />
+            <Ionicons name="thumbs-up" size={26} color={theme.LIGHT_GRAY} />
             <Text style={styles.likeCount}>{likesCount}</Text>
           </View>
         ) : (
           <View style={styles.likeBtnContainer}>
-            <Ionicons name="thumbs-up-outline" size={26} color="black" />
+            <Ionicons
+              name="thumbs-up-outline"
+              size={26}
+              color={theme.LIGHT_GRAY}
+            />
             <Text style={styles.likeCount}>{likesCount}</Text>
           </View>
         )}
@@ -76,9 +81,13 @@ const TradingCardPost = ({
       <>
         {/* {loadingSavePost && <ActivityIndicator />} */}
         {userSavedPost ? (
-          <Ionicons name="ios-bookmark" size={26} color="black" />
+          <Ionicons name="ios-bookmark" size={26} color={theme.LIGHT_GRAY} />
         ) : (
-          <Ionicons name="bookmark-outline" size={26} color="black" />
+          <Ionicons
+            name="bookmark-outline"
+            size={26}
+            color={theme.LIGHT_GRAY}
+          />
         )}
       </>
     );
@@ -111,6 +120,14 @@ const TradingCardPost = ({
     });
   };
 
+  const navigateToMessages = () => {
+    navigation.navigate('Chat', {
+      username,
+      profileImage,
+      userId: userProfileId,
+    });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.headingContainer}>
@@ -136,7 +153,7 @@ const TradingCardPost = ({
           <Ionicons
             name="ellipsis-horizontal"
             size={24}
-            color="black"
+            color={theme.LIGHT_GRAY}
             style={styles.ellipsis}
           />
         </View>
@@ -157,24 +174,27 @@ const TradingCardPost = ({
             <Saved />
           </TouchableOpacity>
 
-          <Ionicons
-            style={styles.btn}
-            name="paper-plane-outline"
-            size={26}
-            color="black"
-          />
+          <TouchableOpacity onPress={navigateToMessages} activeOpacity={0.8}>
+            <Ionicons
+              style={styles.btn}
+              name="paper-plane-outline"
+              size={26}
+              color={theme.LIGHT_GRAY}
+            />
+          </TouchableOpacity>
+
           <Ionicons
             style={styles.btn}
             name="share-outline"
             size={26}
-            color="black"
+            color={theme.LIGHT_GRAY}
           />
         </View>
       </View>
 
       <Text style={styles.descriptionContainer}>
         <Text style={styles.usernameInDescription}>{`${username} `}</Text>
-        {description}
+        <Text style={{ color: theme.LIGHT_GRAY }}>{description}</Text>
       </Text>
 
       <View style={styles.tagsContainer}>

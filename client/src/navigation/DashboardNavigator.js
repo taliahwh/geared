@@ -8,6 +8,9 @@ import ConnectPayPalScreen from '../screens/ConnectPayPalScreen';
 
 import { HeaderBack } from '../components/HeaderBackImages';
 
+// Styles
+import theme from '../styles/styles.theme';
+
 const Stack = createStackNavigator();
 
 const DashboardNavigator = () => {
@@ -22,6 +25,10 @@ const DashboardNavigator = () => {
             elevation: 0,
             shadowOpacity: 0,
             borderBottomWidth: 0,
+            backgroundColor: theme.DARK_MODE,
+          },
+          headerTitleStyle: {
+            color: theme.LIGHT_GRAY,
           },
         }}
       />
@@ -29,10 +36,17 @@ const DashboardNavigator = () => {
         name="Listing"
         component={CreateListingScreen}
         options={{
-          headerTitle: 'Listing',
+          headerTitle: 'Create Listing',
           headerBackTitleVisible: false,
           headerBackImage: HeaderBack,
           ...TransitionPresets.ModalSlideFromBottomIOS,
+          headerTitleStyle: {
+            color: theme.LIGHT_GRAY,
+          },
+          headerStyle: {
+            backgroundColor: theme.DARK_MODE,
+            borderColor: theme.MEDIUM_GRAY,
+          },
         }}
       />
       <Stack.Screen
@@ -42,6 +56,12 @@ const DashboardNavigator = () => {
           headerTitle: 'PayPal',
           headerBackTitleVisible: false,
           headerBackImage: HeaderBack,
+          headerTitleStyle: {
+            color: theme.LIGHT_GRAY,
+          },
+          headerStyle: {
+            backgroundColor: theme.DARK_MODE,
+          },
         }}
       />
     </Stack.Navigator>

@@ -19,6 +19,9 @@ import AlertMessage from '../AlertMessage';
 // Actions
 import { getAuthUserPosts } from '../../actions/userActions';
 
+// Styles
+import theme from '../../styles/styles.theme';
+
 const thirdWindowWidth = Dimensions.get('window').width / 3;
 
 const ImageRender = ({ src }) => {
@@ -99,6 +102,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     margin: 0.7,
+    backgroundColor: theme.FEED_BACKGROUND,
   },
   image: {
     justifyContent: 'center',
@@ -111,6 +115,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flex: 1,
+    backgroundColor: theme.FEED_BACKGROUND,
   },
 });
 

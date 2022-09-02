@@ -33,7 +33,7 @@ const AddressContainer = ({
         <Ionicons
           name="chevron-forward-outline"
           size={20}
-          color={theme.BORDER_COLOR}
+          color={theme.MEDIUM_GRAY}
         />
       </View>
     </View>
@@ -49,7 +49,11 @@ const SelectAddressModal = ({ hideModal }) => {
 
           <View style={styles.header}>
             <Pressable onPress={hideModal}>
-              <Ionicons name="chevron-back-outline" size={28} color="black" />
+              <Ionicons
+                name="chevron-back-outline"
+                size={28}
+                color={theme.LIGHT_GRAY}
+              />
             </Pressable>
 
             <Text style={styles.headerTitle}>Select address</Text>
