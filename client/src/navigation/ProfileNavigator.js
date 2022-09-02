@@ -37,7 +37,9 @@ const ProfileNavigator = () => {
             elevation: 0,
             shadowOpacity: 0,
             borderBottomWidth: 0,
+            backgroundColor: theme.DARK_MODE,
           },
+
           // headerLeft: HeaderNotification,
         }}
       />

@@ -40,6 +40,10 @@ const HomeScreenNavigator = () => {
               elevation: 0,
               shadowOpacity: 0,
               borderBottomWidth: 0,
+              backgroundColor: theme.DARK_MODE,
+            },
+            headerTitleStyle: {
+              color: theme.LIGHT_GRAY,
             },
           }}
         />
@@ -54,6 +58,7 @@ const HomeScreenNavigator = () => {
               elevation: 0,
               shadowOpacity: 0,
               borderBottomWidth: 0,
+              backgroundColor: theme.DARK_MODE,
             },
           }}
         />
@@ -64,6 +69,9 @@ const HomeScreenNavigator = () => {
             headerTitle: '',
             headerBackTitleVisible: false,
             headerBackImage: HeaderBack,
+            headerStyle: {
+              backgroundColor: theme.DARK_MODE,
+            },
           }}
         />
         <Stack.Screen
@@ -116,11 +124,10 @@ const HomeScreenNavigator = () => {
             headerBackImage: HeaderBack,
             headerTitleStyle: {
               fontWeight: '700',
+              color: theme.LIGHT_GRAY,
             },
             headerStyle: {
-              borderColor: theme.BORDER_COLOR,
-              borderWidth: 0.3,
-              backgroundColor: '#F4F4F4',
+              backgroundColor: theme.DARK_MODE,
             },
           }}
         />
@@ -145,8 +152,9 @@ const HomeScreenNavigator = () => {
             headerBackTitleVisible: false,
             headerBackImage: HeaderBack,
             headerStyle: {
-              borderColor: theme.BORDER_COLOR,
-              borderWidth: 0.3,
+              borderColor: theme.DARK_MODE_BORDER,
+              // borderBottomWidth: 0.1,
+              backgroundColor: theme.DARK_MODE,
             },
             headerLeft: () => null,
             headerRight: HeaderConfirm,
@@ -163,6 +171,13 @@ const HomeScreenNavigator = () => {
             headerTitle: 'Comments',
             headerBackTitleVisible: false,
             headerBackImage: HeaderClose,
+            headerStyle: {
+              backgroundColor: theme.DARK_MODE,
+              borderWidth: 0,
+            },
+            headerTitleStyle: {
+              color: theme.LIGHT_GRAY,
+            },
           }}
         />
         <Stack.Screen
@@ -176,10 +191,9 @@ const HomeScreenNavigator = () => {
             headerBackTitleVisible: false,
             headerBackImage: HeaderClose,
             headerStyle: {
-              borderColor: theme.BORDER_COLOR,
-              borderWidth: 0.3,
-              backgroundColor: '#F4F4F4',
+              backgroundColor: theme.FEED_BACKGROUND,
             },
+            headerTitleStyle: { color: theme.LIGHT_GRAY },
           }}
         />
         <Stack.Screen
@@ -189,12 +203,14 @@ const HomeScreenNavigator = () => {
             headerTitle: 'Checkout',
             headerTitleStyle: {
               fontWeight: '700',
+              color: theme.LIGHT_GRAY,
             },
             headerBackTitleVisible: false,
             headerBackImage: HeaderClose,
             headerStyle: {
-              borderColor: theme.BORDER_COLOR,
-              borderWidth: 0.3,
+              backgroundColor: theme.DARK_MODE,
+              borderColor: theme.DARK_MODE_BORDER,
+              borderBottomWidth: 0.1,
             },
           }}
         />

@@ -64,10 +64,17 @@ const MainNavigator = () => {
           } else if (route.name === 'Profile') {
             iconName = focused ? 'person-circle' : 'person-circle-outline';
           }
-          return <Ionicons name={iconName} size={27} color={'black'} />;
+          return (
+            <Ionicons name={iconName} size={27} color={theme.LIGHT_GRAY} />
+          );
         },
         tabBarShowLabel: false,
         headerShown: false,
+        tabBarStyle: {
+          backgroundColor: theme.DARK_MODE,
+          paddingTop: 5,
+          borderTopColor: 'transparent',
+        },
       })}
     >
       <Tab.Screen

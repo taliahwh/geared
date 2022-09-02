@@ -19,6 +19,9 @@ import PaymentsRoute from './PaymentsRoute';
 import ProfileSettingsRoute from './ProfileSettingsRoute';
 import { getAuthUserDetails } from '../actions/userActions';
 
+// Styles
+import theme from '../styles/styles.theme';
+
 const initialLayout = { width: Dimensions.get('window').width };
 
 const renderScene = SceneMap({
@@ -106,14 +109,14 @@ const DashboardScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   label: {
-    color: '#27272a',
+    color: theme.LIGHT_GRAY,
     fontWeight: '600',
   },
   indicator: {
-    backgroundColor: '#404040',
+    backgroundColor: theme.LIGHT_GRAY,
   },
   tabBar: {
-    backgroundColor: 'white',
+    backgroundColor: theme.DARK_MODE,
   },
   headerContainer: {
     // backgroundColor: 'orange',
@@ -131,7 +134,7 @@ const styles = StyleSheet.create({
     width: 60,
   },
   welcomeTitle: {
-    color: '#fff',
+    color: theme.LIGHT_GRAY,
     fontWeight: '700',
     fontSize: 18,
   },

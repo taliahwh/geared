@@ -17,6 +17,9 @@ import AlertMessage from '../components/AlertMessage';
 // Actions
 import { getExplorePosts } from '../actions/postActions';
 
+// Styles
+import theme from '../styles/styles.theme';
+
 const windowWidth = Dimensions.get('window').width;
 
 const ExploreRoute = () => {
@@ -101,7 +104,7 @@ const ExploreRoute = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F1F1F1',
+    backgroundColor: theme.FEED_BACKGROUND,
     width: windowWidth,
   },
 });

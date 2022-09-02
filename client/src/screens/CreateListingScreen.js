@@ -11,6 +11,7 @@ import {
   Image,
   Platform,
   Alert,
+  Pressable,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -23,6 +24,7 @@ import ModalComponent from '../components/Modal';
 
 //  Styles
 import styles from '../styles/CreateListingStyles';
+import theme from '../styles/styles.theme';
 
 // Actions
 import { createPost, getExplorePosts } from '../actions/postActions';
@@ -336,7 +338,7 @@ const CreateListingScreen = () => {
                 <Ionicons
                   name="camera-outline"
                   size={24}
-                  color="black"
+                  color={theme.MEDIUM_GRAY}
                   style={styles.cameraIcon}
                 />
               </View>
@@ -355,7 +357,7 @@ const CreateListingScreen = () => {
                 <Ionicons
                   name="camera-outline"
                   size={24}
-                  color="black"
+                  color={theme.MEDIUM_GRAY}
                   style={styles.cameraIcon}
                 />
               </View>
@@ -374,7 +376,7 @@ const CreateListingScreen = () => {
                 <Ionicons
                   name="camera-outline"
                   size={24}
-                  color="black"
+                  color={theme.MEDIUM_GRAY}
                   style={styles.cameraIcon}
                 />
               </View>
@@ -393,7 +395,7 @@ const CreateListingScreen = () => {
                 <Ionicons
                   name="camera-outline"
                   size={24}
-                  color="black"
+                  color={theme.MEDIUM_GRAY}
                   style={styles.cameraIcon}
                 />
               </View>
@@ -478,7 +480,7 @@ const CreateListingScreen = () => {
                 <Ionicons
                   name="chevron-forward"
                   size={24}
-                  color="black"
+                  color={theme.MEDIUM_GRAY}
                   style={styles.chevron}
                 />
               </View>
@@ -496,7 +498,7 @@ const CreateListingScreen = () => {
                 <Ionicons
                   name="chevron-forward"
                   size={24}
-                  color="black"
+                  color={theme.MEDIUM_GRAY}
                   style={styles.chevron}
                 />
               </View>
@@ -514,7 +516,7 @@ const CreateListingScreen = () => {
                 <Ionicons
                   name="chevron-forward"
                   size={24}
-                  color="black"
+                  color={theme.MEDIUM_GRAY}
                   style={styles.chevron}
                 />
               </View>
@@ -573,7 +575,7 @@ const CreateListingScreen = () => {
                       <Ionicons
                         name="chevron-forward"
                         size={24}
-                        color="black"
+                        color={theme.MEDIUM_GRAY}
                         style={styles.chevron}
                       />
                     </View>
@@ -617,13 +619,13 @@ const CreateListingScreen = () => {
                           <Ionicons
                             name="ios-radio-button-off-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         ) : (
                           <Ionicons
                             name="ios-radio-button-on-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         )}
                       </TouchableOpacity>
@@ -645,13 +647,13 @@ const CreateListingScreen = () => {
                           <Ionicons
                             name="ios-radio-button-off-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         ) : (
                           <Ionicons
                             name="ios-radio-button-on-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         )}
                       </TouchableOpacity>
@@ -675,13 +677,13 @@ const CreateListingScreen = () => {
                           <Ionicons
                             name="ios-radio-button-off-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         ) : (
                           <Ionicons
                             name="ios-radio-button-on-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         )}
                       </TouchableOpacity>
@@ -703,13 +705,13 @@ const CreateListingScreen = () => {
                           <Ionicons
                             name="ios-radio-button-off-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         ) : (
                           <Ionicons
                             name="ios-radio-button-on-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         )}
                       </TouchableOpacity>
@@ -733,13 +735,13 @@ const CreateListingScreen = () => {
                           <Ionicons
                             name="ios-radio-button-off-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         ) : (
                           <Ionicons
                             name="ios-radio-button-on-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         )}
                       </TouchableOpacity>
@@ -789,13 +791,13 @@ const CreateListingScreen = () => {
                           <Ionicons
                             name="ios-radio-button-off-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         ) : (
                           <Ionicons
                             name="ios-radio-button-on-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         )}
                       </TouchableOpacity>
@@ -823,13 +825,13 @@ const CreateListingScreen = () => {
                           <Ionicons
                             name="ios-radio-button-off-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         ) : (
                           <Ionicons
                             name="ios-radio-button-on-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         )}
                       </TouchableOpacity>
@@ -859,13 +861,13 @@ const CreateListingScreen = () => {
                           <Ionicons
                             name="ios-radio-button-off-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         ) : (
                           <Ionicons
                             name="ios-radio-button-on-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         )}
                       </TouchableOpacity>
@@ -894,13 +896,13 @@ const CreateListingScreen = () => {
                           <Ionicons
                             name="ios-radio-button-off-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         ) : (
                           <Ionicons
                             name="ios-radio-button-on-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         )}
                       </TouchableOpacity>
@@ -929,13 +931,13 @@ const CreateListingScreen = () => {
                           <Ionicons
                             name="ios-radio-button-off-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         ) : (
                           <Ionicons
                             name="ios-radio-button-on-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         )}
                       </TouchableOpacity>
@@ -984,13 +986,13 @@ const CreateListingScreen = () => {
                           <Ionicons
                             name="ios-radio-button-off-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         ) : (
                           <Ionicons
                             name="ios-radio-button-on-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         )}
                       </TouchableOpacity>
@@ -1018,13 +1020,13 @@ const CreateListingScreen = () => {
                           <Ionicons
                             name="ios-radio-button-off-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         ) : (
                           <Ionicons
                             name="ios-radio-button-on-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         )}
                       </TouchableOpacity>
@@ -1050,13 +1052,13 @@ const CreateListingScreen = () => {
                           <Ionicons
                             name="ios-radio-button-off-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         ) : (
                           <Ionicons
                             name="ios-radio-button-on-outline"
                             size={20}
-                            color="black"
+                            color={theme.MEDIUM_GRAY}
                           />
                         )}
                       </TouchableOpacity>
@@ -1088,7 +1090,7 @@ const CreateListingScreen = () => {
                       <Ionicons
                         name="search-outline"
                         size={20}
-                        color="black"
+                        color={theme.MEDIUM_GRAY}
                         style={styles.searchIcon}
                       />
                       <TextInput
@@ -1109,9 +1111,9 @@ const CreateListingScreen = () => {
       </KeyboardAwareScrollView>
 
       <View style={styles.footer}>
-        <Text style={styles.postListingBtn} onPress={handleSubmit}>
-          Post listing
-        </Text>
+        <TouchableOpacity activeOpacity={0.8} onPress={handleSubmit}>
+          <Text style={styles.postListingBtn}>Post listing</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

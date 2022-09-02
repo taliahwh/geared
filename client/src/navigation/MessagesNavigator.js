@@ -4,7 +4,6 @@ import { Ionicons } from '@expo/vector-icons';
 
 import MessagesScreen from '../screens/MessagesScreen';
 import ChatScreen from '../screens/ChatScreen';
-import PostDetailsScreen from '../screens/PostDetailsScreen';
 import TestScreen from '../screens/TestScreen';
 
 import {
@@ -12,6 +11,9 @@ import {
   HeaderClose,
   HeaderNotification,
 } from '../components/HeaderBackImages';
+
+// Styles
+import theme from '../styles/styles.theme';
 
 const Stack = createStackNavigator();
 
@@ -29,9 +31,12 @@ const MessagesNavigator = () => {
           headerTitle: 'Messages',
           headerStyle: {
             elevation: 0,
-            shadowOpacity: 1,
-            borderBottomWidth: 0.5,
+            // shadowOpacity: 1,
+            borderBottomWidth: 0.1,
+            borderColor: theme.DARK_MODE_BORDER,
+            backgroundColor: theme.DARK_MODE,
           },
+          headerTitleStyle: { color: theme.LIGHT_GRAY },
           headerBackTitle: false,
         }}
       />
@@ -42,13 +47,7 @@ const MessagesNavigator = () => {
           headerShown: false,
         }}
       />
-      <Stack.Screen
-        name="Test"
-        component={TestScreen}
-        options={{
-          headerShown: false,
-        }}
-      />
+      <Stack.Screen name="Test" component={TestScreen} />
     </Stack.Navigator>
   );
 };
