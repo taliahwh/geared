@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
   },
   collectionContainter: {
     flex: 1,
+    backgroundColor: theme.FEED_BACKGROUND,
   },
 });
 
