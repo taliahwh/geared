@@ -5,7 +5,7 @@ const ITEM_WIDTH = Dimensions.get('window').width - 30;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
+    backgroundColor: theme.CARD_BACKGROUND,
     marginHorizontal: 15,
     paddingTop: 11,
     paddingBottom: 20,
@@ -27,8 +27,6 @@ const styles = StyleSheet.create({
     dispay: 'flex',
     flexDirection: 'row',
     paddingBottom: 5,
-    borderBottomWidth: 1,
-    borderColor: theme.BORDER_COLOR,
   },
   userInformation: {
     paddingVertical: 5,
@@ -64,21 +62,25 @@ const styles = StyleSheet.create({
     paddingVertical: 2,
   },
   username: {
+    color: theme.LIGHT_GRAY,
     fontWeight: '600',
     fontSize: 14,
   },
   usernameInDescription: {
-    fontWeight: '500',
+    color: theme.LIGHT_GRAY,
+    fontWeight: '600',
     paddingRight: 5,
   },
   listingType: {
+    color: theme.LIGHT_GRAY,
     fontSize: 13,
   },
   imageContainer: {
-    paddingHorizontal: 15,
+    // paddingHorizontal: 15,
     height: ITEM_WIDTH,
     display: 'flex',
     alignItems: 'center',
+    // justifyContent: 'center',
   },
   buttonContainer: {
     paddingHorizontal: 15,
@@ -98,6 +100,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   likeCount: {
+    color: theme.LIGHT_GRAY,
     fontSize: 13,
     paddingLeft: 5,
   },
@@ -111,7 +114,7 @@ const styles = StyleSheet.create({
   usernameFont: {
     fontWeight: '500',
     backgroundColor: 'pink',
-    // marginRight: 5,
+    // color: theme.LIGHT_GRAY,
   },
   viewComments: {
     paddingTop: 7,
@@ -191,7 +194,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '500',
     color: '#7390AD',
-    backgroundColor: '#F1F1F1',
+    backgroundColor: theme.FEED_BACKGROUND,
     paddingHorizontal: 7,
     paddingVertical: 3,
     borderRadius: 5,

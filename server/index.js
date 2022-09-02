@@ -5,7 +5,9 @@ import connectDB from './config/db.js';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import colors from 'colors';
-// import io from 'socket.io';
+
+import { Server } from 'socket.io';
+import { createServer } from 'http';
 
 // API Routes
 import postRoutes from './routes/postRoutes.js';
@@ -39,13 +41,43 @@ app.get('/', (req, res) => {
 // const __dirname = path.resolve();
 // app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
 
-// Error handling middleware
+// Error handling middlewae
 app.use(notFound);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
-const server = app.listen(
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
+  cors: {
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST'],
+  },
+});
+
+const onSendMessage = (data) => {
+  console.log(data);
+  io.emit('receive_msg', data);
+};
+
+const onConnection = (socket) => {
+  console.log(`User Connected: ${socket.id}`);
+
+  // Send a message to the client
+  socket.emit('welcome', 'Hello from the server!');
+
+  // Receive message from the client
+  socket.on('client', (arg) => console.log(arg));
+  socket.on('send_msg', onSendMessage);
+
+  socket.on('disconnect', (reason) =>
+    console.log(`User disconnected due to ${reason}.`)
+  );
+};
+
+io.on('connection', onConnection);
+
+httpServer.listen(
   PORT,
   console.log(
     `Server is running in ${process.env.NODE_ENV} on port ${PORT}`.yellow.bold
