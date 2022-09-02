@@ -144,20 +144,21 @@ export default CommentsScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.FEED_BACKGROUND,
     // paddingTop: 10,
   },
   createCommentSection: {
     minHeight: 55,
     paddingHorizontal: 15,
     // marginTop: 10,
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.3,
     borderColor: theme.BORDER_COLOR,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginVertical: 3,
+    paddingVertical: 1,
+    backgroundColor: theme.DARK_MODE,
   },
   userImage: {
     height: 30,

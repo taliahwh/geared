@@ -20,6 +20,9 @@ import AlertMessage from '../components/AlertMessage';
 // Actions
 import { getFollowingPosts } from '../actions/postActions';
 
+// Styles
+import theme from '../styles/styles.theme';
+
 const windowWidth = Dimensions.get('window').width;
 
 const FollowingRoute = () => {
@@ -94,7 +97,11 @@ const FollowingRoute = () => {
             renderItem={renderItem}
             keyExtractor={(item) => `${item._id}1`}
             refreshControl={
-              <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
+              <RefreshControl
+                refreshing={isRefreshing}
+                onRefresh={onRefresh}
+                tintColor={theme.LIGHT_GRAY}
+              />
             }
           />
         </View>
@@ -119,9 +126,13 @@ const FollowingRoute = () => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: theme.FEED_BACKGROUND,
+  },
   centered: {
     flex: 1,
-    backgroundColor: '#F1F1F1',
+    backgroundColor: theme.FEED_BACKGROUND,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
