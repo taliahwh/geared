@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native';
+import theme from './styles.theme';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.DARK_MODE,
     paddingHorizontal: 15,
     paddingTop: 20,
   },
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: '500',
     marginBottom: 15,
-    color: 'gray',
+    color: theme.MEDIUM_GRAY,
   },
   cameraBtnContainer: {
     display: 'flex',
@@ -29,22 +30,24 @@ const styles = StyleSheet.create({
   },
   cameraIcon: {
     padding: 10,
+    color: theme.MEDIUM_GRAY,
   },
   cameraIconContainer: {
     color: '#a8a29e',
-    borderColor: '#d6d3d1',
+    borderColor: theme.MEDIUM_GRAY,
     borderWidth: 2,
     borderStyle: 'dashed',
   },
   descriptionContainer: {
     marginTop: 30,
     borderBottomWidth: 1,
-    borderColor: '#d6d3d1',
+    borderColor: theme.MEDIUM_GRAY,
   },
   sectionHeader: {
     fontWeight: '600',
     fontSize: 17,
     marginBottom: 8,
+    color: theme.LIGHT_GRAY,
   },
   sectionDetails: {
     color: '#a1a1aa',
@@ -72,7 +75,7 @@ const styles = StyleSheet.create({
   wordCount: {
     width: '100%',
     textAlign: 'right',
-    color: '#57534e',
+    color: theme.MEDIUM_GRAY,
     paddingTop: 3,
     fontSize: 13,
   },
@@ -80,12 +83,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingBottom: 7,
     borderBottomWidth: 1,
-    borderColor: '#d6d3d1',
+    borderColor: theme.MEDIUM_GRAY,
   },
   tagsCount: {
     width: '100%',
     textAlign: 'left',
-    color: '#57534e',
+    color: theme.MEDIUM_GRAY,
     paddingTop: 3,
     fontSize: 13,
   },
@@ -100,7 +103,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 5,
     borderBottomWidth: 1,
-    borderColor: '#737373',
+    borderColor: theme.MEDIUM_GRAY,
   },
   firstInfoOptionContainer: {
     display: 'flex',
@@ -111,7 +114,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingHorizontal: 5,
     borderBottomWidth: 1,
-    borderColor: '#737373',
+    borderColor: theme.MEDIUM_GRAY,
   },
   textAndChevronContainer: {
     display: 'flex',
@@ -121,6 +124,7 @@ const styles = StyleSheet.create({
 
   infoOptionTitle: {
     fontSize: 17,
+    color: '#a1a1aa',
   },
   infoDetails: {
     fontSize: 13,
@@ -129,11 +133,11 @@ const styles = StyleSheet.create({
   },
   infoOptionSelect: {
     fontSize: 15,
-    color: '#78716c',
+    color: theme.MEDIUM_GRAY,
   },
   chevron: {
     paddingLeft: 10,
-    color: '#57534e',
+    color: theme.MEDIUM_GRAY,
   },
   dollar: {
     fontSize: 15,
@@ -158,7 +162,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 15,
     borderBottomWidth: 1,
-    borderColor: '#737373',
+    borderColor: theme.MEDIUM_GRAY,
   },
 
   // Search
@@ -198,8 +202,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
     fontWeight: '600',
-    backgroundColor: '#292524',
-    color: '#fff',
+    backgroundColor: theme.LIGHT_GRAY,
+    borderRadius: 5,
+    overflow: 'hidden',
+    color: theme.DARK_MODE,
     paddingVertical: 11,
     marginVertical: 20,
   },

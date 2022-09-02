@@ -4,10 +4,12 @@ import theme from './styles.theme';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.DARK_MODE,
     display: 'flex',
     alignItems: 'center',
     paddingHorizontal: 30,
+    borderBottomColor: theme.DARK_MODE_BORDER,
+    borderBottomWidth: 0.5,
   },
   headingContainer: {
     marginTop: 60,
@@ -23,6 +25,7 @@ const styles = StyleSheet.create({
   confirmationSubheading: {
     fontSize: 15,
     textAlign: 'center',
+    color: theme.LIGHT_GRAY,
   },
   infoContainer: {
     display: 'flex',
@@ -37,9 +40,10 @@ const styles = StyleSheet.create({
     fontSize: 15,
     marginBottom: 5,
     paddingLeft: 10,
+    color: theme.LIGHT_GRAY,
   },
   infoBody: {
-    color: theme.DARK_GRAY,
+    color: theme.MEDIUM_GRAY,
     paddingLeft: 10,
   },
   spacer: {
