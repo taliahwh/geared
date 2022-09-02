@@ -16,6 +16,9 @@ import AlertMessage from '../components/AlertMessage';
 // Actions
 import { viewFollowing } from '../actions/userActions';
 
+// Styles
+import theme from '../styles/styles.theme';
+
 const FollowingScreen = ({ route }) => {
   const { userId } = route.params;
   // Hooks

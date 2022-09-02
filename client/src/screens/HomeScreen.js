@@ -7,6 +7,9 @@ import { StatusBar } from 'expo-status-bar';
 import FollowingRoute from './FollowingRoute';
 import ExploreRoute from './ExploreRoute';
 
+// Styles
+import theme from '../styles/styles.theme';
+
 const initialLayout = { width: Dimensions.get('window').width };
 
 const renderScene = SceneMap({
@@ -40,7 +43,6 @@ const HomeScreen = () => {
         style={styles.container}
         renderTabBar={renderTabBar}
       />
-      <StatusBar style="dark" />
     </>
   );
 };
@@ -49,18 +51,18 @@ const styles = StyleSheet.create({
   container: {
     marginTop: StatusBar.currentHeight,
   },
-  scene: {
-    flex: 1,
-  },
+  // scene: {
+  //   flex: 1,
+  // },
   label: {
-    color: '#27272a',
+    color: theme.LIGHT_GRAY,
     fontWeight: '600',
   },
   indicator: {
-    backgroundColor: '#27272a',
+    backgroundColor: theme.LIGHT_GRAY,
   },
   tabBar: {
-    backgroundColor: 'white',
+    backgroundColor: theme.DARK_MODE,
   },
 });
 
