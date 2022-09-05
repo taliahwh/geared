@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
     paddingVertical: 9,
     paddingHorizontal: 15,
     alignItems: 'center',
+    backgroundColor: theme.DARK_MODE,
   },
   leftCardContainer: {
     display: 'flex',
@@ -36,14 +37,16 @@ const styles = StyleSheet.create({
   },
   username: {
     fontWeight: '700',
+    color: theme.LIGHT_GRAY,
   },
   orderStatus: {
     paddingVertical: 3,
     fontSize: 15,
-    color: theme.DARK_GRAY,
+    color: theme.MEDIUM_GRAY,
   },
   purchasedDate: {
     fontSize: 11,
+    color: theme.LIGHT_GRAY,
   },
 });
 
