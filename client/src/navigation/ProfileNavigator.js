@@ -109,9 +109,16 @@ const ProfileNavigator = () => {
           headerTitle: 'Purchased',
           headerBackTitleVisible: false,
           headerBackImage: HeaderBack,
+          headerStyle: {
+            backgroundColor: theme.DARK_MODE,
+            borderColor: theme.DARK_MODE_BORDER,
+          },
+          headerTitleStyle: {
+            color: theme.LIGHT_GRAY,
+          },
         }}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="OrderReceipt"
         component={OrderReceiptScreen}
         options={{
@@ -119,11 +126,12 @@ const ProfileNavigator = () => {
           headerBackTitleVisible: false,
           headerBackImage: HeaderBack,
           headerStyle: {
-            borderColor: theme.BORDER_COLOR,
+            borderColor: theme.DARK_MODE_BORDER,
             borderWidth: 0.3,
+            backgroundColor: theme.DARK_MODE,
           },
         }}
-      />
+      /> */}
     </Stack.Navigator>
   );
 };
