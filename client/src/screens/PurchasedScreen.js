@@ -15,6 +15,9 @@ import AlertMessage from '../components/AlertMessage';
 
 // Actions
 
+// Styles
+import theme from '../styles/styles.theme';
+
 const PurchasedScreen = ({ route }) => {
   // Hooks
 
@@ -90,7 +93,7 @@ const PurchasedScreen = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.FEED_BACKGROUND,
   },
   centered: {
     flex: 1,
