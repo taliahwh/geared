@@ -40,7 +40,7 @@ const PurchasedCard = ({
             <Image style={styles.profileImage} source={{ uri: profileImage }} />
 
             <View style={styles.orderDetailsContainer}>
-              <Text style={{ fontSize: 15 }}>
+              <Text style={{ fontSize: 15, color: theme.LIGHT_GRAY }}>
                 From <Text style={styles.username}>{username}</Text>
               </Text>
               <Text style={styles.orderStatus}>{orderStatus}</Text>
