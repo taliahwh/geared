@@ -5,6 +5,7 @@ import { TransitionPresets } from '@react-navigation/stack';
 import DashboardScreen from '../screens/DashboardScreen';
 import CreateListingScreen from '../screens/CreateListingScreen';
 import ConnectPayPalScreen from '../screens/ConnectPayPalScreen';
+import SoldItemsScreen from '../screens/SoldItemsScreen';
 
 import { HeaderBack } from '../components/HeaderBackImages';
 
@@ -61,6 +62,25 @@ const DashboardNavigator = () => {
           },
           headerStyle: {
             backgroundColor: theme.DARK_MODE,
+          },
+        }}
+      />
+      <Stack.Screen
+        name="SoldItems"
+        component={SoldItemsScreen}
+        options={{
+          headerTitle: 'All sold items',
+          headerBackTitleVisible: false,
+          headerBackImage: HeaderBack,
+          headerTitleStyle: {
+            color: theme.LIGHT_GRAY,
+          },
+          headerStyle: {
+            backgroundColor: theme.DARK_MODE,
+          },
+          headerTitleStyle: {
+            color: theme.LIGHT_GRAY,
+            fontWeight: '700',
           },
         }}
       />
