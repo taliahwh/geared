@@ -59,7 +59,11 @@ const OrderReceiptScreen = ({
         <View style={styles.modalView}>
           <View style={styles.headerContainer}>
             <Pressable onPress={hideModal}>
-              <Ionicons name="close-outline" size={27} color="black" />
+              <Ionicons
+                name="close-outline"
+                size={27}
+                color={theme.LIGHT_GRAY}
+              />
             </Pressable>
             <Text style={styles.headerTitle}>Order Receipt</Text>
             <Ionicons name="close-outline" size={27} color="transparent" />
@@ -91,7 +95,11 @@ const OrderReceiptScreen = ({
 
             <View style={styles.addressContainer}>
               <View style={styles.icon}>
-                <Ionicons name="location-outline" size={30} color="black" />
+                <Ionicons
+                  name="location-outline"
+                  size={30}
+                  color={theme.LIGHT_GRAY}
+                />
               </View>
               {awaitingShipment && (
                 <Text style={styles.shippingHeading}>
@@ -136,7 +144,7 @@ const OrderReceiptScreen = ({
 
             <View style={styles.paymentConfirmationContainer}>
               <View style={styles.icon}>
-                <Ionicons name="checkmark" size={30} color="black" />
+                <Ionicons name="checkmark" size={30} color={theme.LIGHT_GRAY} />
               </View>
               <Text style={styles.statusHeading}>Payment sent</Text>
               <Text style={styles.paymentDescription}>
