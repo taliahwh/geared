@@ -97,6 +97,10 @@ const ManageRoute = () => {
     />
   );
 
+  const navigateToSoldItems = () => {
+    navigation.navigate('SoldItems');
+  };
+
   return (
     <>
       {loadingUserPosts && <ActivityIndicator />}
@@ -105,22 +109,25 @@ const ManageRoute = () => {
         <ScrollView style={styles.container}>
           <View style={styles.soldContainer}>
             <Text style={styles.sectionTitle}>Sold</Text>
-            <View style={styles.soldItemsBtn}>
-              <View style={styles.leftOfBtn}>
+
+            <TouchableOpacity onPress={navigateToSoldItems} activeOpacity={0.8}>
+              <View style={styles.soldItemsBtn}>
+                <View style={styles.leftOfBtn}>
+                  <Ionicons
+                    name="receipt-outline"
+                    size={24}
+                    color={theme.LIGHT_GRAY}
+                    style={styles.btnIcon}
+                  />
+                  <Text style={styles.btnTitle}>All sold items</Text>
+                </View>
                 <Ionicons
-                  name="receipt-outline"
+                  name="chevron-forward-outline"
                   size={24}
                   color={theme.LIGHT_GRAY}
-                  style={styles.btnIcon}
                 />
-                <Text style={styles.btnTitle}>All sold items</Text>
               </View>
-              <Ionicons
-                name="chevron-forward-outline"
-                size={24}
-                color={theme.LIGHT_GRAY}
-              />
-            </View>
+            </TouchableOpacity>
           </View>
           <View style={styles.sellingContainer}>
             <Text style={styles.sectionTitle}>Your collection</Text>
