@@ -84,14 +84,18 @@ const LeaveFeedbackScreen = ({
         <View style={styles.modalView}>
           <View style={styles.headerContainer}>
             <Pressable onPress={hideModal}>
-              <Ionicons name="close-outline" size={27} color="black" />
+              <Ionicons
+                name="close-outline"
+                size={27}
+                color={theme.LIGHT_GRAY}
+              />
             </Pressable>
             <Text style={styles.headerTitle}>Leave Feedback</Text>
             {!review.length || !rating ? (
-              <Ionicons name="checkmark" size={27} color={theme.BORDER_COLOR} />
+              <Ionicons name="checkmark" size={27} color={theme.DARK_GRAY} />
             ) : (
               <TouchableOpacity onPress={submitReview} activeOpacity={0.8}>
-                <Ionicons name="checkmark" size={27} color={'#000'} />
+                <Ionicons name="checkmark" size={27} color={theme.LIGHT_GRAY} />
               </TouchableOpacity>
             )}
           </View>
@@ -166,7 +170,7 @@ const LeaveFeedbackScreen = ({
             <TextInput
               style={styles.textInput}
               placeholder="Describe your experience with the seller"
-              placeholderTextColor={theme.DARK_GRAY}
+              placeholderTextColor={theme.MEDIUM_GRAY}
               value={review}
               onChangeText={setReview}
               multiline
