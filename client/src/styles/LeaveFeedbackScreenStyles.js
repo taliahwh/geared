@@ -8,13 +8,12 @@ const modalHeight = Dimensions.get('window').height - 140;
 const styles = StyleSheet.create({
   screenView: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.DARK_MODE,
     alignItems: 'center',
   },
   modalView: {
     height: modalHeight,
     width: modalWidth,
-    backgroundColor: '#fff',
   },
   headerContainer: {
     display: 'flex',
@@ -23,13 +22,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: 50,
     borderBottomWidth: 0.7,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
     paddingHorizontal: 15,
     marginBottom: 15,
   },
   headerTitle: {
     fontSize: 17,
     fontWeight: '600',
+    color: theme.LIGHT_GRAY,
   },
   sellerInfoContainer: {
     paddingHorizontal: 15,
@@ -42,16 +42,18 @@ const styles = StyleSheet.create({
     width: 65,
     borderRadius: 65 / 2,
     borderWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
     marginBottom: 10,
   },
   sellerName: {
     fontSize: 16,
     textAlign: 'center',
+    color: theme.LIGHT_GRAY,
   },
   sellerUsername: {
     fontSize: 14,
     textAlign: 'center',
+    color: theme.LIGHT_GRAY,
   },
   reviewStarsContainer: {
     display: 'flex',
@@ -64,7 +66,7 @@ const styles = StyleSheet.create({
   },
   reviewDirections: {
     fontSize: 13,
-    color: theme.DARK_GRAY,
+    color: theme.MEDIUM_GRAY,
     paddingHorizontal: 15,
   },
   reviewContainer: {
@@ -72,15 +74,16 @@ const styles = StyleSheet.create({
     // backgroundColor: 'orange',
     height: modalWidth / 2.5,
     borderBottomWidth: 0.7,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
   },
   reviewHeading: {
     fontSize: 17,
     fontWeight: '700',
     marginBottom: 10,
+    color: theme.LIGHT_GRAY,
   },
   textInput: {
-    color: '#000',
+    color: theme.LIGHT_GRAY,
     fontSize: 15,
     // backgroundColor: 'orange',
     height: modalWidth / 4,
