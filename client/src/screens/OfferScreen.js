@@ -49,7 +49,7 @@ const OfferScreen = () => {
             Heads up, offering isn't buying
           </Text>
           <Text style={styles.alertMessageBody}>
-            If the seller accepts, you'll have 24 hours to but the item at your
+            If the seller accepts, you'll have 24 hours to buy the item at your
             offer price
           </Text>
         </View>
