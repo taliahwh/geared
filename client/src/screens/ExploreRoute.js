@@ -83,7 +83,11 @@ const ExploreRoute = () => {
     <>
       {errorExplorePosts && <AlertMessage>{errorExplorePosts}</AlertMessage>}
 
-      {loadingExplorePosts && <ActivityIndicator />}
+      {loadingExplorePosts && (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator />
+        </View>
+      )}
       {posts && posts.length > 0 && (
         <View style={styles.container}>
           <FlatList
@@ -105,7 +109,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.FEED_BACKGROUND,
-    width: windowWidth,
+    // width: windowWidth,
+  },
+  loadingContainer: {
+    backgroundColor: theme.FEED_BACKGROUND,
+    flex: 1,
+    display: 'flex',
+    alignItems: 'center',
   },
 });
 
