@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
   },
   listAnItemBtn: {
     textAlign: 'center',
-    backgroundColor: '#404040',
+    backgroundColor: theme.PRIMARY_COLOR,
     color: theme.LIGHT_GRAY,
     fontWeight: '600',
     fontSize: 15,
