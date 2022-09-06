@@ -98,22 +98,27 @@ const PostDetailsScreen = ({ route, forSale, offers }) => {
             .toUpperCase()}
         />
       )}
-      <View style={styles.footerContainer}>
-        <Text style={styles.price}>$600</Text>
+      {postDetails && postDetails.forSale && (
+        <View style={styles.footerContainer}>
+          <Text style={styles.price}>${postDetails.itemPrice}</Text>
 
-        <View style={styles.btnContainer}>
-          <TouchableOpacity onPress={navigateToOfferScreen} activeOpacity={0.8}>
-            <Text style={styles.makeOfferBtn}>Make offer</Text>
-          </TouchableOpacity>
+          <View style={styles.btnContainer}>
+            <TouchableOpacity
+              onPress={navigateToOfferScreen}
+              activeOpacity={0.8}
+            >
+              <Text style={styles.makeOfferBtn}>Make offer</Text>
+            </TouchableOpacity>
 
-          <TouchableOpacity
-            onPress={navigateToCheckoutScreen}
-            activeOpacity={0.8}
-          >
-            <Text style={styles.buyBtn}>Buy</Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              onPress={navigateToCheckoutScreen}
+              activeOpacity={0.8}
+            >
+              <Text style={styles.buyBtn}>Buy</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+      )}
     </>
   );
 };
@@ -133,10 +138,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 15,
     paddingVertical: 10,
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
+    // borderTopWidth: 1,
+    // borderBottomWidth: 1,
     backgroundColor: '#fff',
-    borderColor: theme.DARK_MODE_BORDER,
+    // borderColor: theme.DARK_MODE_BORDER,
     backgroundColor: theme.FEED_BACKGROUND,
   },
   price: {
