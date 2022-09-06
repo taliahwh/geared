@@ -44,6 +44,12 @@ import {
   VIEW_FOLLOWING_REQUEST,
   VIEW_FOLLOWING_SUCCESS,
   VIEW_FOLLOWING_FAILURE,
+  GET_REVIEWS_REQUEST,
+  GET_REVIEWS_SUCCESS,
+  GET_REVIEWS_FAILURE,
+  POST_REVIEW_REQUEST,
+  POST_REVIEW_SUCCESS,
+  POST_REVIEW_FAILURE,
   USER_LOGOUT,
 } from '../constants/userConstants';
 
@@ -534,3 +540,60 @@ export const viewFollowing = (userId) => async (dispatch, getState) => {
     });
   }
 };
+
+export const getReviews = (userId) => async (dispatch, getState) => {
+  const { authToken } = getState().userSignIn;
+  try {
+    dispatch({ type: GET_REVIEWS_REQUEST });
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authToken}`,
+      },
+    };
+
+    const { data } = await gearedApi.get(`api/users/reviews/${userId}`, config);
+
+    dispatch({ type: GET_REVIEWS_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: GET_REVIEWS_FAILURE,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const postReview =
+  (sellerId, rating, review, productImage) => async (dispatch, getState) => {
+    const { authToken } = getState().userSignIn;
+    try {
+      dispatch({ type: POST_REVIEW_REQUEST });
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${authToken}`,
+        },
+      };
+
+      const { data } = await gearedApi.post(
+        `api/users/reviews/${sellerId}`,
+        { rating, review, productImage },
+        config
+      );
+
+      dispatch({ type: POST_REVIEW_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({
+        type: POST_REVIEW_FAILURE,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
