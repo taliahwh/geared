@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     margin: 0.7,
-    backgroundColor: theme.FEED_BACKGROUND,
+    // backgroundColor: theme.FEED_BACKGROUND,
   },
   image: {
     justifyContent: 'center',
