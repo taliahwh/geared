@@ -1,50 +1,23 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 import maxey from '../assets/test-images/maxey.jpg';
-import { Ionicons } from '@expo/vector-icons';
+
+// Components
+import Ratings from './Ratings';
 
 // Styles
 import theme from '../styles/styles.theme';
 
-const Ratings = () => {
-  return (
-    <View style={styles.ratingsIconContainer}>
-      <Ionicons
-        name="star"
-        size={13}
-        color={theme.PRIMARY_COLOR}
-        style={{ marginRight: 3 }}
-      />
-      <Ionicons
-        name="star"
-        size={13}
-        color={theme.PRIMARY_COLOR}
-        style={{ marginRight: 3 }}
-      />
-      <Ionicons
-        name="star"
-        size={13}
-        color={theme.PRIMARY_COLOR}
-        style={{ marginRight: 3 }}
-      />
-      <Ionicons
-        name="star"
-        size={13}
-        color={theme.PRIMARY_COLOR}
-        style={{ marginRight: 3 }}
-      />
-      <Ionicons
-        name="star"
-        size={13}
-        color={theme.PRIMARY_COLOR}
-        style={{ marginRight: 3 }}
-      />
-    </View>
-  );
-};
-
-const ReviewComponent = () => {
+const ReviewComponent = ({
+  rating,
+  username,
+  profileImage,
+  productImage,
+  reviewContent,
+  datePosted,
+}) => {
   return (
     <View>
       <View style={styles.container}>
@@ -53,24 +26,21 @@ const ReviewComponent = () => {
             <Image
               style={styles.userImage}
               source={{
-                uri: 'https://i0.wp.com/sneakerhistory.com/wp-content/uploads/2019/03/fab-five-air-force-max-black-socks.jpg?fit=1280%2C1600&ssl=1',
+                uri: profileImage,
               }}
             />
-            <View style={styles.idk}>
-              <Text style={styles.username}>fab_five</Text>
+            <View>
+              <Text style={styles.username}>{username}</Text>
               {/* <View style={styles.ratingsContainer}> */}
-              <Ratings />
+              <Ratings rating={rating} />
               {/* </View> */}
-              <Text style={styles.datePosted}>2 WEEKS AGO</Text>
+              <Text style={styles.datePosted}>{datePosted}</Text>
             </View>
           </View>
-          <Image style={styles.productImage} source={maxey} />
+          <Image style={styles.productImage} source={{ uri: productImage }} />
         </View>
         <View style={styles.reviewMessageContainer}>
-          <Text style={styles.reviewMessage}>
-            Seller was great! Card came in great condition.. and shipping was
-            fast!
-          </Text>
+          <Text style={styles.reviewMessage}>{reviewContent}</Text>
         </View>
       </View>
       <View style={styles.border} />
@@ -80,15 +50,18 @@ const ReviewComponent = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: theme.DARK_MODE,
     paddingHorizontal: 20,
-    paddingTop: 10,
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderColor: theme.DARK_MODE_BORDER,
   },
-  border: {
-    borderTopWidth: 1,
-    borderColor: theme.BORDER_COLOR,
-    marginTop: 7,
-  },
+  // border: {
+  //   borderTopWidth: 1,
+  //   borderColor: theme.DARK_MODE_BORDER,
+
+  //   // marginTop: 7,
+  // },
   headerContainer: {
     display: 'flex',
     flexDirection: 'row',
@@ -102,7 +75,7 @@ const styles = StyleSheet.create({
     width: 57,
     height: 57,
     borderWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
     borderRadius: 1000,
     marginRight: 15,
   },
@@ -121,6 +94,7 @@ const styles = StyleSheet.create({
   reviewInfoContainer: {},
   username: {
     fontWeight: '700',
+    color: theme.LIGHT_GRAY,
   },
   reviewStars: {
     // color: '#fff'
@@ -130,6 +104,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '300',
     marginTop: 1,
+    color: theme.MEDIUM_GRAY,
   },
   productImage: {
     height: 60,
@@ -141,6 +116,7 @@ const styles = StyleSheet.create({
   },
   reviewMessage: {
     fontSize: 14,
+    color: theme.LIGHT_GRAY,
   },
 });
 
