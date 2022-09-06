@@ -23,6 +23,7 @@ import {
   authUserPostsReducer,
   followUserReducer,
   notificationsReducer,
+  postReviewReducer,
   savePushTokenReducer,
   userCompleteSignUpReducer,
   userDetailsReducer,
@@ -34,6 +35,7 @@ import {
   viewFollowersReducer,
   viewFollowingReducer,
   viewNotificationReducer,
+  viewReviewsReducer,
 } from './reducers/userReducers';
 
 const reducer = combineReducers({
@@ -62,6 +64,8 @@ const reducer = combineReducers({
   userUpdateProfile: userUpdateProfileReducer,
   userUpdatePassword: userUpdatePasswordReducer,
   userViewNotification: viewNotificationReducer,
+  reviews: viewReviewsReducer,
+  newReview: postReviewReducer,
   savePushToken: savePushTokenReducer,
 });
 
