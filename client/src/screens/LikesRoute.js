@@ -26,7 +26,7 @@ const cardWidth = Dimensions.get('window').width / 4;
 
 const ImageRender = ({ src }) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.imageContainer}>
       <Image style={styles.image} source={src} />
     </View>
   );
@@ -59,29 +59,31 @@ const LikesRoute = () => {
       {loadingLikedPosts && <ActivityIndicator />}
       {errorLikedPosts && <AlertMessage>{errorLikedPosts}</AlertMessage>}
       {posts && posts.length > 0 && (
-        <FlatList
-          ref={scrollRef}
-          data={posts}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={() => {
-                /* 1. Navigate to the Details route with params */
-                navigation.navigate('PostDetails', {
-                  postId: item._id,
-                });
-              }}
-            >
-              <ImageRender src={{ uri: item.images[0].imgUrl }} />
-            </TouchableOpacity>
-          )}
-          numColumns={4}
-          keyExtractor={(item) => `${item.id} 02135`}
-          ItemSeparatorComponent={Separator}
-        />
+        <View style={styles.container}>
+          <FlatList
+            ref={scrollRef}
+            data={posts}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={() => {
+                  /* 1. Navigate to the Details route with params */
+                  navigation.navigate('PostDetails', {
+                    postId: item._id,
+                  });
+                }}
+              >
+                <ImageRender src={{ uri: item.images[0].imgUrl }} />
+              </TouchableOpacity>
+            )}
+            numColumns={4}
+            keyExtractor={(item) => `${item.id} 02135`}
+            ItemSeparatorComponent={Separator}
+          />
+        </View>
       )}
       {posts && posts.length === 0 && (
         <View style={styles.noPostsContainer}>
-          <Text>No liked posts.</Text>
+          <Text style={{ color: theme.LIGHT_GRAY }}>No liked posts.</Text>
         </View>
       )}
     </>
@@ -90,6 +92,10 @@ const LikesRoute = () => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    backgroundColor: theme.FEED_BACKGROUND,
+  },
+  imageContainer: {
     flexDirection: 'column',
     margin: 0.7,
     backgroundColor: theme.FEED_BACKGROUND,
