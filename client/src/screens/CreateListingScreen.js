@@ -998,7 +998,7 @@ const CreateListingScreen = () => {
                       </TouchableOpacity>
                     </View>
 
-                    <View style={styles.modalOptionContainer}>
+                    {/* <View style={styles.modalOptionContainer}>
                       <View>
                         <Text style={styles.infoOptionTitle}>
                           Open to offers
@@ -1030,7 +1030,7 @@ const CreateListingScreen = () => {
                           />
                         )}
                       </TouchableOpacity>
-                    </View>
+                    </View> */}
 
                     <View style={styles.modalOptionContainer}>
                       <View>
