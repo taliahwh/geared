@@ -7,6 +7,8 @@ import generateToken from '../utils/generateToken.js';
 import User from '../models/userModel.js';
 import Post from '../models/postModel.js';
 import Notification from '../models/notificationModel.js';
+import Review from '../models/reviewModel.js';
+
 /**
  * @desc Authenticate user and get token
  * @route POST /user/signup
@@ -542,6 +544,79 @@ const getFollowing = asyncHandler(async (req, res) => {
   res.status(200).json(following);
 });
 
+/**
+ * @desc Leave seller a review by seller's id
+ * @route POST /users/review/:id
+ * @access Private
+ */
+const postReview = asyncHandler(async (req, res) => {
+  const { id: reviewerId } = req.user;
+  const { id: sellerId } = req.params;
+
+  const { rating, review, productImage } = req.body;
+
+  // Pull reviewer and seller's User model
+  const reviewer = await User.findById(reviewerId);
+
+  if (!reviewer) {
+    res.status(400);
+    throw new Error('No reviewing user found with that id.');
+  }
+
+  const seller = await User.findById(sellerId);
+
+  if (!seller) {
+    res.status(400);
+    throw new Error('No seller user found with that id.');
+  }
+
+  // create new review
+  const newReview = await Review.create({
+    sender: {
+      username: reviewer.username,
+      name: reviewer.name,
+      profileImage: reviewer.profileImage,
+      userId: String(reviewerId),
+    },
+    rating,
+    review,
+    productImage,
+  });
+
+  const savedReview = await newReview.save();
+
+  // updated seller's numReviews, reviewAvg, and push review's id into user's reviews arr
+  seller.numReviews += 1;
+  seller.reviewAvg = (seller.reviewAvg + rating) / seller.numReviews;
+  seller.reviews.push(savedReview._id);
+
+  await seller.save();
+
+  // save new review, updated seller's User model
+  res.status(201).json(savedReview);
+});
+
+/**
+ * @desc Get user's reviews by user id
+ * @route GET /users/reviews/:id
+ * @access Private
+ */
+const getReviews = asyncHandler(async (req, res) => {
+  const { id: userId } = req.params;
+  const user = await User.findById(userId);
+
+  if (!user) {
+    res.status(404);
+    throw new Error('Not authorized. Please sign in.');
+  }
+
+  const reviews = user.reviews.map(mongoose.Types.ObjectId); // convert strs to objectId
+  const allReviews = await Review.find({ _id: { $in: reviews } });
+  const orderedReviews = allReviews.reverse();
+
+  res.status(200).json(orderedReviews);
+});
+
 export {
   signIn,
   signUp,
@@ -557,4 +632,6 @@ export {
   followUser,
   getFollowers,
   getFollowing,
+  postReview,
+  getReviews,
 };
