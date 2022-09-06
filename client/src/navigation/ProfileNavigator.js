@@ -50,6 +50,9 @@ const ProfileNavigator = () => {
           headerTitle: '',
           headerBackTitleVisible: false,
           headerBackImage: HeaderBack,
+          headerStyle: {
+            backgroundColor: theme.DARK_MODE,
+          },
         }}
       />
       <Stack.Screen
