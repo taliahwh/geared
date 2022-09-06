@@ -188,17 +188,7 @@ const PostDetailsCard = ({
           <Text style={styles.specsLabel}>{sport}</Text>
         </View>
       </View>
-      {forSale && (
-        <View style={styles.priceContainer}>
-          <Text style={styles.priceLabel}>PRICE</Text>
-          <Text style={styles.price}>{`$${postDetails.itemPrice}`}</Text>
-        </View>
-      )}
-      {offers && (
-        <View>
-          <Text style={styles.tag}>Open to offers</Text>
-        </View>
-      )}
+
       <Text style={styles.uploadDate}>{timePosted}</Text>
       <View style={styles.aboutTheSellerContainer}>
         {/* <Text style={styles.aboutTheSellerTitle}>About the seller</Text> */}
