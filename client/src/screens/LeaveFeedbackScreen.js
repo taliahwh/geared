@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   View,
@@ -9,8 +9,14 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
+
+// Actions
+import { postReview } from '../actions/userActions';
 
 // Styles
 import styles from '../styles/LeaveFeedbackScreenStyles';
@@ -22,6 +28,8 @@ const LeaveFeedbackScreen = ({
   sellerName,
   sellerUsername,
 }) => {
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
   const [review, setReview] = useState('');
 
   // Review Stars
@@ -32,10 +40,9 @@ const LeaveFeedbackScreen = ({
   const [fiveStars, setFiveStars] = useState(false);
   const [rating, setRating] = useState(null);
 
-  const submitReview = () => {
-    const fullReview = { review: review.trim(), rating };
-    console.log(fullReview);
-  };
+  const { error: errorPostReview, success: successPostReview } = useSelector(
+    (state) => state.newReview
+  );
 
   const rateOneStar = () => {
     setOneStar(true);
@@ -77,6 +84,42 @@ const LeaveFeedbackScreen = ({
     setFiveStars(true);
     setRating(5);
   };
+
+  const successAlert = () =>
+    Alert.alert('Thanks for your feedback!', 'You review has been submitted', [
+      {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      { text: 'OK', onPress: () => navigation.navigate('UserProfile') },
+    ]);
+
+  const errorAlert = () =>
+    Alert.alert('Something went wrong', errorPostReview, [
+      {
+        text: 'Cancel',
+        onPress: () => console.log('Cancel Pressed'),
+        style: 'cancel',
+      },
+      { text: 'OK', onPress: () => console.log('OK Pressed') },
+    ]);
+
+  const submitReview = () => {
+    const testSellerId = '62db0977b353b27e9a980e3a'; // antman
+    const productImage =
+      'https://cconnect.s3.amazonaws.com/wp-content/uploads/2019/01/Top-Luka-Doncic-Rookie-Cards-thumb-300.jpg';
+    const trimmedReview = review.trim();
+    dispatch(postReview(testSellerId, rating, trimmedReview, productImage));
+  };
+
+  useEffect(() => {
+    if (successPostReview) successAlert();
+    if (errorPostReview) errorAlert();
+    console.log('test');
+
+    return () => {};
+  }, [successPostReview, errorPostReview]);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
