@@ -3,6 +3,7 @@ import { createNavigationContainerRef } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useSelector, useDispatch } from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Entypo } from '@expo/vector-icons';
 
 // Styles
 import theme from '../styles/styles.theme';
@@ -26,6 +27,10 @@ export const navigate = (name, params) => {
   if (navigationRef.isReady()) {
     navigationRef.navigate(name, params);
   }
+};
+
+const NewNotificationsBadge = () => {
+  <Entypo name="dot-single" size={24} color="black" style={{ right: 5 }} />;
 };
 
 const Tab = createBottomTabNavigator();
@@ -106,13 +111,6 @@ const MainNavigator = () => {
         component={MessagesNavigator}
         options={{
           headerShown: false,
-          tabBarBadge: 3,
-          tabBarBadgeStyle: {
-            backgroundColor: theme.PRIMARY_COLOR,
-            fontSize: 12,
-            fontWeight: '500',
-            color: '#fff',
-          },
         }}
       />
       <Tab.Screen
@@ -124,14 +122,6 @@ const MainNavigator = () => {
             elevation: 0,
             shadowOpacity: 0,
             borderBottomWidth: 0,
-          },
-          tabBarBadge: unreadNotifications && unreadNotifications.length,
-
-          tabBarBadgeStyle: {
-            backgroundColor: theme.PRIMARY_COLOR,
-            fontSize: 12,
-            fontWeight: '500',
-            color: '#fff',
           },
         }}
       />
