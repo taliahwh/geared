@@ -44,6 +44,12 @@ import {
   VIEW_FOLLOWING_REQUEST,
   VIEW_FOLLOWING_SUCCESS,
   VIEW_FOLLOWING_FAILURE,
+  GET_REVIEWS_REQUEST,
+  GET_REVIEWS_SUCCESS,
+  GET_REVIEWS_FAILURE,
+  POST_REVIEW_REQUEST,
+  POST_REVIEW_SUCCESS,
+  POST_REVIEW_FAILURE,
   CLEAR_PROFILE_DATA,
   CLEAR_PASSWORD_DATA,
   CLEAR_POSTS_DATA,
@@ -324,6 +330,39 @@ export const viewFollowingReducer = (state = { following: {} }, action) => {
         following: action.payload,
       };
     case VIEW_FOLLOWING_FAILURE:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const viewReviewsReducer = (state = { reviews: {} }, action) => {
+  switch (action.type) {
+    case GET_REVIEWS_REQUEST:
+      return { loading: true };
+    case GET_REVIEWS_SUCCESS:
+      return {
+        loading: false,
+        reviews: action.payload,
+      };
+    case GET_REVIEWS_FAILURE:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const postReviewReducer = (state = {}, action) => {
+  switch (action.type) {
+    case POST_REVIEW_REQUEST:
+      return { loading: true };
+    case POST_REVIEW_SUCCESS:
+      return {
+        loading: false,
+        review: action.payload,
+        success: true,
+      };
+    case POST_REVIEW_FAILURE:
       return { loading: false, error: action.payload };
     default:
       return state;
