@@ -15,6 +15,8 @@ import {
   followUser,
   getFollowers,
   getFollowing,
+  postReview,
+  getReviews,
 } from '../controllers/userController.js';
 
 import { authMiddleware } from '../middleware/authMiddleware.js';
@@ -24,6 +26,8 @@ const router = express.Router();
 router.post('/signin', signIn);
 
 router.post('/signup', signUp);
+
+router.post('/reviews/:id', authMiddleware, postReview);
 
 router.put('/follow/:id', authMiddleware, followUser);
 
@@ -44,6 +48,8 @@ router.get('/followers/:id', authMiddleware, getFollowers);
 router.get('/following/:id', authMiddleware, getFollowing);
 
 router.get('/notifications/:id', authMiddleware, getNotifications);
+
+router.get('/reviews/:id', authMiddleware, getReviews);
 
 router.get('/:id', authMiddleware, getUserDetails);
 
