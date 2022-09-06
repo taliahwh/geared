@@ -53,6 +53,8 @@ const ViewUserProfileScreen = ({ route }) => {
           followingCount={userDetails.following.length}
           followersCount={userDetails.followers.length}
           isFollowing={userDetails.followers.includes(authUserId)}
+          numReviews={userDetails.numReviews || 0}
+          reviewAvg={userDetails.reviewAvg || 2}
         />
       )}
 
