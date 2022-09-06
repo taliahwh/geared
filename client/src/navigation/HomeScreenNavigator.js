@@ -18,7 +18,6 @@ import OrderConfirmationScreen from '../screens/OrderConfirmationScreen';
 import {
   HeaderBack,
   HeaderClose,
-  HeaderNotification,
   HeaderConfirm,
 } from '../components/HeaderBackImages';
 
@@ -96,16 +95,15 @@ const HomeScreenNavigator = () => {
           name="UserProfile"
           component={ProfileScreen}
           options={{
-            headerTitle: () => <HeaderNotification />,
-            headerBackTitleVisible: false,
             headerBackImage: HeaderBack,
+            headerBackTitleVisible: false,
+            headerTitle: '',
             headerStyle: {
               elevation: 0,
               shadowOpacity: 0,
               borderBottomWidth: 0,
-              // height: 60,
+              backgroundColor: theme.DARK_MODE,
             },
-            // headerLeft: HeaderNotification,
           }}
         />
         <Stack.Screen
