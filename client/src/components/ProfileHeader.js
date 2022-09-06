@@ -19,6 +19,9 @@ import {
   MenuTrigger,
 } from 'react-native-popup-menu';
 
+// Components
+import Ratings from './Ratings';
+
 // Styles
 import styles from '../styles/ProfileHeaderStyles';
 import theme from '../styles/styles.theme';
@@ -43,6 +46,8 @@ const ProfileHeader = ({
   followingCount,
   followersCount,
   isFollowing,
+  numReviews,
+  reviewAvg,
 }) => {
   // Hooks
   const dispatch = useDispatch();
@@ -78,44 +83,17 @@ const ProfileHeader = ({
           <Text style={styles.userDisplayName}>{name}</Text>
           <Text style={styles.username}>{`@${username}`}</Text>
           <View style={styles.ratingsContainer}>
-            <Ionicons name="star" size={15} color={theme.PRIMARY_COLOR} />
-            <Ionicons name="star" size={15} color={theme.PRIMARY_COLOR} />
-            <Ionicons name="star" size={15} color={theme.PRIMARY_COLOR} />
-            <Ionicons name="star" size={15} color={theme.PRIMARY_COLOR} />
-            <Ionicons name="star" size={15} color={theme.PRIMARY_COLOR} />
-            <Text style={{ color: theme.LIGHT_GRAY }}>(13)</Text>
+            <Ratings rating={reviewAvg} />
+            <Text style={{ color: theme.LIGHT_GRAY }}>({numReviews})</Text>
           </View>
         </View>
 
         <View>
-          <Pressable
-            style={styles.pickerContainer}
-            onPress={() => MenuProvider.open}
-          >
-            <Menu>
-              <MenuTrigger>
-                <Ionicons
-                  name="ellipsis-horizontal"
-                  size={24}
-                  color={theme.MEDIUM_GRAY}
-                />
-              </MenuTrigger>
-              <MenuOptions style={styles.menu}>
-                <MenuOption onSelect={handleLogout}>
-                  <Text
-                    style={{
-                      fontSize: 15,
-                      paddingVertical: 2,
-                      textAlign: 'center',
-                      fontWeight: '500',
-                    }}
-                  >
-                    Sign Out
-                  </Text>
-                </MenuOption>
-              </MenuOptions>
-            </Menu>
-          </Pressable>
+          <Ionicons
+            name="ellipsis-horizontal"
+            size={24}
+            color={'transparent'}
+          />
         </View>
       </View>
 
