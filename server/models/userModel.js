@@ -82,6 +82,17 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: '',
     },
+    numReviews: {
+      type: Number,
+      default: 0,
+    },
+    reviewAvg: {
+      type: Number,
+      default: 0,
+    },
+    reviews: {
+      type: [mongoose.Types.ObjectId],
+    },
   },
   {
     // Automatically generates createdAt and updatedAt fields
