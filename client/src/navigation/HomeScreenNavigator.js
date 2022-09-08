@@ -14,6 +14,8 @@ import CheckoutScreen from '../screens/CheckoutScreen';
 import ShippingAddressScreen from '../screens/ShippingAddressScreen';
 import ConfirmShippingScreen from '../screens/ConfirmShippingScreen';
 import OrderConfirmationScreen from '../screens/OrderConfirmationScreen';
+import UserReviewsScreen from '../screens/UserReviewsScreen';
+import ReportPostScreen from '../screens/ReportPostScreen';
 
 import {
   HeaderBack,
@@ -156,6 +158,41 @@ const HomeScreenNavigator = () => {
             },
             headerLeft: () => null,
             headerRight: HeaderConfirm,
+          }}
+        />
+        <Stack.Screen
+          name="UserReviews"
+          component={UserReviewsScreen}
+          options={{
+            headerTitle: 'Reviews',
+            headerBackTitleVisible: false,
+            headerBackImage: HeaderBack,
+            headerStyle: {
+              elevation: 0,
+              shadowOpacity: 0,
+              borderBottomWidth: 0,
+              backgroundColor: theme.DARK_MODE,
+            },
+            headerTitleStyle: {
+              color: theme.LIGHT_GRAY,
+              fontWeight: '700',
+            },
+          }}
+        />
+        <Stack.Screen
+          name="ReportPost"
+          component={ReportPostScreen}
+          options={{
+            headerTitle: 'Report',
+            headerBackTitleVisible: false,
+            headerBackImage: HeaderBack,
+            headerStyle: {
+              backgroundColor: theme.DARK_MODE,
+            },
+            headerTitleStyle: {
+              color: theme.LIGHT_GRAY,
+              fontWeight: '700',
+            },
           }}
         />
       </Stack.Group>
