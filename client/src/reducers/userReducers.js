@@ -50,6 +50,7 @@ import {
   POST_REVIEW_REQUEST,
   POST_REVIEW_SUCCESS,
   POST_REVIEW_FAILURE,
+  CLEAR_REVIEW_DATA,
   CLEAR_PROFILE_DATA,
   CLEAR_PASSWORD_DATA,
   CLEAR_POSTS_DATA,
@@ -364,6 +365,8 @@ export const postReviewReducer = (state = {}, action) => {
       };
     case POST_REVIEW_FAILURE:
       return { loading: false, error: action.payload };
+    case CLEAR_REVIEW_DATA:
+      return { success: false, error: action.payload };
     default:
       return state;
   }
