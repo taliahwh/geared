@@ -16,6 +16,12 @@ const styles = StyleSheet.create({
     borderColor: theme.MEDIUM_GRAY,
     marginVertical: 20,
   },
+  uploading: {
+    textAlign: 'center',
+    fontWeight: '600',
+    color: theme.DARK_GRAY,
+    marginBottom: 7,
+  },
   section: {
     marginVertical: 20,
     // marginBottom: 10,
