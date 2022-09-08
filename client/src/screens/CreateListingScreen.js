@@ -327,7 +327,7 @@ const CreateListingScreen = () => {
 
         {loadingImage && (
           <View>
-            <Text style={styles.uploadingImage}>Uploading...</Text>
+            <Text style={styles.uploadingImage}>Uploading..</Text>
           </View>
         )}
 
@@ -562,7 +562,8 @@ const CreateListingScreen = () => {
                   </View>
                 </View>
 
-                <TouchableOpacity
+                {/* Location */}
+                {/* <TouchableOpacity
                   onPress={() => setLocationModal(true)}
                   activeOpacity={0.9}
                 >
@@ -580,7 +581,7 @@ const CreateListingScreen = () => {
                       />
                     </View>
                   </View>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </View>
             </>
           )}
