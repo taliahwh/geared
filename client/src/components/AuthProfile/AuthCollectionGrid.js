@@ -91,7 +91,7 @@ const AuthCollectionGrid = () => {
       )}
       {posts && posts.length === 0 && (
         <View style={styles.noPostsContainer}>
-          <Text>No posts yet.</Text>
+          <Text style={{ color: theme.LIGHT_GRAY }}>No posts yet.</Text>
         </View>
       )}
     </>
