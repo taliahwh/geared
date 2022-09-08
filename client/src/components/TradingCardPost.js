@@ -1,9 +1,22 @@
 import React, { useEffect } from 'react';
-import { View, Text, TouchableOpacity, Image, FlatList } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  FlatList,
+  Pressable,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import moment from 'moment';
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
 
 // Styles
 import styles from '../styles/TradingCardPostStyles';
@@ -128,6 +141,13 @@ const TradingCardPost = ({
     });
   };
 
+  const navigateToReportPost = () => {
+    navigation.navigate('ReportPost', {
+      userProfileId,
+      postId,
+    });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.headingContainer}>
@@ -149,14 +169,41 @@ const TradingCardPost = ({
             {showcase && <Text style={styles.listingType}>SHOWCASE 🌟</Text>}
           </View>
         </View>
-        <View style={styles.info}>
-          <Ionicons
-            name="ellipsis-horizontal"
-            size={24}
-            color={theme.LIGHT_GRAY}
-            style={styles.ellipsis}
-          />
-        </View>
+        {authUserId !== userProfileId && (
+          <Pressable onPress={() => MenuProvider.open}>
+            <View style={styles.info}>
+              {/* <Ionicons
+              name="ellipsis-horizontal"
+              size={24}
+              color={theme.LIGHT_GRAY}
+              style={styles.ellipsis}
+            /> */}
+
+              <Menu style={{ borderRadius: 5 }}>
+                <MenuTrigger>
+                  <Ionicons
+                    name="ellipsis-horizontal"
+                    size={24}
+                    color={theme.MEDIUM_GRAY}
+                  />
+                </MenuTrigger>
+                <MenuOptions style={styles.menu}>
+                  <MenuOption
+                    onSelect={navigateToReportPost}
+                    style={styles.menuOption}
+                  >
+                    <Text style={styles.menuOptionText}>Report</Text>
+                    <Ionicons
+                      name="flag-outline"
+                      size={20}
+                      color={theme.LIGHT_GRAY}
+                    />
+                  </MenuOption>
+                </MenuOptions>
+              </Menu>
+            </View>
+          </Pressable>
+        )}
       </View>
       <View style={styles.imageContainer}>
         <CarouselCards images={images} />
