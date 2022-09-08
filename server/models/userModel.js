@@ -86,6 +86,10 @@ const userSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    totalReviewStars: {
+      type: Number,
+      default: 0,
+    },
     reviewAvg: {
       type: Number,
       default: 0,
