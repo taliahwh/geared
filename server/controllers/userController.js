@@ -587,7 +587,8 @@ const postReview = asyncHandler(async (req, res) => {
 
   // updated seller's numReviews, reviewAvg, and push review's id into user's reviews arr
   seller.numReviews += 1;
-  seller.reviewAvg = (seller.reviewAvg + rating) / seller.numReviews;
+  seller.totalReviewStars += rating;
+  seller.reviewAvg = (seller.totalReviewStars / seller.numReviews).toFixed(1);
   seller.reviews.push(savedReview._id);
 
   await seller.save();
