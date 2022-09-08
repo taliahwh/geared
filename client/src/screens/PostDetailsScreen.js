@@ -37,9 +37,7 @@ const PostDetailsScreen = ({ route, forSale, offers }) => {
   const { postId } = route.params;
 
   // Redux state
-  const { _id: signedInUserId } = useSelector(
-    (state) => state.userSignIn.userInfo
-  );
+  const { _id: authUserId } = useSelector((state) => state.userSignIn.userInfo);
   const { success: successLikePost } = useSelector(
     (state) => state.likePostDetailsScreen
   );
@@ -76,6 +74,7 @@ const PostDetailsScreen = ({ route, forSale, offers }) => {
       )}
       {postDetails && (
         <PostDetailsCard
+          userId={postDetails.listedBy.userId}
           postId={postId}
           postDetails={postDetails}
           profileImage={postDetails.listedBy.profileImage}
@@ -83,8 +82,8 @@ const PostDetailsScreen = ({ route, forSale, offers }) => {
           username={postDetails.listedBy.username}
           productImages={postDetails.images}
           likeCount={postDetails.likes.length}
-          userLikedPost={postDetails.likes.includes(signedInUserId)}
-          userSavedPost={postDetails.savedBy.includes(signedInUserId)}
+          userLikedPost={postDetails.likes.includes(authUserId)}
+          userSavedPost={postDetails.savedBy.includes(authUserId)}
           description={postDetails.description}
           numComments={postDetails.comments.length}
           condition={postDetails.condition}
@@ -98,27 +97,29 @@ const PostDetailsScreen = ({ route, forSale, offers }) => {
             .toUpperCase()}
         />
       )}
-      {postDetails && postDetails.forSale && (
-        <View style={styles.footerContainer}>
-          <Text style={styles.price}>${postDetails.itemPrice}</Text>
+      {postDetails &&
+        postDetails.forSale &&
+        postDetails.listedBy.userId !== authUserId && (
+          <View style={styles.footerContainer}>
+            <Text style={styles.price}>${postDetails.itemPrice}</Text>
 
-          <View style={styles.btnContainer}>
-            <TouchableOpacity
-              onPress={navigateToOfferScreen}
-              activeOpacity={0.8}
-            >
-              <Text style={styles.makeOfferBtn}>Make offer</Text>
-            </TouchableOpacity>
+            <View style={styles.btnContainer}>
+              <TouchableOpacity
+                onPress={navigateToOfferScreen}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.makeOfferBtn}>Make offer</Text>
+              </TouchableOpacity>
 
-            <TouchableOpacity
-              onPress={navigateToCheckoutScreen}
-              activeOpacity={0.8}
-            >
-              <Text style={styles.buyBtn}>Buy</Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                onPress={navigateToCheckoutScreen}
+                activeOpacity={0.8}
+              >
+                <Text style={styles.buyBtn}>Buy</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-      )}
+        )}
     </>
   );
 };
