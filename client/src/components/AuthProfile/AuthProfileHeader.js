@@ -27,6 +27,7 @@ import theme from '../../styles/styles.theme';
 // Components
 import ProfileHeaderLoader from '../Loaders/ProfileHeaderLoader';
 import AlertMessage from '../AlertMessage';
+import Ratings from '../Ratings';
 
 // Actions
 import {
@@ -116,13 +117,10 @@ const AuthProfileHeader = () => {
               <Text style={styles.userDisplayName}>{userDetails.name}</Text>
               <Text style={styles.username}>{`@${userDetails.username}`}</Text>
               <View style={styles.ratingsContainer}>
-                <Ionicons name="star" size={15} color={theme.PRIMARY_COLOR} />
-                <Ionicons name="star" size={15} color={theme.PRIMARY_COLOR} />
-                <Ionicons name="star" size={15} color={theme.PRIMARY_COLOR} />
-                <Ionicons name="star" size={15} color={theme.PRIMARY_COLOR} />
-                <Ionicons name="star" size={15} color={theme.PRIMARY_COLOR} />
-                <Text style={{ color: theme.LIGHT_GRAY }}>(13)</Text>
-                {/* <Ionicons name="star-half" size={15} color={theme.PRIMARY_COLOR} /> */}
+                <Ratings rating={userDetails.reviewAvg || 4.5} />
+                <Text style={{ color: theme.LIGHT_GRAY }}>
+                  ({userDetails.numReviews || 10})
+                </Text>
               </View>
             </View>
 
@@ -131,7 +129,7 @@ const AuthProfileHeader = () => {
                 style={styles.pickerContainer}
                 onPress={() => MenuProvider.open}
               >
-                <Menu>
+                <Menu style={{ borderRadius: 5 }}>
                   <MenuTrigger>
                     <Ionicons
                       name="ellipsis-horizontal"
@@ -140,17 +138,16 @@ const AuthProfileHeader = () => {
                     />
                   </MenuTrigger>
                   <MenuOptions style={styles.menu}>
-                    <MenuOption onSelect={handleLogout}>
-                      <Text
-                        style={{
-                          fontSize: 15,
-                          paddingVertical: 2,
-                          textAlign: 'center',
-                          fontWeight: '500',
-                        }}
-                      >
-                        Sign Out
-                      </Text>
+                    <MenuOption
+                      onSelect={handleLogout}
+                      style={styles.menuOption}
+                    >
+                      <Text style={styles.menuOptionText}>Sign Out</Text>
+                      <Ionicons
+                        name="exit-outline"
+                        size={24}
+                        color={'#C7372F'}
+                      />
                     </MenuOption>
                   </MenuOptions>
                 </Menu>
