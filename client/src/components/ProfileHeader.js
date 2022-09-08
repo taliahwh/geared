@@ -70,6 +70,10 @@ const ProfileHeader = ({
     dispatch(followUser(userId));
   };
 
+  const navigateToReviews = () => {
+    navigation.navigate('UserReviews', { username, userId });
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.userInfoContainer}>
@@ -82,10 +86,13 @@ const ProfileHeader = ({
         <View style={styles.userNameContainer}>
           <Text style={styles.userDisplayName}>{name}</Text>
           <Text style={styles.username}>{`@${username}`}</Text>
-          <View style={styles.ratingsContainer}>
-            <Ratings rating={reviewAvg} />
-            <Text style={{ color: theme.LIGHT_GRAY }}>({numReviews})</Text>
-          </View>
+
+          <TouchableOpacity onPress={navigateToReviews} activeOpacity={0.9}>
+            <View style={styles.ratingsContainer}>
+              <Ratings rating={reviewAvg} />
+              <Text style={{ color: theme.LIGHT_GRAY }}>({numReviews})</Text>
+            </View>
+          </TouchableOpacity>
         </View>
 
         <View>
