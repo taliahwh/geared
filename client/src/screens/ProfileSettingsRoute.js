@@ -65,6 +65,7 @@ const ProfileSettingsRoute = () => {
   const [passwordModalVisible, setPasswordModalVisible] = useState(false);
 
   // Form state
+  const [uploadingImage, setUploadingImage] = useState(false);
   const [bio, setBio] = useState('');
   const [fullName, setFullName] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -166,6 +167,7 @@ const ProfileSettingsRoute = () => {
       });
 
       try {
+        setUploadingImage(true);
         const { data: cloudinaryURL } = await geared.post(
           '/api/upload/profile',
           formData,
@@ -179,6 +181,7 @@ const ProfileSettingsRoute = () => {
 
         console.log(cloudinaryURL);
         setProfileImage(cloudinaryURL);
+        setUploadingImage(false);
       } catch (error) {
         console.log(error);
       }
@@ -209,7 +212,11 @@ const ProfileSettingsRoute = () => {
           )} */}
 
           {/* <ScrollView > */}
+
           <View style={styles.section}>
+            {uploadingImage && (
+              <Text style={styles.uploading}>Uploading..</Text>
+            )}
             <Text style={styles.sectionTitle}>User Details</Text>
             <View style={styles.inputContainer}>
               <Text style={styles.inputTitle}>Username</Text>
