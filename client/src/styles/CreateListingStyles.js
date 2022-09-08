@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   input: {
-    // color: '#a8a29e',
+    color: theme.LIGHT_GRAY,
     fontSize: 15,
     marginBottom: 10,
   },
@@ -63,8 +63,10 @@ const styles = StyleSheet.create({
     // backgroundColor: 'orange',
     width: 100,
     textAlign: 'right',
+    color: theme.LIGHT_GRAY,
   },
   tagInput: {
+    color: theme.LIGHT_GRAY,
     fontSize: 15,
     marginBottom: 5,
     borderWidth: 0.5,
@@ -185,6 +187,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     width: '85%',
+    color: theme.LIGHT_GRAY,
     // backgroundColor: 'pink',
   },
   searchIcon: {
