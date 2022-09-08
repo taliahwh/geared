@@ -21,6 +21,7 @@ import { postReview } from '../actions/userActions';
 // Styles
 import styles from '../styles/LeaveFeedbackScreenStyles';
 import theme from '../styles/styles.theme';
+import { CLEAR_REVIEW_DATA } from '../constants/userConstants';
 
 const LeaveFeedbackScreen = ({
   hideModal,
@@ -118,8 +119,10 @@ const LeaveFeedbackScreen = ({
     if (errorPostReview) errorAlert();
     console.log('test');
 
-    return () => {};
-  }, [successPostReview, errorPostReview]);
+    return () => {
+      dispatch({ type: CLEAR_REVIEW_DATA });
+    };
+  }, [successPostReview, errorPostReview, dispatch]);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
