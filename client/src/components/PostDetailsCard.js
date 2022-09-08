@@ -26,6 +26,7 @@ import { likePostFromDetails, savePost } from '../actions/postActions';
 import theme from '../styles/styles.theme';
 
 const PostDetailsCard = ({
+  userId,
   postDetails,
   postId,
   profileImage,
@@ -60,6 +61,13 @@ const PostDetailsCard = ({
     navigation.navigate('Comments', {
       postId,
       post: postDetails,
+    });
+  };
+
+  const navigateToReviews = () => {
+    navigation.navigate('UserReviews', {
+      username,
+      userId,
     });
   };
 
@@ -202,22 +210,25 @@ const PostDetailsCard = ({
           </View>
         </View>
         <View style={styles.sellerMenuContainer}>
-          <View style={styles.menuOption}>
-            <View style={styles.menuOptionContainer}>
-              <Text style={styles.menuTitle}>Sold reviews</Text>
-              <Text style={styles.menuQty}>22</Text>
+          <TouchableOpacity onPress={navigateToReviews} activeOpacity={0.8}>
+            <View style={styles.menuOption}>
+              <View style={styles.menuOptionContainer}>
+                <Text style={styles.menuTitle}>Sold reviews</Text>
+                {/* <Text style={styles.menuQty} >22</Text> */}
+              </View>
+              <Ionicons
+                name="chevron-forward-outline"
+                size={24}
+                color={theme.LIGHT_GRAY}
+                style={styles.menuArrow}
+              />
             </View>
-            <Ionicons
-              name="chevron-forward-outline"
-              size={24}
-              color={theme.LIGHT_GRAY}
-              style={styles.menuArrow}
-            />
-          </View>
+          </TouchableOpacity>
+
           <View style={styles.menuOption}>
             <View style={styles.menuOptionContainer}>
               <Text style={styles.menuTitle}>Selling</Text>
-              <Text style={styles.menuQty}>67</Text>
+              {/* <Text style={styles.menuQty}>67</Text> */}
             </View>
             <Ionicons
               name="chevron-forward-outline"
