@@ -46,13 +46,13 @@ const styles = StyleSheet.create({
     textAlign: 'right',
   },
   userImage: {
-    flex: 1,
+    // flex: 1,
     // width: 1,
     height: 40,
     width: 40,
     borderRadius: 40 / 2,
-    borderWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderWidth: 0.5,
+    borderColor: theme.DARK_MODE_BORDER,
     // borderRadius: 100,
   },
   usernameContainer: {
@@ -139,7 +139,9 @@ const styles = StyleSheet.create({
     borderColor: '#e4e4e7',
   },
   commentingUserImage: {
-    height: 42,
+    height: 40,
+    width: 40,
+    borderRadius: 40 / 2,
     borderWidth: 1,
     borderColor: theme.BORDER_COLOR,
     borderRadius: 100,
@@ -199,6 +201,24 @@ const styles = StyleSheet.create({
     paddingVertical: 3,
     borderRadius: 5,
     overflow: 'hidden',
+  },
+  menu: {
+    padding: 3,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    // borderRadius: 15,
+  },
+  menuOption: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  menuOptionText: {
+    fontSize: 15,
+    padding: 5,
+    textAlign: 'center',
+    fontWeight: '500',
+    color: theme.LIGHT_GRAY,
   },
 });
 
