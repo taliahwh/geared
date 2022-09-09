@@ -15,7 +15,7 @@ import ShippingAddressScreen from '../screens/ShippingAddressScreen';
 import ConfirmShippingScreen from '../screens/ConfirmShippingScreen';
 import OrderConfirmationScreen from '../screens/OrderConfirmationScreen';
 import UserReviewsScreen from '../screens/UserReviewsScreen';
-import ReportPostScreen from '../screens/ReportPostScreen';
+import ReportScreen from '../screens/ReportScreen';
 
 import {
   HeaderBack,
@@ -180,8 +180,8 @@ const HomeScreenNavigator = () => {
           }}
         />
         <Stack.Screen
-          name="ReportPost"
-          component={ReportPostScreen}
+          name="Report"
+          component={ReportScreen}
           options={{
             headerTitle: 'Report',
             headerBackTitleVisible: false,
