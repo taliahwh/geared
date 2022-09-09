@@ -95,9 +95,14 @@ const MainNavigator = () => {
         options={{
           headerShown: true,
           headerStyle: {
+            backgroundColor: theme.DARK_MODE,
             elevation: 0,
             shadowOpacity: 0,
             borderBottomWidth: 0,
+          },
+          headerTitleStyle: {
+            color: theme.LIGHT_GRAY,
+            fontWeight: '600',
           },
         }}
       />
