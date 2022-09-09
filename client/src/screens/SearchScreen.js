@@ -1,140 +1,117 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  SafeAreaView,
   View,
   Text,
   StyleSheet,
   TextInput,
   TouchableOpacity,
   Image,
+  ScrollView,
+  Dimensions,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import * as Notifications from 'expo-notifications';
-import { launchImageLibrary } from 'react-native-image-picker';
-import moment from 'moment';
+import { FlatGrid, SectionGrid } from 'react-native-super-grid';
 
-const SearchScreen = () => {
-  const handlePushNotification = async () => {
-    await Notifications.scheduleNotificationAsync({
-      content: {
-        title: 'Title',
-        body: 'body',
-        data: { data: 'data goes here' },
-      },
-      trigger: { seconds: 2 },
-    });
-  };
+// Styles
+import theme from '../styles/styles.theme';
+import styles from '../styles/SearchScreenStyles';
 
-  const handleUpload = async () => {
-    const options = {
-      title: 'Select Image',
-      type: 'library',
-      options: {
-        maxHeight: 200,
-        maxWidth: 200,
-        selectionLimit: 1,
-        mediaType: 'photo',
-        includeBase64: false,
-      },
-    };
+const windowWidth = Dimensions.get('window').width / 3;
 
-    const image = await launchImageLibrary(options);
-    console.log(image);
-  };
-
-  const handleConsole = () => {
-    const month = moment('2022-07-22T18:54:46.645+00:00').format('MMMM YYYY');
-    console.log(month.toUpperCase());
-  };
-
+const SearchResult = ({ imageUrl }) => {
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.searchContainer}>
-        <View style={styles.textInputContainer}>
-          <Ionicons
-            name="search-outline"
-            size={20}
-            color="black"
-            style={styles.searchIcon}
-          />
-          <TextInput
-            // onChangeText={onChangeNumber}
-            // value={number}
-            placeholder="Search for anything"
-            placeholderTextColor={'#a1a1aa'}
-            // maxLength={45}
-            style={styles.textInput}
-          />
-        </View>
-      </View>
-      <TouchableOpacity onPress={handlePushNotification}>
-        <Text style={styles.notificationBtn}>Push Notification</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={handleUpload}>
-        <Text style={styles.uploadBtn}>Upload</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={handleConsole}>
-        <Text style={styles.uploadBtn}>Print to console</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
+    <Image
+      style={styles.itemContainer}
+      resizeMode="cover"
+      source={{
+        uri: 'https://res.cloudinary.com/geared/image/upload/v1660571880/post-images/image_876545.jpg',
+      }}
+    />
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  searchContainer: {
-    backgroundColor: '#fff',
-    height: 50,
-    display: 'flex',
-    alignItems: 'center',
-  },
-  textInputContainer: {
-    display: 'flex',
-    flexDirection: 'row',
-    width: '90%',
-    backgroundColor: 'pink',
-    backgroundColor: '#e4e4e7',
-    paddingVertical: 7,
-    borderRadius: 2,
-  },
-  textInput: {
-    width: '85%',
-    // backgroundColor: 'pink',
-  },
-  searchIcon: {
-    marginHorizontal: 10,
-    color: '#71717a',
-    width: '5%',
-    // backgroundColor: 'orange',
-  },
-  notificationBtn: {
-    marginTop: 20,
-    marginLeft: 125,
-    display: 'flex',
-    justifyContent: 'center',
-    width: 150,
-    textAlign: 'center',
-    backgroundColor: 'gray',
-    padding: 10,
-    fontWeight: '500',
-    color: 'white',
-    fontSize: 15,
-  },
-  uploadBtn: {
-    marginTop: 20,
-    marginLeft: 125,
-    display: 'flex',
-    justifyContent: 'center',
-    width: 150,
-    textAlign: 'center',
-    backgroundColor: 'black',
-    padding: 10,
-    fontWeight: '500',
-    color: 'white',
-    fontSize: 15,
-  },
-});
+const SearchScreen = () => {
+  const [query, setQuery] = useState('');
+
+  const [items, setItems] = React.useState([
+    { name: 'TURQUOISE', code: '#1abc9c' },
+    { name: 'EMERALD', code: '#2ecc71' },
+    { name: 'PETER RIVER', code: '#3498db' },
+    { name: 'AMETHYST', code: '#9b59b6' },
+    { name: 'WET ASPHALT', code: '#34495e' },
+    { name: 'GREEN SEA', code: '#16a085' },
+    { name: 'NEPHRITIS', code: '#27ae60' },
+    { name: 'BELIZE HOLE', code: '#2980b9' },
+    { name: 'WISTERIA', code: '#8e44ad' },
+    { name: 'MIDNIGHT BLUE', code: '#2c3e50' },
+    { name: 'SUN FLOWER', code: '#f1c40f' },
+    { name: 'CARROT', code: '#e67e22' },
+    { name: 'ALIZARIN', code: '#e74c3c' },
+    { name: 'CLOUDS', code: '#ecf0f1' },
+    { name: 'CONCRETE', code: '#95a5a6' },
+    { name: 'ORANGE', code: '#f39c12' },
+    { name: 'PUMPKIN', code: '#d35400' },
+    { name: 'POMEGRANATE', code: '#c0392b' },
+    { name: 'SILVER', code: '#bdc3c7' },
+    { name: 'ASBESTOS', code: '#7f8c8d' },
+  ]);
+
+  return (
+    <View style={styles.container}>
+      {/* Search Input Header */}
+      <View style={styles.headerContainer}>
+        <View style={styles.textInputContainer}>
+          <Ionicons
+            name="search"
+            size={19}
+            color={theme.DARK_MODE_BORDER}
+            style={styles.searchIcon}
+          />
+          <TextInput
+            value={query}
+            onChangeText={setQuery}
+            placeholder={'Search for cards'}
+            placeholderTextColor={theme.DARK_MODE_BORDER}
+            style={styles.textInput}
+          />
+        </View>
+        <Ionicons
+          name="checkmark"
+          size={25}
+          color={theme.LIGHT_GRAY}
+          style={styles.searchIcon}
+        />
+      </View>
+
+      {/* <FlatGrid
+        itemDimension={130}
+        data={items}
+        style={styles.gridView}
+        // staticDimension={300}
+        // fixed
+        spacing={10}
+        renderItem={({ item }) => (
+          <View style={[styles.itemContainer, { backgroundColor: 'red' }]} />
+          // <SearchResult />
+        )}
+      /> */}
+
+      <SectionGrid
+        itemDimension={windowWidth}
+        // staticDimension={windowWidth}
+        // fixed
+        spacing={7}
+        sections={[
+          {
+            title: 'Title1',
+            data: items.slice(0, 7),
+          },
+        ]}
+        style={styles.gridView}
+        renderItem={({ item, section, index }) => <SearchResult />}
+      />
+    </View>
+  );
+};
 
 export default SearchScreen;
