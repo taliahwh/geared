@@ -27,7 +27,7 @@ import styles from '../styles/ProfileHeaderStyles';
 import theme from '../styles/styles.theme';
 
 // Actions
-import { logout, followUser } from '../actions/userActions';
+import { followUser } from '../actions/userActions';
 
 const TagRender = ({ name }) => <Text style={styles.tags}>{name}</Text>;
 
@@ -62,9 +62,15 @@ const ProfileHeader = ({
     }
   };
 
-  const handleLogout = () => {
-    dispatch(logout());
+  const navigateToReportUser = () => {
+    navigation.navigate('Report', {
+      userId: userId,
+      reportItemId: userId,
+      reportType: 'User',
+    });
   };
+
+  const blockUser = () => {};
 
   const handleFollowUser = () => {
     dispatch(followUser(userId));
@@ -96,11 +102,49 @@ const ProfileHeader = ({
         </View>
 
         <View>
-          <Ionicons
-            name="ellipsis-horizontal"
-            size={24}
-            color={'transparent'}
-          />
+          <Pressable
+            style={styles.pickerContainer}
+            onPress={() => MenuProvider.open}
+          >
+            <Menu style={{ borderRadius: 5 }}>
+              <MenuTrigger>
+                <Ionicons
+                  name="ellipsis-horizontal"
+                  size={24}
+                  color={theme.LIGHT_GRAY}
+                />
+              </MenuTrigger>
+              <MenuOptions style={styles.menu}>
+                <MenuOption
+                  onSelect={navigateToReportUser}
+                  style={styles.menuOption}
+                >
+                  <Text style={styles.menuOptionText}>Report</Text>
+                  <Ionicons
+                    name="ios-flag-outline"
+                    size={20}
+                    color={theme.LIGHT_GRAY}
+                  />
+                </MenuOption>
+
+                <View
+                  style={{
+                    borderTopWidth: 0.5,
+                    borderColor: theme.DARK_MODE_BORDER,
+                  }}
+                />
+
+                <MenuOption onSelect={blockUser} style={styles.menuOption}>
+                  <Text style={styles.menuOptionText}>Block User</Text>
+                  <Ionicons
+                    name="ios-flag-outline"
+                    size={20}
+                    color={'transparent'}
+                  />
+                </MenuOption>
+              </MenuOptions>
+            </Menu>
+          </Pressable>
         </View>
       </View>
 
