@@ -142,9 +142,10 @@ const TradingCardPost = ({
   };
 
   const navigateToReportPost = () => {
-    navigation.navigate('ReportPost', {
-      userProfileId,
-      postId,
+    navigation.navigate('Report', {
+      userId: userProfileId,
+      reportItemId: postId,
+      reportType: 'Post',
     });
   };
 
