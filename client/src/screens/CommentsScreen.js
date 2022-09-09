@@ -105,9 +105,13 @@ const CommentsScreen = ({ route }) => {
             maxLength={400}
             multiline
           />
-          <TouchableOpacity onPress={handleSubmitComment}>
-            <Text style={styles.sendBtn}>SEND</Text>
-          </TouchableOpacity>
+          {!commentBody.length ? (
+            <Text style={styles.disabledSendBtn}>SEND</Text>
+          ) : (
+            <TouchableOpacity onPress={handleSubmitComment}>
+              <Text style={styles.sendBtn}>SEND</Text>
+            </TouchableOpacity>
+          )}
         </View>
 
         {loadingPostDetails && <ActivityIndicator />}
@@ -170,7 +174,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: theme.LIGHT_GRAY,
     paddingBottom: 10,
     paddingTop: 10,
     paddingHorizontal: 15,
@@ -183,8 +187,12 @@ const styles = StyleSheet.create({
     width: '96%',
     // backgroundColor: 'transparent',
   },
+  disabledSendBtn: {
+    color: theme.DARK_GRAY,
+    fontWeight: '500',
+  },
   sendBtn: {
-    color: '#71717a',
+    color: theme.LIGHT_GRAY,
     fontWeight: '500',
   },
   commentsSection: {
