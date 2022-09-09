@@ -114,8 +114,22 @@ const styles = StyleSheet.create({
     color: theme.LIGHT_GRAY,
   },
   menu: {
-    borderRadius: 10,
-    padding: 7,
+    padding: 3,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    // borderRadius: 15,
+  },
+  menuOption: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  menuOptionText: {
+    fontSize: 15,
+    padding: 5,
+    textAlign: 'center',
+    fontWeight: '500',
+    color: theme.LIGHT_GRAY,
   },
   website: {
     color: theme.PRIMARY_COLOR,
