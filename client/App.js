@@ -8,6 +8,7 @@ import store, { persistor } from './src/store';
 import { LogBox } from 'react-native';
 import * as Notifications from 'expo-notifications';
 import { StatusBar } from 'expo-status-bar';
+import * as SplashScreen from 'expo-splash-screen';
 
 // Helper Functions
 import getNotificationsPermission from './src/utils/getNotificationsPermission';
@@ -35,6 +36,7 @@ const App = () => {
   const dispatch = useDispatch();
   const { authToken } = useSelector((state) => state.userSignIn);
   const [notification, setNotification] = useState(false);
+  const [appIsReady, setAppIsReady] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
 
