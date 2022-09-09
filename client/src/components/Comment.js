@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
-
+import { useNavigation } from '@react-navigation/native';
 import {
   Menu,
   MenuOptions,
@@ -29,6 +29,7 @@ const Comment = ({
 }) => {
   // Hooks
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   // Redux state
   const { _id: loggedInUserId } = useSelector(
@@ -39,7 +40,13 @@ const Comment = ({
     dispatch(deleteComment(commentId, postOfComment));
   };
 
-  const handleReportComment = () => {};
+  const navigateToReportComment = () => {
+    navigation.navigate('Report', {
+      userId: commentingUserId,
+      reportItemId: commentId,
+      reportType: 'Comment',
+    });
+  };
 
   return (
     <View style={styles.container}>
@@ -62,61 +69,52 @@ const Comment = ({
           commentingUserId === loggedInUserId ? (
             <View>
               <Pressable onPress={() => MenuProvider.open}>
-                <Menu>
+                <Menu style={{ borderRadius: 5 }}>
                   <MenuTrigger>
                     <Ionicons
                       name="ellipsis-horizontal"
                       size={19}
-                      color="#a3a3a3"
+                      color={theme.MEDIUM_GRAY}
                     />
                   </MenuTrigger>
                   <MenuOptions style={styles.menu}>
                     <MenuOption
                       onSelect={handleDeleteComment}
-                      style={{
-                        borderBottomWidth: 1,
-                        borderColor: theme.BORDER_COLOR,
-                      }}
+                      style={styles.menuOption}
                     >
-                      <View style={styles.menuContainer}>
-                        <Text
-                          style={{
-                            fontSize: 15,
-                            paddingVertical: 2,
-                            // textAlign: 'center',
-                            fontWeight: '500',
-                            color: '#ef4444',
-                          }}
-                        >
-                          Delete Comment
-                        </Text>
-                        <Ionicons
-                          name="ios-trash-outline"
-                          size={20}
-                          color="#ef4444"
-                        />
-                      </View>
+                      <Text
+                        style={{
+                          fontSize: 15,
+                          paddingVertical: 2,
+                          // textAlign: 'center',
+                          fontWeight: '500',
+                          color: '#ef4444',
+                        }}
+                      >
+                        Delete Comment
+                      </Text>
+                      <Ionicons
+                        name="ios-trash-outline"
+                        size={20}
+                        color="#ef4444"
+                      />
                     </MenuOption>
-
-                    <MenuOption onSelect={handleReportComment}>
-                      <View style={styles.menuContainer}>
-                        <Text
-                          style={{
-                            fontSize: 15,
-                            paddingVertical: 2,
-                            // textAlign: 'center',
-                            fontWeight: '500',
-                            color: '#000',
-                          }}
-                        >
-                          Report
-                        </Text>
-                        <Ionicons
-                          name="ios-flag-outline"
-                          size={20}
-                          color="#000"
-                        />
-                      </View>
+                    <View
+                      style={{
+                        borderTopWidth: 0.5,
+                        borderColor: theme.DARK_MODE_BORDER,
+                      }}
+                    />
+                    <MenuOption
+                      onSelect={navigateToReportComment}
+                      style={styles.menuOption}
+                    >
+                      <Text style={styles.menuOptionText}>Report</Text>
+                      <Ionicons
+                        name="ios-flag-outline"
+                        size={20}
+                        color={theme.LIGHT_GRAY}
+                      />
                     </MenuOption>
                   </MenuOptions>
                 </Menu>
@@ -188,12 +186,28 @@ const styles = StyleSheet.create({
     marginTop: 5,
     // fontSize
   },
-  menu: {},
+  menu: {
+    padding: 3,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+  },
+  menuOption: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   menuContainer: {
     dispaly: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingHorizontal: 7,
     paddingVertical: 5,
+  },
+  menuOptionText: {
+    fontSize: 15,
+    padding: 5,
+    textAlign: 'center',
+    fontWeight: '500',
+    color: theme.LIGHT_GRAY,
   },
 });
