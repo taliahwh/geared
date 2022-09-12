@@ -11,6 +11,7 @@ import {
   getSavedPosts,
   createNewComment,
   deleteComment,
+  searchPosts,
 } from '../controllers/postController.js';
 
 // Middleware
@@ -29,6 +30,8 @@ router.get('/following', authMiddleware, getFollowingUsersPosts);
 router.get('/likedposts', authMiddleware, getLikedPosts);
 
 router.get('/savedposts', authMiddleware, getSavedPosts);
+
+router.get('/search/:query', authMiddleware, searchPosts);
 
 router.get('/:id', authMiddleware, getPostById);
 
