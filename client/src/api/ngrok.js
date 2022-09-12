@@ -1,2 +1,2 @@
 export const NGROK_URL =
-  'https://7c6b-2601-4a-c201-98e0-39f2-ea20-11d4-dbaf.ngrok.io';
+  'https://6c4c-2601-4a-c201-98e0-bdde-75aa-adbd-5e4e.ngrok.io';
