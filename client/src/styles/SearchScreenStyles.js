@@ -19,6 +19,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.5,
     borderColor: theme.DARK_MODE_BORDER,
   },
+  inputAndIcon: {
+    display: 'flex',
+    flexDirection: 'row',
+    flex: 1,
+  },
   textInputContainer: {
     flex: 1,
     backgroundColor: theme.LIGHT_GRAY,
@@ -38,6 +43,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     color: theme.DARK_GRAY,
+    width: '90%',
   },
   searchResultsContainer: {
     display: 'flex',
@@ -48,26 +54,6 @@ const styles = StyleSheet.create({
     width: itemWidthAndHeight,
     borderRadius: 5,
   },
-
-  // gridView: {
-  //   flex: 1,
-  // },
-  // itemContainer: {
-  //   justifyContent: 'flex-end',
-  //   borderRadius: 5,
-  //   padding: 10,
-  //   height: itemWidthAndHeight,
-  // },
-  // itemName: {
-  //   fontSize: 16,
-  //   color: '#fff',
-  //   fontWeight: '600',
-  // },
-  // itemCode: {
-  //   fontWeight: '600',
-  //   fontSize: 12,
-  //   color: '#fff',
-  // },
 
   gridView: {
     flex: 1,
