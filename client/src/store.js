@@ -16,6 +16,7 @@ import {
   viewSavedPostsReducer,
   deleteCommentReducer,
   likePostFromDetailsScreenReducer,
+  searchPostsReducer,
 } from './reducers/postReducers';
 
 import {
@@ -67,6 +68,7 @@ const reducer = combineReducers({
   reviews: viewReviewsReducer,
   newReview: postReviewReducer,
   savePushToken: savePushTokenReducer,
+  searchPosts: searchPostsReducer,
 });
 
 const persistConfig = {
