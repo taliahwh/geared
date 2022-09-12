@@ -26,6 +26,9 @@ import {
   COMMENT_POST_REQUEST,
   COMMENT_POST_SUCCESS,
   COMMENT_POST_FAILURE,
+  SEARCH_POSTS_REQUEST,
+  SEARCH_POSTS_SUCCESS,
+  SEARCH_POSTS_FAILURE,
   DELETE_COMMENT_REQUEST,
   DELETE_COMMENT_SUCCESS,
   DELETE_COMMENT_FAILURE,
@@ -210,6 +213,29 @@ export const viewSavedPostsReducer = (state = { posts: {} }, action) => {
         posts: action.payload,
       };
     case GET_SAVED_POSTS_FAILURE:
+      return { loading: false, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+
+export const searchPostsReducer = (
+  state = { searchResults: {}, numResults: 0 },
+  action
+) => {
+  switch (action.type) {
+    case SEARCH_POSTS_REQUEST:
+      return { loading: true };
+    case SEARCH_POSTS_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+        searchResults: action.payload.searchResults,
+        numResults: action.payload.numResults,
+        page: 1,
+      };
+    case SEARCH_POSTS_FAILURE:
       return { loading: false, error: action.payload };
 
     default:
