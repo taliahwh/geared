@@ -407,6 +407,38 @@ const deleteComment = asyncHandler(async (req, res) => {
   res.json(updatedPost);
 });
 
+/**
+ * @desc Search posts by query
+ * @route GET /posts/search/:query
+ * @access Public
+ */
+const searchPosts = asyncHandler(async (req, res) => {
+  const { query: keyword } = req.params;
+
+  const results = await Post.aggregate([
+    {
+      $search: {
+        index: 'geared-posts',
+        text: {
+          query: keyword.trim(),
+          path: ['description', 'tags'],
+        },
+      },
+    },
+    {
+      $limit: 5,
+    },
+    {
+      $project: { images: 1 },
+    },
+  ]);
+
+  res.json({
+    searchResults: results,
+    numResults: results.length,
+  });
+});
+
 export {
   getAllPosts,
   getFollowingUsersPosts,
@@ -418,4 +450,5 @@ export {
   getSavedPosts,
   createNewComment,
   deleteComment,
+  searchPosts,
 };
