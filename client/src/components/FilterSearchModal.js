@@ -41,35 +41,31 @@ const AddressContainer = ({
   );
 };
 
-const FilterSearchModal = ({ hideModal }) => {
-  const [forSale, setForSale] = useState(false);
-  const toggleForSale = () => setForSale((prevState) => !prevState);
-
-  const [brandNew, setBrandNew] = useState(false);
-  const toggleBrandNew = () => setBrandNew((prevState) => !prevState);
-
-  const [excellent, setExcellent] = useState(false);
-  const toggleExcellent = () => setExcellent((prevState) => !prevState);
-
-  const [good, setGood] = useState(false);
-  const toggleGood = () => setGood((prevState) => !prevState);
-
-  const [fair, setFair] = useState(false);
-  const toggleFair = () => setFair((prevState) => !prevState);
-
-  const [likeNew, setLikeNew] = useState(false);
-  const toggleLikeNew = () => setLikeNew((prevState) => !prevState);
-
+const FilterSearchModal = ({
+  hideModal,
+  toggleForSale,
+  toggleBrandNew,
+  toggleLikeNew,
+  toggleExcellent,
+  toggleGood,
+  toggleFair,
+  resetState,
+  forSale,
+  brandNew,
+  setBrandNew,
+  likeNew,
+  setLikeNew,
+  excellent,
+  setExcellent,
+  good,
+  setGood,
+  fair,
+  setFair,
+  setFilterSelected,
+  searchWithFilters,
+  setCondition,
+}) => {
   const [conditionOptionsOpen, setConditionOptionsOpen] = useState(false);
-
-  const resetState = () => {
-    setForSale(false);
-    setBrandNew(false);
-    setExcellent(false);
-    setGood(false);
-    setFair(false);
-    setLikeNew(false);
-  };
 
   return (
     <View style={styles.screenView}>
@@ -129,6 +125,8 @@ const FilterSearchModal = ({ hideModal }) => {
                       setExcellent(false);
                       setGood(false);
                       setFair(false);
+                      setFilterSelected(true);
+                      setCondition('Brand new');
                     }}
                     value={brandNew}
                   />
@@ -146,6 +144,8 @@ const FilterSearchModal = ({ hideModal }) => {
                       setExcellent(false);
                       setGood(false);
                       setFair(false);
+                      setFilterSelected(true);
+                      setCondition('Like new');
                     }}
                     value={likeNew}
                   />
@@ -163,6 +163,8 @@ const FilterSearchModal = ({ hideModal }) => {
                       setBrandNew(false);
                       setGood(false);
                       setFair(false);
+                      setFilterSelected(true);
+                      setCondition('Used - Excellent');
                     }}
                     value={excellent}
                   />
@@ -180,6 +182,8 @@ const FilterSearchModal = ({ hideModal }) => {
                       setExcellent(false);
                       setBrandNew(false);
                       setFair(false);
+                      setFilterSelected(true);
+                      setCondition('Used - Good');
                     }}
                     value={good}
                   />
@@ -197,6 +201,8 @@ const FilterSearchModal = ({ hideModal }) => {
                       setExcellent(false);
                       setGood(false);
                       setBrandNew(false);
+                      setFilterSelected(true);
+                      setCondition('Used - Fair');
                     }}
                     value={fair}
                   />
@@ -210,14 +216,20 @@ const FilterSearchModal = ({ hideModal }) => {
                 trackColor={{ false: '#767577', true: '#81b0ff' }}
                 thumbColor={forSale ? theme.PRIMARY_COLOR : '#f4f3f4'}
                 ios_backgroundColor="#3e3e3e"
-                onValueChange={toggleForSale}
+                onValueChange={() => {
+                  toggleForSale();
+                  setFilterSelected(true);
+                }}
                 value={forSale}
               />
             </View>
           </ScrollView>
 
           <TouchableOpacity
-            onPress={() => console.log('Add new address')}
+            onPress={() => {
+              searchWithFilters();
+              hideModal();
+            }}
             activeOpacity={0.8}
             style={styles.btnContainer}
           >
