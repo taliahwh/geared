@@ -8,6 +8,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: theme.FEED_BACKGROUND,
   },
+  centeredContainer: {
+    flex: 1,
+    backgroundColor: theme.FEED_BACKGROUND,
+  },
+  noResultsText: {
+    color: theme.LIGHT_GRAY,
+    fontStyle: 'italic',
+    textAlign: 'center',
+  },
   headerContainer: {
     backgroundColor: theme.DARK_MODE,
     paddingHorizontal: 15,
