@@ -420,8 +420,8 @@ const searchPosts = asyncHandler(async (req, res) => {
       $search: {
         index: 'geared-posts',
         text: {
-          query: keyword.trim(),
           path: ['description', 'tags'],
+          query: keyword.trim(),
         },
       },
     },
@@ -430,6 +430,69 @@ const searchPosts = asyncHandler(async (req, res) => {
     },
     {
       $project: { images: 1 },
+    },
+  ]);
+
+  res.json({
+    searchResults: results,
+    numResults: results.length,
+  });
+});
+
+/**
+ * @desc Search posts by query and filters
+ * @route GET /posts/search/:query/:forsale?/:condition?
+ * @access Public
+ */
+const searchPostsWithFilters = asyncHandler(async (req, res) => {
+  const { query: keyword, forSale, condition } = req.params;
+  console.log(keyword);
+
+  // const results = await Post.aggregate([
+  //   {
+  //     $search: {
+  //       compound: {
+  //         must: [
+  //           {
+  //             text: {
+  //               path: ['description', 'tags'],
+  //               query: keyword.trim(),
+  //             },
+  //           },
+  //           // {
+  //           //   equals: {
+  //           //     path: 'forSale',
+  //           //     value: true,
+  //           //   },
+  //           // },
+  //         ],
+  //
+  //       },
+  //     },
+  //   },
+  // ]);
+
+  const results = await Post.aggregate([
+    {
+      $search: {
+        index: 'geared-posts',
+        compound: {
+          must: {
+            text: {
+              path: ['description', 'tags'],
+              query: keyword.trim(),
+            },
+          },
+        },
+        should: [
+          {
+            equals: {
+              path: 'forSale',
+              value: true,
+            },
+          },
+        ],
+      },
     },
   ]);
 
@@ -451,4 +514,5 @@ export {
   createNewComment,
   deleteComment,
   searchPosts,
+  searchPostsWithFilters,
 };
