@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import asyncHandler from 'express-async-handler';
 import moment from 'moment';
+import ObjectId from 'mongoose';
 
 import Post from '../models/postModel.js';
 import User from '../models/userModel.js';
@@ -50,7 +51,9 @@ const createNewPost = asyncHandler(async (req, res) => {
   const {
     images,
     description,
-    tags,
+    tag1,
+    tag2,
+    tag3,
     sportValue,
     conditionValue,
     showcase,
@@ -72,7 +75,11 @@ const createNewPost = asyncHandler(async (req, res) => {
   const newPost = await Post.create({
     images,
     description,
-    tags,
+    tagNames: {
+      tagOne: tag1,
+      tagTwo: tag2,
+      tagThree: tag3,
+    },
     sport: sportValue,
     condition: conditionValue,
     showcase,
@@ -408,93 +415,182 @@ const deleteComment = asyncHandler(async (req, res) => {
 });
 
 /**
- * @desc Search posts by query
+ * @desc Search posts by query and filters
  * @route GET /posts/search/:query
  * @access Public
  */
-const searchPosts = asyncHandler(async (req, res) => {
-  const { query: keyword } = req.params;
-
-  const results = await Post.aggregate([
-    {
-      $search: {
-        index: 'geared-posts',
-        text: {
-          path: ['description', 'tags'],
-          query: keyword.trim(),
-        },
-      },
-    },
-    {
-      $limit: 5,
-    },
-    {
-      $project: { images: 1 },
-    },
-  ]);
-
-  res.json({
-    searchResults: results,
-    numResults: results.length,
-  });
-});
-
-/**
- * @desc Search posts by query and filters
- * @route GET /posts/search/:query/:forsale?/:condition?
- * @access Public
- */
 const searchPostsWithFilters = asyncHandler(async (req, res) => {
-  const { query: keyword, forSale, condition } = req.params;
-  console.log(keyword);
+  const { query: keyword } = req.params;
+  const { searchType, forSale, condition, conditionValue } = req.body;
+  console.log(`Search type: ${searchType}`);
+  console.log(`For sale: ${forSale}`);
+  console.log(`Condition: ${condition}`);
+  console.log(`Condition value: ${conditionValue}`);
+  let results = [];
 
-  // const results = await Post.aggregate([
-  //   {
-  //     $search: {
-  //       compound: {
-  //         must: [
-  //           {
-  //             text: {
-  //               path: ['description', 'tags'],
-  //               query: keyword.trim(),
-  //             },
-  //           },
-  //           // {
-  //           //   equals: {
-  //           //     path: 'forSale',
-  //           //     value: true,
-  //           //   },
-  //           // },
-  //         ],
-  //
-  //       },
-  //     },
-  //   },
-  // ]);
-
-  const results = await Post.aggregate([
-    {
-      $search: {
-        index: 'geared-posts',
-        compound: {
-          must: {
-            text: {
-              path: ['description', 'tags'],
-              query: keyword.trim(),
-            },
+  // -> SEARCH FOR QUERY (UNFILTERED)
+  if (searchType === 'QUERY') {
+    results = await Post.aggregate([
+      {
+        $search: {
+          index: 'geared-posts',
+          compound: {
+            must: [
+              {
+                text: {
+                  query: keyword.trim(),
+                  path: [
+                    'description',
+                    'tagNames.tagOne',
+                    'tagNames.tagTwo',
+                    'tagNames.tagThree',
+                  ],
+                },
+              },
+            ],
           },
         },
-        should: [
-          {
-            equals: {
-              path: 'forSale',
-              value: true,
-            },
-          },
-        ],
       },
-    },
-  ]);
+      {
+        $project: {
+          images: 1,
+          description: 1,
+          tagNames: 1,
+          forSale: 1,
+          condition: 1,
+        },
+      },
+    ]);
+  }
+
+  // -> SEARCH FOR SALE & QUERY
+  if (searchType === 'SALE_QUERY') {
+    results = await Post.aggregate([
+      {
+        $search: {
+          index: 'geared-posts',
+          compound: {
+            must: [
+              {
+                text: {
+                  query: keyword.trim(),
+                  path: [
+                    'description',
+                    'tagNames.tagOne',
+                    'tagNames.tagTwo',
+                    'tagNames.tagThree',
+                  ],
+                },
+              },
+              {
+                equals: {
+                  path: 'forSale',
+                  value: true,
+                },
+              },
+            ],
+          },
+        },
+      },
+      {
+        $project: {
+          images: 1,
+          description: 1,
+          tagNames: 1,
+          forSale: 1,
+          condition: 1,
+        },
+      },
+    ]);
+  }
+
+  // -> SEARCH FOR CONDITION & QUERY
+  if (searchType === 'CONDITION_QUERY') {
+    results = await Post.aggregate([
+      {
+        $search: {
+          index: 'geared-posts',
+          compound: {
+            must: [
+              {
+                text: {
+                  query: keyword.trim(),
+                  path: [
+                    'description',
+                    'tagNames.tagOne',
+                    'tagNames.tagTwo',
+                    'tagNames.tagThree',
+                  ],
+                },
+              },
+              {
+                phrase: {
+                  query: conditionValue,
+                  path: ['condition'],
+                },
+              },
+            ],
+          },
+        },
+      },
+      {
+        $project: {
+          images: 1,
+          description: 1,
+          tagNames: 1,
+          forSale: 1,
+          condition: 1,
+        },
+      },
+    ]);
+  }
+
+  // -> SEARCH FOR CONDITION & FOR SALE & QUERY
+  if (searchType === 'SALE_CONDITION_QUERY') {
+    results = await Post.aggregate([
+      {
+        $search: {
+          index: 'geared-posts',
+          compound: {
+            must: [
+              {
+                text: {
+                  query: keyword.trim(),
+                  path: [
+                    'description',
+                    'tagNames.tagOne',
+                    'tagNames.tagTwo',
+                    'tagNames.tagThree',
+                  ],
+                },
+              },
+              {
+                equals: {
+                  path: 'forSale',
+                  value: true,
+                },
+              },
+              {
+                phrase: {
+                  query: conditionValue,
+                  path: ['condition'],
+                },
+              },
+            ],
+          },
+        },
+      },
+      {
+        $project: {
+          images: 1,
+          description: 1,
+          tagNames: 1,
+          forSale: 1,
+          condition: 1,
+        },
+      },
+    ]);
+  }
 
   res.json({
     searchResults: results,
@@ -513,6 +609,5 @@ export {
   getSavedPosts,
   createNewComment,
   deleteComment,
-  searchPosts,
   searchPostsWithFilters,
 };
