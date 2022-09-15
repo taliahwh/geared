@@ -49,9 +49,9 @@ const CreateListingScreen = () => {
   const [shippingPrice, setShippingPrice] = useState(0);
 
   // Tags
-  const [tag1, setTag1] = useState('');
-  const [tag2, setTag2] = useState('');
-  const [tag3, setTag3] = useState('');
+  const [tag1, setTag1] = useState(null);
+  const [tag2, setTag2] = useState(null);
+  const [tag3, setTag3] = useState(null);
 
   // Error handling state
   const [errorMessage, setErrorMessage] = useState(null);
@@ -303,7 +303,9 @@ const CreateListingScreen = () => {
       createPost(
         images,
         description,
-        tags,
+        tag1,
+        tag2,
+        tag3,
         sportValue,
         conditionValue,
         showcase,
