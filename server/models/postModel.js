@@ -91,6 +91,20 @@ export const postSchema = new mongoose.Schema(
         type: String,
       },
     },
+    tagNames: {
+      tagOne: {
+        type: String || null,
+        default: null,
+      },
+      tagTwo: {
+        type: String || null,
+        default: null,
+      },
+      tagThree: {
+        type: String || null,
+        default: null,
+      },
+    },
   },
 
   {
