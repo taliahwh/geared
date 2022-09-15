@@ -71,6 +71,9 @@ const ExploreRoute = () => {
         savedBy={item.savedBy}
         postId={item._id}
         commentsCount={item.comments.length}
+        tagOne={item.tagNames.tagOne}
+        tagTwo={item.tagNames.tagTwo}
+        tagThree={item.tagNames.tagThree}
       />
     );
   };
