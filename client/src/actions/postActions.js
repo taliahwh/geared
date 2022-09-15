@@ -85,7 +85,9 @@ export const createPost =
   (
     images,
     description,
-    tags,
+    tag1,
+    tag2,
+    tag3,
     sportValue,
     conditionValue,
     showcase,
@@ -112,7 +114,9 @@ export const createPost =
         {
           images,
           description,
-          tags,
+          tag1,
+          tag2,
+          tag3,
           sportValue,
           conditionValue,
           showcase,
@@ -321,23 +325,29 @@ export const deleteComment =
     }
   };
 
-export const searchPosts = (query) => async (dispatch, getState) => {
-  dispatch({ type: SEARCH_POSTS_REQUEST });
+export const searchPosts =
+  (query, searchType, forSale, condition, conditionValue) =>
+  async (dispatch, getState) => {
+    dispatch({ type: SEARCH_POSTS_REQUEST });
 
-  const { authToken } = getState().userSignIn;
-  try {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${authToken}`,
-      },
-    };
+    const { authToken } = getState().userSignIn;
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${authToken}`,
+        },
+      };
 
-    const { data } = await geared.get(`/api/posts/search/${query}`, config);
+      const { data } = await geared.post(
+        `/api/posts/search/${query}`,
+        { searchType, condition, conditionValue, forSale },
+        config
+      );
 
-    dispatch({ type: SEARCH_POSTS_SUCCESS, payload: data });
-  } catch (error) {
-    dispatch({ type: SEARCH_POSTS_FAILURE });
-    console.log(error.message);
-  }
-};
+      dispatch({ type: SEARCH_POSTS_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({ type: SEARCH_POSTS_FAILURE });
+      console.log(error.message);
+    }
+  };
