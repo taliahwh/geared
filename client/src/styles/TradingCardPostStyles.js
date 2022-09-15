@@ -184,11 +184,7 @@ const styles = StyleSheet.create({
   },
 
   tagsContainer: {
-    // backgroundColor: 'pink',
     marginTop: 10,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
     paddingHorizontal: 15,
   },
   postTags: {
