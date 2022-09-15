@@ -6,6 +6,7 @@ import {
   Image,
   FlatList,
   Pressable,
+  ScrollView,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector, useDispatch } from 'react-redux';
@@ -31,6 +32,7 @@ import { likePost, savePost } from '../actions/postActions';
 const TagRender = ({ item }) => {
   return <Text style={styles.postTags}>{item}</Text>;
 };
+
 const Separator = () => {
   return <View style={{ width: 1, backgroundColor: theme.DARK_MODE }} />;
 };
@@ -56,6 +58,9 @@ const TradingCardPost = ({
   post,
   savedBy,
   commentsCount,
+  tagOne,
+  tagTwo,
+  tagThree,
 }) => {
   // Hooks
   const navigation = useNavigation();
@@ -104,6 +109,10 @@ const TradingCardPost = ({
         )}
       </>
     );
+  };
+
+  const TagNameRender = ({ tagName }) => {
+    return <Text style={styles.postTags}>{tagName}</Text>;
   };
 
   const handleLikePost = () => {
@@ -245,16 +254,11 @@ const TradingCardPost = ({
         <Text style={{ color: theme.LIGHT_GRAY }}>{description}</Text>
       </Text>
 
-      <View style={styles.tagsContainer}>
-        <FlatList
-          data={tags}
-          renderItem={({ item }) => item !== '' && <TagRender item={item} />}
-          keyExtractor={(item, index) => index}
-          ItemSeparatorComponent={Separator}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        />
-      </View>
+      <ScrollView horizontal style={styles.tagsContainer}>
+        {tagOne && <TagNameRender tagName={tagOne} />}
+        {tagTwo && <TagNameRender tagName={tagTwo} />}
+        {tagThree && <TagNameRender tagName={tagThree} />}
+      </ScrollView>
 
       {commentsCount === 0 && (
         <TouchableOpacity onPress={navigateToComments} activeOpacity={0.9}>
