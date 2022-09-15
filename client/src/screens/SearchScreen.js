@@ -68,6 +68,8 @@ const SearchScreen = () => {
 
   const [filterSelected, setFilterSelected] = useState(false);
   const [condition, setCondition] = useState(null);
+  const noConditionSelected =
+    !brandNew && !likeNew && !excellent && !good && !fair;
 
   const resetState = () => {
     setForSale(false);
@@ -89,12 +91,31 @@ const SearchScreen = () => {
   } = useSelector((state) => state.searchPosts);
 
   const searchQuery = () => {
-    dispatch(searchPosts(query));
-  };
+    console.log(`For sale: ${forSale}`);
+    console.log(`Condition: ${condition}`);
+    console.log(`Condition selected: ${!noConditionSelected}`);
 
-  const searchWithFilters = () => {
-    console.log(`Query: ${query}`);
-    console.log(`Filter selected: ${filterSelected}`);
+    // -> SEARCH FOR QUERY (UNFILTERED)
+    if (!forSale && noConditionSelected) {
+      dispatch(searchPosts(query, 'QUERY'));
+    }
+
+    // -> SEARCH FOR SALE & QUERY
+    if (forSale && noConditionSelected) {
+      dispatch(searchPosts(query, 'SALE_QUERY'));
+    }
+
+    // -> SEARCH FOR CONDITION & QUERY
+    if (!forSale && !noConditionSelected) {
+      dispatch(searchPosts(query, 'CONDITION_QUERY', false, true, condition));
+    }
+
+    // -> SEARCH FOR CONDITION & FOR SALE & QUERY
+    if (forSale && !noConditionSelected) {
+      dispatch(
+        searchPosts(query, 'SALE_CONDITION_QUERY', true, true, condition)
+      );
+    }
   };
 
   const clearQuery = () => {
@@ -214,7 +235,7 @@ const SearchScreen = () => {
             fair={fair}
             setFair={setFair}
             setFilterSelected={setFilterSelected}
-            searchWithFilters={searchWithFilters}
+            searchWithFilters={searchQuery}
           />
         </Modal>
       </View>
