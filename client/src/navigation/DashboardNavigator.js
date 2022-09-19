@@ -48,6 +48,10 @@ const DashboardNavigator = () => {
             backgroundColor: theme.DARK_MODE,
             borderColor: theme.MEDIUM_GRAY,
           },
+          headerTitleStyle: {
+            fontWeight: '700',
+            color: theme.LIGHT_GRAY,
+          },
         }}
       />
       <Stack.Screen
