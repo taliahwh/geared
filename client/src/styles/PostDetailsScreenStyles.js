@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'orange',
   },
   info: {
-    flex: 1,
+    // flex: 1,
     // backgroundColor: 'pink',
     justifyContent: 'center',
   },
@@ -242,6 +242,31 @@ const styles = StyleSheet.create({
   sellerMenuContainer: {
     paddingTop: 10,
   },
+  menu: {
+    padding: 3,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+  },
+  postMenuOption: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  menuContainer: {
+    dispaly: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 7,
+    paddingVertical: 5,
+  },
+  menuOptionText: {
+    fontSize: 15,
+    padding: 5,
+    textAlign: 'center',
+    fontWeight: '500',
+    color: theme.LIGHT_GRAY,
+  },
+
   menuOption: {
     display: 'flex',
     flexDirection: 'row',
