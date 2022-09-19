@@ -10,9 +10,8 @@ import {
   Text,
   ActivityIndicator,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useScrollToTop } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
-import { useScrollToTop } from '@react-navigation/native';
 
 // Components
 import AlertMessage from './AlertMessage';
