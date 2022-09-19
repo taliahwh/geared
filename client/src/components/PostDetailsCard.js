@@ -6,11 +6,19 @@ import {
   Image,
   TouchableOpacity,
   ActivityIndicator,
+  Pressable,
+  Alert,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { NavigationActions } from 'react-navigation';
 import { useDispatch, useSelector } from 'react-redux';
-import moment from 'moment';
+import {
+  Menu,
+  MenuOptions,
+  MenuOption,
+  MenuTrigger,
+} from 'react-native-popup-menu';
 
 // Styles
 import styles from '../styles/PostDetailsScreenStyles';
@@ -20,7 +28,11 @@ import FullWidthCarouselCards from '../components/carousel/FullWidthCarouselCard
 import AlertMessage from '../components/AlertMessage';
 
 // Actions
-import { likePostFromDetails, savePost } from '../actions/postActions';
+import {
+  likePostFromDetails,
+  savePost,
+  deletePost,
+} from '../actions/postActions';
 
 // Styles
 import theme from '../styles/styles.theme';
@@ -49,6 +61,8 @@ const PostDetailsCard = ({
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
+  const { _id: authUserId } = useSelector((state) => state.userSignIn.userInfo);
+
   const handleLikePost = () => {
     dispatch(likePostFromDetails(postDetails));
   };
@@ -69,6 +83,37 @@ const PostDetailsCard = ({
       username,
       userId,
     });
+  };
+
+  const handleDeletePost = () => {
+    dispatch(deletePost(postId, postDetails));
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'UserProfile' }],
+    });
+  };
+
+  const navigateToReportPost = () => {
+    navigation.navigate('Report', {
+      userId,
+      reportItemId: postId,
+      reportType: 'Post',
+    });
+  };
+
+  const confirmDeletePost = () => {
+    Alert.alert(
+      'Confirm delete post',
+      'All post data will be deleted and cannot be recovered',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        { text: 'OK', onPress: handleDeletePost },
+      ]
+    );
   };
 
   const Likes = () => {
@@ -122,22 +167,67 @@ const PostDetailsCard = ({
           </View>
         </View>
         <View style={styles.info}>
-          <Ionicons
-            name="ellipsis-horizontal"
-            size={24}
-            color={theme.LIGHT_GRAY}
-            style={styles.ellipsis}
-          />
+          <Pressable onPress={() => MenuProvider.open}>
+            <Menu style={{ borderRadius: 5 }}>
+              <MenuTrigger>
+                <Ionicons
+                  name="ellipsis-horizontal"
+                  size={19}
+                  color={theme.MEDIUM_GRAY}
+                />
+              </MenuTrigger>
+              <MenuOptions style={styles.menu}>
+                {userId === authUserId && (
+                  <MenuOption
+                    onSelect={confirmDeletePost}
+                    style={styles.postMenuOption}
+                  >
+                    <Text
+                      style={{
+                        fontSize: 15,
+                        paddingVertical: 2,
+                        // textAlign: 'center',
+                        fontWeight: '500',
+                        color: '#ef4444',
+                      }}
+                    >
+                      Delete Post
+                    </Text>
+                    <Ionicons
+                      name="ios-trash-outline"
+                      size={20}
+                      color="#ef4444"
+                    />
+                  </MenuOption>
+                )}
+                {/* <View
+                  style={{
+                    borderTopWidth: 0.5,
+                    borderColor: theme.DARK_MODE_BORDER,
+                  }}
+                /> */}
+                {userId !== authUserId && (
+                  <MenuOption
+                    onSelect={navigateToReportPost}
+                    style={styles.postMenuOption}
+                  >
+                    <Text style={styles.menuOptionText}>Report</Text>
+                    <Ionicons
+                      name="ios-flag-outline"
+                      size={20}
+                      color={theme.LIGHT_GRAY}
+                    />
+                  </MenuOption>
+                )}
+              </MenuOptions>
+            </Menu>
+          </Pressable>
         </View>
       </View>
       <View style={styles.imageContainer}>
         <FullWidthCarouselCards images={productImages} />
       </View>
       <View style={styles.buttonContainer}>
-        {/* <View style={styles.likeBtnContainer}>
-            <Ionicons name="thumbs-up-outline" size={26} color={theme.LIGHT_GRAY} />
-            <Text style={styles.likeCount}>{postDetails.likes.length}</Text>
-          </View> */}
         <TouchableOpacity activeOpacity={0.8} onPress={() => handleLikePost()}>
           <Likes />
         </TouchableOpacity>
