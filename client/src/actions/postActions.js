@@ -326,7 +326,7 @@ export const deleteComment =
   };
 
 export const searchPosts =
-  (query, searchType, forSale, condition, conditionValue) =>
+  (query, searchType, forSale, condition, conditionValue, sport, sportValue) =>
   async (dispatch, getState) => {
     dispatch({ type: SEARCH_POSTS_REQUEST });
 
@@ -341,7 +341,7 @@ export const searchPosts =
 
       const { data } = await geared.post(
         `/api/posts/search/${query}`,
-        { searchType, condition, conditionValue, forSale },
+        { searchType, forSale, condition, conditionValue, sport, sportValue },
         config
       );
 
