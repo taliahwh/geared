@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
 
   infoOptionTitle: {
     fontSize: 17,
-    color: '#a1a1aa',
+    color: theme.LIGHT_GRAY,
   },
   infoDetails: {
     fontSize: 13,
