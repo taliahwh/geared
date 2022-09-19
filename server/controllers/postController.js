@@ -421,11 +421,14 @@ const deleteComment = asyncHandler(async (req, res) => {
  */
 const searchPostsWithFilters = asyncHandler(async (req, res) => {
   const { query: keyword } = req.params;
-  const { searchType, forSale, condition, conditionValue } = req.body;
+  const { searchType, forSale, condition, conditionValue, sport, sportValue } =
+    req.body;
   console.log(`Search type: ${searchType}`);
   console.log(`For sale: ${forSale}`);
   console.log(`Condition: ${condition}`);
   console.log(`Condition value: ${conditionValue}`);
+  console.log(`Sport: ${sport}`);
+  console.log(`Sport value: ${sportValue}`);
   let results = [];
 
   // -> SEARCH FOR QUERY (UNFILTERED)
@@ -574,6 +577,194 @@ const searchPostsWithFilters = asyncHandler(async (req, res) => {
                 phrase: {
                   query: conditionValue,
                   path: ['condition'],
+                },
+              },
+            ],
+          },
+        },
+      },
+      {
+        $project: {
+          images: 1,
+          description: 1,
+          tagNames: 1,
+          forSale: 1,
+          condition: 1,
+        },
+      },
+    ]);
+  }
+
+  // -> SEARCH CARD TYPE & QUERY
+  if (searchType === 'CARD_TYPE_QUERY') {
+    results = await Post.aggregate([
+      {
+        $search: {
+          index: 'geared-posts',
+          compound: {
+            must: [
+              {
+                text: {
+                  query: keyword.trim(),
+                  path: [
+                    'description',
+                    'tagNames.tagOne',
+                    'tagNames.tagTwo',
+                    'tagNames.tagThree',
+                  ],
+                },
+              },
+              {
+                phrase: {
+                  query: sportValue,
+                  path: ['sport'],
+                },
+              },
+            ],
+          },
+        },
+      },
+      {
+        $project: {
+          images: 1,
+          description: 1,
+          tagNames: 1,
+          forSale: 1,
+          condition: 1,
+        },
+      },
+    ]);
+  }
+
+  // -> SEARCH FOR SALE & CARD TYPE & QUERY
+  if (searchType === 'SALE_CARD_TYPE_QUERY') {
+    results = await Post.aggregate([
+      {
+        $search: {
+          index: 'geared-posts',
+          compound: {
+            must: [
+              {
+                text: {
+                  query: keyword.trim(),
+                  path: [
+                    'description',
+                    'tagNames.tagOne',
+                    'tagNames.tagTwo',
+                    'tagNames.tagThree',
+                  ],
+                },
+              },
+              {
+                equals: {
+                  path: 'forSale',
+                  value: true,
+                },
+              },
+              {
+                phrase: {
+                  query: sportValue,
+                  path: ['sport'],
+                },
+              },
+            ],
+          },
+        },
+      },
+      {
+        $project: {
+          images: 1,
+          description: 1,
+          tagNames: 1,
+          forSale: 1,
+          condition: 1,
+        },
+      },
+    ]);
+  }
+
+  // -> SEARCH FOR CONDITION & CARD TYPE & QUERY
+  if (searchType === 'CONDITION_CARD_TYPE_QUERY') {
+    results = await Post.aggregate([
+      {
+        $search: {
+          index: 'geared-posts',
+          compound: {
+            must: [
+              {
+                text: {
+                  query: keyword.trim(),
+                  path: [
+                    'description',
+                    'tagNames.tagOne',
+                    'tagNames.tagTwo',
+                    'tagNames.tagThree',
+                  ],
+                },
+              },
+              {
+                phrase: {
+                  query: conditionValue,
+                  path: ['condition'],
+                },
+              },
+              {
+                phrase: {
+                  query: sportValue,
+                  path: ['sport'],
+                },
+              },
+            ],
+          },
+        },
+      },
+      {
+        $project: {
+          images: 1,
+          description: 1,
+          tagNames: 1,
+          forSale: 1,
+          condition: 1,
+        },
+      },
+    ]);
+  }
+
+  // -> SEARCH WITH ALL FILTERS -> QUERY, CONDITION, FOR SALE, CARD TYPE
+  if (searchType === 'ALL_FILTERS') {
+    results = await Post.aggregate([
+      {
+        $search: {
+          index: 'geared-posts',
+          compound: {
+            must: [
+              {
+                text: {
+                  query: keyword.trim(),
+                  path: [
+                    'description',
+                    'tagNames.tagOne',
+                    'tagNames.tagTwo',
+                    'tagNames.tagThree',
+                  ],
+                },
+              },
+              {
+                phrase: {
+                  query: conditionValue,
+                  path: ['condition'],
+                },
+              },
+              {
+                phrase: {
+                  query: sportValue,
+                  path: ['sport'],
+                },
+              },
+              {
+                equals: {
+                  path: 'forSale',
+                  value: true,
                 },
               },
             ],
