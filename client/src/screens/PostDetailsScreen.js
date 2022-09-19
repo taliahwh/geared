@@ -130,6 +130,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: theme.FEED_BACKGROUND,
   },
   footerContainer: {
     height: footerHeight,
@@ -139,10 +140,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 15,
     paddingVertical: 10,
-    // borderTopWidth: 1,
-    // borderBottomWidth: 1,
     backgroundColor: '#fff',
-    // borderColor: theme.DARK_MODE_BORDER,
     backgroundColor: theme.FEED_BACKGROUND,
   },
   price: {
