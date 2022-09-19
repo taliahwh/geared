@@ -117,6 +117,26 @@ const getPostById = asyncHandler(async (req, res) => {
 });
 
 /**
+ * @desc Delete post by post id
+ * @route PUT /posts/:id/deletepost
+ * @access Public
+ */
+const deletePost = asyncHandler(async (req, res) => {
+  const { id: postId } = req.params;
+  const { id: userId } = req.user;
+
+  const post = await Post.findById(postId);
+
+  // Unauthorized user
+  if (String(post.listedBy.userId) !== String(userId)) {
+    res.status(401).json({ message: 'Not authorized to delete this post' });
+  } else {
+    await Post.findByIdAndDelete(postId);
+    res.status(200).json({ message: 'Post deleted.' });
+  }
+});
+
+/**
  * @desc Like post by post id
  * @route PUT /posts/:id/likepost
  * @access Public
@@ -800,5 +820,6 @@ export {
   getSavedPosts,
   createNewComment,
   deleteComment,
+  deletePost,
   searchPostsWithFilters,
 };
