@@ -15,6 +15,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { SectionGrid } from 'react-native-super-grid';
+import { useNavigation, useScrollToTop } from '@react-navigation/native';
 
 // Components
 import FilterSearchModal from '../components/FilterSearchModal';
@@ -28,15 +29,25 @@ import { searchPosts } from '../actions/postActions';
 
 const windowWidth = Dimensions.get('window').width / 3;
 
-const SearchResult = ({ postImage }) => {
+const SearchResult = ({ postImage, id }) => {
+  const navigation = useNavigation();
+  const navigateToPostDetails = (id) => {
+    navigation.navigate('PostDetails', { postId: id });
+  };
+
   return (
-    <Image
-      style={styles.itemContainer}
-      resizeMode="cover"
-      source={{
-        uri: postImage,
-      }}
-    />
+    <TouchableOpacity
+      onPress={() => navigateToPostDetails(id)}
+      activeOpacity={0.8}
+    >
+      <Image
+        style={styles.itemContainer}
+        resizeMode="cover"
+        source={{
+          uri: postImage,
+        }}
+      />
+    </TouchableOpacity>
   );
 };
 
@@ -66,7 +77,41 @@ const SearchScreen = () => {
   const [fair, setFair] = useState(false);
   const toggleFair = () => setFair((prevState) => !prevState);
 
+  const [mensBasketball, setMensBasketball] = useState(false);
+  const toggleMensBasketball = () =>
+    setMensBasketball((prevState) => !prevState);
+
+  const [womensBasketball, setWomensBasketball] = useState(false);
+  const toggleWomensBasketball = () =>
+    setWomensBasketball((prevState) => !prevState);
+
+  const [soccer, setSoccer] = useState(false);
+  const toggleSoccer = () => setSoccer((prevState) => !prevState);
+
+  const [football, setFootball] = useState(false);
+  const toggleFootball = () => setFootball((prevState) => !prevState);
+
+  const [tennis, setTennis] = useState(false);
+  const toggleTennis = () => setTennis((prevState) => !prevState);
+
+  const [hockey, setHockey] = useState(false);
+  const toggleHockey = () => setHockey((prevState) => !prevState);
+
+  const [baseball, setBaseball] = useState(false);
+  const toggleBaseball = () => setBaseball((prevState) => !prevState);
+
+  const [cardType, setCardType] = useState(null);
+  const noCardTypeSelected =
+    !mensBasketball &&
+    !womensBasketball &&
+    !soccer &&
+    !football &&
+    !tennis &&
+    !hockey &&
+    !baseball;
+
   const [filterSelected, setFilterSelected] = useState(false);
+
   const [condition, setCondition] = useState(null);
   const noConditionSelected =
     !brandNew && !likeNew && !excellent && !good && !fair;
@@ -79,6 +124,14 @@ const SearchScreen = () => {
     setFair(false);
     setLikeNew(false);
     setCondition(null);
+    setBaseball(false);
+    setFootball(false);
+    setTennis(false);
+    setSoccer(false);
+    setWomensBasketball(false);
+    setMensBasketball(false);
+    setHockey(false);
+    setCardType(null);
   };
 
   // Redux state
@@ -94,26 +147,80 @@ const SearchScreen = () => {
     console.log(`For sale: ${forSale}`);
     console.log(`Condition: ${condition}`);
     console.log(`Condition selected: ${!noConditionSelected}`);
+    console.log(`Sport: ${cardType}`);
+    console.log(`Card type selected: ${!noCardTypeSelected}`);
 
     // -> SEARCH FOR QUERY (UNFILTERED)
-    if (!forSale && noConditionSelected) {
+    if (!forSale && noConditionSelected && noCardTypeSelected) {
       dispatch(searchPosts(query, 'QUERY'));
     }
 
     // -> SEARCH FOR SALE & QUERY
-    if (forSale && noConditionSelected) {
+    if (forSale && noConditionSelected && noCardTypeSelected) {
       dispatch(searchPosts(query, 'SALE_QUERY'));
     }
 
     // -> SEARCH FOR CONDITION & QUERY
-    if (!forSale && !noConditionSelected) {
+    if (!forSale && !noConditionSelected && noCardTypeSelected) {
       dispatch(searchPosts(query, 'CONDITION_QUERY', false, true, condition));
     }
 
+    // -> SEARCH FOR CARD TYPE
+    if (!noCardTypeSelected && !forSale && noConditionSelected) {
+      dispatch(
+        searchPosts(
+          query,
+          'CARD_TYPE_QUERY',
+          false,
+          false,
+          null,
+          true,
+          cardType
+        )
+      );
+    }
+
     // -> SEARCH FOR CONDITION & FOR SALE & QUERY
-    if (forSale && !noConditionSelected) {
+    if (forSale && !noConditionSelected && noCardTypeSelected) {
       dispatch(
         searchPosts(query, 'SALE_CONDITION_QUERY', true, true, condition)
+      );
+    }
+
+    // -> SEARCH FOR SALE & CARD TYPE & QUERY
+    if (forSale && noConditionSelected && !noCardTypeSelected) {
+      dispatch(
+        searchPosts(
+          query,
+          'SALE_CARD_TYPE_QUERY',
+          true,
+          false,
+          null,
+          true,
+          cardType
+        )
+      );
+    }
+
+    // -> SEARCH FOR CONDITION & CARD TYPE & QUERY
+    if (!forSale && !noConditionSelected && !noCardTypeSelected) {
+      dispatch(
+        searchPosts(
+          query,
+          'CONDITION_CARD_TYPE_QUERY',
+          false,
+          true,
+          condition,
+          true,
+          cardType
+        )
+      );
+    }
+
+    // -> SEARCH WITH ALL FILTERS -> QUERY, CONDITION, FOR SALE, CARD TYPE
+    if (forSale && !noConditionSelected && !noCardTypeSelected) {
+      dispatch(
+        searchPosts(query, 'ALL_FILTERS', true, true, condition, true, cardType)
       );
     }
   };
@@ -196,7 +303,7 @@ const SearchScreen = () => {
             ]}
             style={styles.gridView}
             renderItem={({ item }) => (
-              <SearchResult postImage={item.images[0].imgUrl} />
+              <SearchResult postImage={item.images[0].imgUrl} id={item._id} />
             )}
           />
         )}
@@ -234,6 +341,29 @@ const SearchScreen = () => {
             setGood={setGood}
             fair={fair}
             setFair={setFair}
+            womensBasketball={womensBasketball}
+            setWomensBasketball={setWomensBasketball}
+            toggleWomensBasketball={toggleWomensBasketball}
+            mensBasketball={mensBasketball}
+            setMensBasketball={setMensBasketball}
+            toggleMensBasketball={toggleMensBasketball}
+            soccer={soccer}
+            setSoccer={setSoccer}
+            toggleSoccer={toggleSoccer}
+            football={football}
+            setFootball={setFootball}
+            toggleFootball={toggleFootball}
+            tennis={tennis}
+            setTennis={setTennis}
+            toggleTennis={toggleTennis}
+            hockey={hockey}
+            setHockey={setHockey}
+            toggleHockey={toggleHockey}
+            baseball={baseball}
+            setBaseball={setBaseball}
+            toggleBaseball={toggleBaseball}
+            cardType={cardType}
+            setCardType={setCardType}
             setFilterSelected={setFilterSelected}
             searchWithFilters={searchQuery}
           />
