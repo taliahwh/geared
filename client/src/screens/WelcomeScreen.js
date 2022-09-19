@@ -45,10 +45,10 @@ const WelcomeScreen = () => {
         <Text style={styles.header}>geared</Text>
 
         <View style={styles.buttonContainer}>
-          <View style={styles.googleBtnContainer}>
+          {/* <View style={styles.googleBtnContainer}>
             <Image style={styles.googleIcon} source={googleIcon} />
             <Text style={styles.googleBtn}>Continue with Google</Text>
-          </View>
+          </View> */}
           <TouchableOpacity
             activeOpacity={1}
             onPress={() => {
