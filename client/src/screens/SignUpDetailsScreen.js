@@ -24,6 +24,7 @@ import ModalComponent from '../components/Modal';
 
 // Styles
 import styles from '../styles/SignUpDetailsScreenStyles';
+import theme from '../styles/styles.theme';
 
 // Actions
 import { completeSignUp } from '../actions/userActions';
@@ -194,13 +195,13 @@ const SignUpDetailsScreen = ({ route }) => {
                     setDateOfBirth({ ...dateOfBirth, month: value })
                   }
                   placeholder="MM"
-                  placeholderTextColor={'#a1a1aa'}
+                  placeholderTextColor={theme.MEDIUM_GRAY}
                   autoCapitalize="none"
                   returnKeyType="next"
                   keyboardType="numeric"
                   maxLength={2}
                 />
-                <Text>/</Text>
+                <Text style={{ color: theme.MEDIUM_GRAY }}>/</Text>
                 <TextInput
                   style={styles.input}
                   ref={dayRef}
@@ -209,13 +210,13 @@ const SignUpDetailsScreen = ({ route }) => {
                     setDateOfBirth({ ...dateOfBirth, day: value })
                   }
                   placeholder="DD"
-                  placeholderTextColor={'#a1a1aa'}
+                  placeholderTextColor={theme.MEDIUM_GRAY}
                   autoCapitalize="none"
                   returnKeyType="next"
                   keyboardType="numeric"
                   maxLength={2}
                 />
-                <Text>/</Text>
+                <Text style={{ color: theme.MEDIUM_GRAY }}>/</Text>
                 <TextInput
                   style={styles.input}
                   ref={yearRef}
@@ -224,7 +225,7 @@ const SignUpDetailsScreen = ({ route }) => {
                     setDateOfBirth({ ...dateOfBirth, year: value })
                   }
                   placeholder="YYYY"
-                  placeholderTextColor={'#a1a1aa'}
+                  placeholderTextColor={theme.MEDIUM_GRAY}
                   autoCapitalize="none"
                   returnKeyType="done"
                   keyboardType="numeric"
@@ -309,7 +310,7 @@ const SignUpDetailsScreen = ({ route }) => {
                       value={bio}
                       onChangeText={(value) => setBio(value)}
                       placeholder="Something about yourself..."
-                      placeholderTextColor={'#a1a1aa'}
+                      placeholderTextColor={theme.MEDIUM_GRAY}
                       autoFocus={true}
                       returnKeyType="done"
                       maxLength={128}
@@ -337,6 +338,7 @@ const SignUpDetailsScreen = ({ route }) => {
                   style={{
                     textDecorationLine: 'underline',
                     fontWeight: '500',
+                    color: theme.LIGHT_GRAY,
                   }}
                 >
                   Login
