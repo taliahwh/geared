@@ -10,6 +10,9 @@ import {
   CREATE_NEW_POST_REQUEST,
   CREATE_NEW_POST_SUCCESS,
   CREATE_NEW_POST_FAILURE,
+  DELETE_POST_REQUEST,
+  DELETE_POST_SUCCESS,
+  DELETE_POST_FAILURE,
   POST_DETAILS_REQUEST,
   POST_DETAILS_SUCCESS,
   POST_DETAILS_FAILURE,
@@ -153,6 +156,31 @@ export const getPostDetails = (id) => async (dispatch, getState) => {
     dispatch({ type: POST_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: POST_DETAILS_FAILURE });
+    console.log(error.message);
+  }
+};
+
+export const deletePost = (id, post) => async (dispatch, getState) => {
+  dispatch({ type: DELETE_POST_REQUEST });
+
+  const { authToken } = getState().userSignIn;
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authToken}`,
+      },
+    };
+
+    const { data } = await geared.put(
+      `/api/posts/${id}/deletepost`,
+      { post },
+      config
+    );
+
+    dispatch({ type: DELETE_POST_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: DELETE_POST_FAILURE, payload: data });
     console.log(error.message);
   }
 };
