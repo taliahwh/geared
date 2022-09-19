@@ -9,6 +9,9 @@ const styles = StyleSheet.create({
     backgroundColor: theme.DARK_MODE,
     display: 'flex',
   },
+  screenContainer: {
+    backgroundColor: theme.FEED_BACKGROUND,
+  },
   headingContainer: {
     paddingHorizontal: 15,
     paddingTop: 6,
