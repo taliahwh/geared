@@ -64,8 +64,31 @@ const FilterSearchModal = ({
   setFilterSelected,
   searchWithFilters,
   setCondition,
+  setCardType,
+  toggleBaseball,
+  toggleFootball,
+  toggleSoccer,
+  toggleTennis,
+  toggleHockey,
+  toggleMensBasketball,
+  toggleWomensBasketball,
+  baseball,
+  setBaseball,
+  football,
+  setFootball,
+  soccer,
+  setSoccer,
+  tennis,
+  setTennis,
+  hockey,
+  setHockey,
+  mensBasketball,
+  setMensBasketball,
+  womensBasketball,
+  setWomensBasketball,
 }) => {
   const [conditionOptionsOpen, setConditionOptionsOpen] = useState(false);
+  const [cardTypeOptionsOpen, setCardTypeOptionsOpen] = useState(false);
 
   return (
     <View style={styles.screenView}>
@@ -89,7 +112,7 @@ const FilterSearchModal = ({
           <ScrollView style={styles.optionsContainer}>
             {/* Condition */}
             <View style={styles.filterOption}>
-              <Text style={styles.optionHeading}>Condition</Text>
+              <Text style={styles.optionHeadingBold}>Condition</Text>
               {conditionOptionsOpen ? (
                 <Pressable onPress={() => setConditionOptionsOpen(false)}>
                   <Ionicons
@@ -211,7 +234,7 @@ const FilterSearchModal = ({
             )}
             {/* For sale */}
             <View style={styles.filterOption}>
-              <Text style={styles.optionHeading}>For sale</Text>
+              <Text style={styles.optionHeadingBold}>For sale</Text>
               <Switch
                 trackColor={{ false: '#767577', true: '#81b0ff' }}
                 thumbColor={forSale ? theme.PRIMARY_COLOR : '#f4f3f4'}
@@ -223,6 +246,186 @@ const FilterSearchModal = ({
                 value={forSale}
               />
             </View>
+
+            {/* Card Type Options */}
+            {/* Condition */}
+            <View style={styles.filterOption}>
+              <Text style={styles.optionHeadingBold}>Sport</Text>
+              {cardTypeOptionsOpen ? (
+                <Pressable onPress={() => setCardTypeOptionsOpen(false)}>
+                  <Ionicons
+                    name="chevron-down"
+                    size={21}
+                    color={theme.MEDIUM_GRAY}
+                    style={{ marginLeft: 5 }}
+                  />
+                </Pressable>
+              ) : (
+                <Pressable onPress={() => setCardTypeOptionsOpen(true)}>
+                  <Ionicons
+                    name="chevron-forward"
+                    size={21}
+                    color={theme.MEDIUM_GRAY}
+                    style={{ marginLeft: 5 }}
+                  />
+                </Pressable>
+              )}
+            </View>
+
+            {cardTypeOptionsOpen && (
+              <View>
+                <View style={styles.filterOption}>
+                  <Text style={styles.optionHeading}>Men's Basketball</Text>
+                  <Switch
+                    trackColor={{ false: '#767577', true: '#81b0ff' }}
+                    thumbColor={
+                      mensBasketball ? theme.PRIMARY_COLOR : '#f4f3f4'
+                    }
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={() => {
+                      toggleMensBasketball();
+                      setWomensBasketball(false);
+                      setSoccer(false);
+                      setBaseball(false);
+                      setHockey(false);
+                      setFootball(false);
+                      setTennis(false);
+                      setFilterSelected(true);
+                      setCardType(`Men's Basketball`);
+                    }}
+                    value={mensBasketball}
+                  />
+                </View>
+
+                <View style={styles.filterOption}>
+                  <Text style={styles.optionHeading}>Women's Basketball</Text>
+                  <Switch
+                    trackColor={{ false: '#767577', true: '#81b0ff' }}
+                    thumbColor={
+                      womensBasketball ? theme.PRIMARY_COLOR : '#f4f3f4'
+                    }
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={() => {
+                      toggleWomensBasketball();
+                      setMensBasketball(false);
+                      setSoccer(false);
+                      setBaseball(false);
+                      setHockey(false);
+                      setFootball(false);
+                      setTennis(false);
+                      setFilterSelected(true);
+                      setCardType(`Women's Basketball`);
+                    }}
+                    value={womensBasketball}
+                  />
+                </View>
+
+                <View style={styles.filterOption}>
+                  <Text style={styles.optionHeading}>Football</Text>
+                  <Switch
+                    trackColor={{ false: '#767577', true: '#81b0ff' }}
+                    thumbColor={football ? theme.PRIMARY_COLOR : '#f4f3f4'}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={() => {
+                      toggleFootball();
+                      setMensBasketball(false);
+                      setWomensBasketball(false);
+                      setSoccer(false);
+                      setBaseball(false);
+                      setHockey(false);
+                      setTennis(false);
+                      setFilterSelected(true);
+                      setCardType('Football');
+                    }}
+                    value={football}
+                  />
+                </View>
+
+                <View style={styles.filterOption}>
+                  <Text style={styles.optionHeading}>Soccer</Text>
+                  <Switch
+                    trackColor={{ false: '#767577', true: '#81b0ff' }}
+                    thumbColor={soccer ? theme.PRIMARY_COLOR : '#f4f3f4'}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={() => {
+                      toggleSoccer();
+                      setMensBasketball(false);
+                      setWomensBasketball(false);
+                      setBaseball(false);
+                      setHockey(false);
+                      setFootball(false);
+                      setTennis(false);
+                      setFilterSelected(true);
+                      setCardType('Soccer');
+                    }}
+                    value={soccer}
+                  />
+                </View>
+
+                <View style={styles.filterOption}>
+                  <Text style={styles.optionHeading}>Baseball</Text>
+                  <Switch
+                    trackColor={{ false: '#767577', true: '#81b0ff' }}
+                    thumbColor={baseball ? theme.PRIMARY_COLOR : '#f4f3f4'}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={() => {
+                      toggleBaseball();
+                      setMensBasketball(false);
+                      setWomensBasketball(false);
+                      setSoccer(false);
+                      setHockey(false);
+                      setFootball(false);
+                      setTennis(false);
+                      setFilterSelected(true);
+                      setCardType('Baseball');
+                    }}
+                    value={baseball}
+                  />
+                </View>
+
+                <View style={styles.filterOption}>
+                  <Text style={styles.optionHeading}>Hockey</Text>
+                  <Switch
+                    trackColor={{ false: '#767577', true: '#81b0ff' }}
+                    thumbColor={hockey ? theme.PRIMARY_COLOR : '#f4f3f4'}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={() => {
+                      toggleHockey();
+                      setMensBasketball(false);
+                      setWomensBasketball(false);
+                      setSoccer(false);
+                      setBaseball(false);
+                      setFootball(false);
+                      setTennis(false);
+                      setFilterSelected(true);
+                      setCardType('Hockey');
+                    }}
+                    value={hockey}
+                  />
+                </View>
+
+                <View style={styles.filterOption}>
+                  <Text style={styles.optionHeading}>Tennis</Text>
+                  <Switch
+                    trackColor={{ false: '#767577', true: '#81b0ff' }}
+                    thumbColor={tennis ? theme.PRIMARY_COLOR : '#f4f3f4'}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={() => {
+                      toggleTennis();
+                      setMensBasketball(false);
+                      setWomensBasketball(false);
+                      setSoccer(false);
+                      setBaseball(false);
+                      setFootball(false);
+                      setHockey(false);
+                      setFilterSelected(true);
+                      setCardType('Tennis');
+                    }}
+                    value={tennis}
+                  />
+                </View>
+              </View>
+            )}
           </ScrollView>
 
           <TouchableOpacity
