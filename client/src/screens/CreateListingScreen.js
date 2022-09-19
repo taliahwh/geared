@@ -77,6 +77,8 @@ const CreateListingScreen = () => {
   const [football, setFootball] = useState(false);
   const [mensBasketball, setMensBasketball] = useState(false);
   const [soccer, setSoccer] = useState(false);
+  const [tennis, setTennis] = useState(false);
+  const [hockey, setHockey] = useState(false);
   const [womensBasketball, setWomensBasketball] = useState(false);
   const [sportValue, setSportValue] = useState('Select');
 
@@ -613,6 +615,8 @@ const CreateListingScreen = () => {
                           setSoccer(false);
                           setMensBasketball(false);
                           setFootball(false);
+                          setTennis(false);
+                          setHockey(false);
                           setBaseball(true);
                           setSportValue('Baseball');
                         }}
@@ -633,6 +637,7 @@ const CreateListingScreen = () => {
                         )}
                       </TouchableOpacity>
                     </View>
+
                     <View style={styles.modalOptionContainer}>
                       <Text style={styles.infoOptionTitle}>Football</Text>
                       <TouchableOpacity
@@ -641,6 +646,8 @@ const CreateListingScreen = () => {
                           setSoccer(false);
                           setMensBasketball(false);
                           setBaseball(false);
+                          setTennis(false);
+                          setHockey(false);
                           setFootball(true);
                           setSportValue('Football');
                         }}
@@ -661,6 +668,7 @@ const CreateListingScreen = () => {
                         )}
                       </TouchableOpacity>
                     </View>
+
                     <View style={styles.modalOptionContainer}>
                       <Text style={styles.infoOptionTitle}>
                         Men's Basketball
@@ -671,6 +679,8 @@ const CreateListingScreen = () => {
                           setSoccer(false);
                           setBaseball(false);
                           setFootball(false);
+                          setTennis(false);
+                          setHockey(false);
                           setMensBasketball(true);
                           setSportValue(`Men's Basketball`);
                         }}
@@ -691,6 +701,7 @@ const CreateListingScreen = () => {
                         )}
                       </TouchableOpacity>
                     </View>
+
                     <View style={styles.modalOptionContainer}>
                       <Text style={styles.infoOptionTitle}>Soccer</Text>
                       <TouchableOpacity
@@ -699,6 +710,8 @@ const CreateListingScreen = () => {
                           setMensBasketball(false);
                           setBaseball(false);
                           setFootball(false);
+                          setTennis(false);
+                          setHockey(false);
                           setSoccer(true);
                           setSportValue('Soccer');
                         }}
@@ -719,6 +732,7 @@ const CreateListingScreen = () => {
                         )}
                       </TouchableOpacity>
                     </View>
+
                     <View style={styles.modalOptionContainer}>
                       <Text style={styles.infoOptionTitle}>
                         Women's Basketball
@@ -729,12 +743,76 @@ const CreateListingScreen = () => {
                           setMensBasketball(false);
                           setBaseball(false);
                           setFootball(false);
+                          setTennis(false);
+                          setHockey(false);
                           setWomensBasketball(true);
                           setSportValue(`Women's Baskebtall`);
                         }}
                         activeOpacity={1}
                       >
                         {womensBasketball === false ? (
+                          <Ionicons
+                            name="ios-radio-button-off-outline"
+                            size={20}
+                            color={theme.MEDIUM_GRAY}
+                          />
+                        ) : (
+                          <Ionicons
+                            name="ios-radio-button-on-outline"
+                            size={20}
+                            color={theme.MEDIUM_GRAY}
+                          />
+                        )}
+                      </TouchableOpacity>
+                    </View>
+
+                    <View style={styles.modalOptionContainer}>
+                      <Text style={styles.infoOptionTitle}>Tennis</Text>
+                      <TouchableOpacity
+                        onPress={() => {
+                          setSoccer(false);
+                          setMensBasketball(false);
+                          setBaseball(false);
+                          setFootball(false);
+                          setHockey(false);
+                          setWomensBasketball(false);
+                          setTennis(true);
+                          setSportValue(`Tennis`);
+                        }}
+                        activeOpacity={1}
+                      >
+                        {tennis === false ? (
+                          <Ionicons
+                            name="ios-radio-button-off-outline"
+                            size={20}
+                            color={theme.MEDIUM_GRAY}
+                          />
+                        ) : (
+                          <Ionicons
+                            name="ios-radio-button-on-outline"
+                            size={20}
+                            color={theme.MEDIUM_GRAY}
+                          />
+                        )}
+                      </TouchableOpacity>
+                    </View>
+
+                    <View style={styles.modalOptionContainer}>
+                      <Text style={styles.infoOptionTitle}>Hockey</Text>
+                      <TouchableOpacity
+                        onPress={() => {
+                          setSoccer(false);
+                          setMensBasketball(false);
+                          setBaseball(false);
+                          setFootball(false);
+                          setTennis(false);
+                          setWomensBasketball(false);
+                          setHockey(true);
+                          setSportValue(`Hockey`);
+                        }}
+                        activeOpacity={1}
+                      >
+                        {hockey === false ? (
                           <Ionicons
                             name="ios-radio-button-off-outline"
                             size={20}
