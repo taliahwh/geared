@@ -12,6 +12,7 @@ import {
   createNewComment,
   deleteComment,
   searchPostsWithFilters,
+  deletePost,
 } from '../controllers/postController.js';
 
 // Middleware
@@ -36,6 +37,8 @@ router.get('/savedposts', authMiddleware, getSavedPosts);
 router.get('/:id', authMiddleware, getPostById);
 
 router.put('/deletecomment/:id', authMiddleware, deleteComment);
+
+router.put('/:id/deletepost', authMiddleware, deletePost);
 
 router.put('/:id/likepost', authMiddleware, likePost);
 
