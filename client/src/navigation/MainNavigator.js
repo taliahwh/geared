@@ -20,6 +20,7 @@ import MessagesNavigator from './MessagesNavigator';
 
 // Actions
 import { getNotifications, getAuthUserDetails } from '../actions/userActions';
+import SearchNavigator from './SearchNavigator';
 
 export const navigationRef = createNavigationContainerRef();
 
@@ -87,24 +88,17 @@ const MainNavigator = () => {
         component={HomeScreenNavigator}
         options={{
           headerShown: false,
-        }}
-      />
-      <Tab.Screen
-        name="Search"
-        component={SearchScreen}
-        options={{
-          headerShown: true,
           headerStyle: {
-            backgroundColor: theme.DARK_MODE,
             elevation: 0,
             shadowOpacity: 0,
             borderBottomWidth: 0,
           },
-          headerTitleStyle: {
-            color: theme.LIGHT_GRAY,
-            fontWeight: '600',
-          },
         }}
+      />
+      <Tab.Screen
+        name="Search"
+        component={SearchNavigator}
+        options={{ headerShown: false }}
       />
       <Tab.Screen
         name="Dashboard"
