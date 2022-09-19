@@ -110,6 +110,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: theme.LIGHT_GRAY,
   },
+  optionHeadingBold: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: theme.LIGHT_GRAY,
+  },
   conditionContainer: {
     display: 'flex',
     flexDirection: 'row',
