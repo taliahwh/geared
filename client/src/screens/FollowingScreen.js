@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontStyle: 'italic',
+    color: theme.LIGHT_GRAY,
   },
 });
 
