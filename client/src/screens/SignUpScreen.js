@@ -88,7 +88,7 @@ const SignUpScreen = () => {
                 onChangeText={(value) => setFirstName(value)}
                 textContentType="name"
                 placeholder="First name"
-                placeholderTextColor={'#a1a1aa'}
+                placeholderTextColor={theme.MEDIUM_GRAY}
                 autoCapitalize="words"
                 // returnKeyType="next"
               />
@@ -99,7 +99,7 @@ const SignUpScreen = () => {
                 onChangeText={(value) => setLastName(value)}
                 textContentType="familyName"
                 placeholder="Last name"
-                placeholderTextColor={'#a1a1aa'}
+                placeholderTextColor={theme.MEDIUM_GRAY}
                 autoCapitalize="words"
                 // returnKeyType="next"
                 ref={lastNameRef}
@@ -114,7 +114,7 @@ const SignUpScreen = () => {
                 onChangeText={(value) => setEmail(value)}
                 textContentType="emailAddress"
                 placeholder="Email address"
-                placeholderTextColor={'#a1a1aa'}
+                placeholderTextColor={theme.MEDIUM_GRAY}
                 autoCapitalize="none"
                 autoComplete="email"
                 autoCorrect={false}
@@ -127,7 +127,7 @@ const SignUpScreen = () => {
                 value={username}
                 onChangeText={(value) => setUsername(value)}
                 placeholder="Username"
-                placeholderTextColor={'#a1a1aa'}
+                placeholderTextColor={theme.MEDIUM_GRAY}
                 autoCapitalize="none"
                 autoCorrect={false}
                 // returnKeyType="next"
@@ -139,7 +139,7 @@ const SignUpScreen = () => {
                 value={password}
                 onChangeText={(value) => setPassword(value)}
                 placeholder="Password"
-                placeholderTextColor={'#a1a1aa'}
+                placeholderTextColor={theme.MEDIUM_GRAY}
                 autoCapitalize="none"
                 ref={passwordRef}
                 secureTextEntry
@@ -150,7 +150,7 @@ const SignUpScreen = () => {
                 value={confirmPassword}
                 onChangeText={(value) => setConfirmPassword(value)}
                 placeholder="Confirm password"
-                placeholderTextColor={'#a1a1aa'}
+                placeholderTextColor={theme.MEDIUM_GRAY}
                 autoCapitalize="none"
                 ref={confirmPasswordRef}
                 secureTextEntry
@@ -172,6 +172,7 @@ const SignUpScreen = () => {
                     style={{
                       textDecorationLine: 'underline',
                       fontWeight: '500',
+                      color: theme.LIGHT_GRAY,
                     }}
                   >
                     Login
@@ -190,13 +191,13 @@ const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: theme.DARK_MODE,
   },
   logo: {
     fontSize: 45,
     fontWeight: '800',
     fontStyle: 'italic',
-    // textAlign: 'center',
+    color: theme.LIGHT_GRAY,
   },
   container: {
     width: '100%',
@@ -211,10 +212,11 @@ const styles = StyleSheet.create({
   },
   input: {
     borderBottomWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
     marginVertical: 10,
     paddingVertical: 7,
     paddingHorizontal: 7,
+    color: theme.LIGHT_GRAY,
   },
   loginBtn: {
     textAlign: 'center',
@@ -235,6 +237,7 @@ const styles = StyleSheet.create({
   signUpText: {
     textAlign: 'center',
     paddingRight: 5,
+    color: theme.LIGHT_GRAY,
   },
 });
 
