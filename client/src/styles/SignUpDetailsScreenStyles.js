@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: theme.DARK_MODE,
   },
   uploadingImage: {
     textAlign: 'center',
@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     width: '80%',
     marginBottom: 15,
+    color: theme.LIGHT_GRAY,
   },
   container: {
     display: 'flex',
@@ -49,6 +50,7 @@ const styles = StyleSheet.create({
   },
   inputTitle: {
     fontSize: 16,
+    color: theme.LIGHT_GRAY,
   },
   chevronContainer: {
     display: 'flex',
@@ -120,6 +122,7 @@ const styles = StyleSheet.create({
   signUpText: {
     textAlign: 'center',
     paddingRight: 5,
+    color: theme.LIGHT_GRAY,
   },
   // Modal
 
