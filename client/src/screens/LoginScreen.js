@@ -74,7 +74,7 @@ const LoginScreen = () => {
                     onChangeText={(value) => onChange(value)}
                     onBlur={onBlur}
                     placeholder="Email or Username"
-                    placeholderTextColor={'#a1a1aa'}
+                    placeholderTextColor={theme.MEDIUM_GRAY}
                     autoCapitalize="none"
                     autoComplete={'off'}
                     returnKeyType="next"
@@ -94,7 +94,7 @@ const LoginScreen = () => {
                     onChangeText={(value) => onChange(value)}
                     onBlur={onBlur}
                     placeholder="Password"
-                    placeholderTextColor={'#a1a1aa'}
+                    placeholderTextColor={theme.MEDIUM_GRAY}
                     autoCapitalize="none"
                     ref={passwordRef}
                     secureTextEntry
@@ -128,6 +128,7 @@ const LoginScreen = () => {
                     style={{
                       textDecorationLine: 'underline',
                       fontWeight: '500',
+                      color: theme.LIGHT_GRAY,
                     }}
                   >
                     Sign Up
@@ -147,13 +148,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
 
-    backgroundColor: '#fff',
+    backgroundColor: theme.DARK_MODE,
   },
   logo: {
     fontSize: 45,
     fontWeight: '800',
     fontStyle: 'italic',
-    // textAlign: 'center',
+    color: theme.LIGHT_GRAY,
   },
   container: {
     width: '100%',
@@ -168,10 +169,11 @@ const styles = StyleSheet.create({
   },
   input: {
     borderBottomWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
     marginVertical: 10,
     paddingVertical: 7,
     paddingHorizontal: 7,
+    color: theme.LIGHT_GRAY,
   },
   loginBtn: {
     textAlign: 'center',
@@ -201,6 +203,7 @@ const styles = StyleSheet.create({
   signUpText: {
     textAlign: 'center',
     paddingRight: 5,
+    color: theme.LIGHT_GRAY,
   },
 });
 
