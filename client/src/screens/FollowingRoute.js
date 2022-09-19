@@ -116,12 +116,12 @@ const FollowingRoute = () => {
             <Ionicons
               name="ios-refresh-outline"
               size={25}
-              color="black"
+              color={theme.LIGHT_GRAY}
               style={{ marginBottom: 7 }}
             />
           </TouchableOpacity>
 
-          <Text>Not following anyone yet.</Text>
+          <Text style={styles.text}>Not following anyone yet.</Text>
         </View>
       )}
     </>
@@ -139,6 +139,10 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  text: {
+    fontStyle: 'italic',
+    color: theme.LIGHT_GRAY,
   },
 });
 
