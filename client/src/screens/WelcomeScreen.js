@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
 
 import { Video } from 'expo-av';
 import CourtVideo from '../assets/videos/basketball.mp4';
@@ -18,9 +19,11 @@ import googleIcon from '../assets/google-color.png';
 
 // Styles
 import theme from '../styles/styles.theme';
+import { USER_LOGOUT } from '../constants/userConstants';
 
 const WelcomeScreen = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
   const video = useRef(null);
 
   const random = (items) => {
@@ -28,6 +31,12 @@ const WelcomeScreen = () => {
   };
 
   const videos = [CourtVideo, JumpshotVideo, BaseballVideo, FootballVideo];
+
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch({ type: USER_LOGOUT });
+    }, [dispatch])
+  );
 
   return (
     <SafeAreaView style={styles.screenContainer}>
