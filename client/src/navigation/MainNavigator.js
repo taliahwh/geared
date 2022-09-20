@@ -4,22 +4,21 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useSelector, useDispatch } from 'react-redux';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Entypo } from '@expo/vector-icons';
+import useInterval from 'use-interval';
 
 // Styles
 import theme from '../styles/styles.theme';
 
-// Screens
-import SearchScreen from '../screens/SearchScreen';
-
 // Actions
+import {
+  getAuthUserDetails,
+  getUnreadNotifications,
+} from '../actions/userActions';
 
 import HomeScreenNavigator from './HomeScreenNavigator';
 import ProfileNavigator from './ProfileNavigator';
 import DashboardNavigator from './DashboardNavigator';
 import MessagesNavigator from './MessagesNavigator';
-
-// Actions
-import { getNotifications, getAuthUserDetails } from '../actions/userActions';
 import SearchNavigator from './SearchNavigator';
 
 export const navigationRef = createNavigationContainerRef();
@@ -40,17 +39,23 @@ const MainNavigator = () => {
   // Hooks
   const dispatch = useDispatch();
 
-  // User info from redux state
-  const { unreadNotifications } = useSelector((state) => state.notifications);
+  const { unreadNotifications } = useSelector(
+    (state) => state.unreadNotifications
+  );
+
   const { success: successViewNotification } = useSelector(
     (state) => state.userViewNotification
   );
-  const { id: userId } = useSelector((state) => state.userSignIn);
+
+  // dispatches every 60 seconds
+  useInterval(() => {
+    dispatch(getUnreadNotifications());
+  }, 60000);
 
   useEffect(() => {
-    dispatch(getNotifications(userId));
-    dispatch(getAuthUserDetails(userId));
-  }, [dispatch, userId, successViewNotification]);
+    dispatch(getUnreadNotifications());
+    dispatch(getAuthUserDetails());
+  }, [dispatch, successViewNotification]);
 
   return (
     <Tab.Navigator
@@ -121,6 +126,10 @@ const MainNavigator = () => {
             elevation: 0,
             shadowOpacity: 0,
             borderBottomWidth: 0,
+          },
+          tabBarBadge: unreadNotifications,
+          tabBarBadgeStyle: {
+            backgroundColor: theme.PRIMARY_COLOR,
           },
         }}
       />
