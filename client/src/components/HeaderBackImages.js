@@ -8,6 +8,9 @@ import { Ionicons } from '@expo/vector-icons';
 // Styles
 import theme from '../styles/styles.theme';
 
+// Actions
+import { viewNotifications } from '../actions/userActions';
+
 export const HeaderClose = () => {
   return (
     <View style={{ marginLeft: 15 }}>
@@ -30,13 +33,18 @@ export const HeaderBack = () => {
 
 export const HeaderNotification = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  const { userDetails } = useSelector((state) => state.authUserDetails);
+
+  const navigateToNotifications = () => {
+    dispatch(viewNotifications(userDetails.notifications));
+    navigation.navigate('Notifications');
+  };
 
   return (
     <View style={{ marginLeft: 15 }}>
-      <TouchableOpacity
-        activeOpacity={0.8}
-        onPress={() => navigation.navigate('Notifications')}
-      >
+      <TouchableOpacity activeOpacity={0.8} onPress={navigateToNotifications}>
         <Ionicons name="ios-notifications" size={25} color={theme.LIGHT_GRAY} />
       </TouchableOpacity>
     </View>
