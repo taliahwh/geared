@@ -35,6 +35,9 @@ import {
   GET_NOTIFICATIONS_REQUEST,
   GET_NOTIFICATIONS_SUCCESS,
   GET_NOTIFICATIONS_FAILURE,
+  GET_UNREAD_NOTIFICATIONS_REQUEST,
+  GET_UNREAD_NOTIFICATIONS_SUCCESS,
+  GET_UNREAD_NOTIFICATIONS_FAILURE,
   FOLLOW_USER_REQUEST,
   FOLLOW_USER_SUCCESS,
   FOLLOW_USER_FAILURE,
@@ -391,8 +394,8 @@ export const completeSignUp =
     }
   };
 
-export const viewNotification =
-  (notificationId) => async (dispatch, getState) => {
+export const viewNotifications =
+  (notifications) => async (dispatch, getState) => {
     const { authToken } = getState().userSignIn;
     try {
       dispatch({ type: VIEW_NOTIFICATION_REQUEST });
@@ -405,10 +408,8 @@ export const viewNotification =
       };
 
       const { data } = await gearedApi.put(
-        `api/users/notifications/${notificationId}`,
-        {
-          notificationId,
-        },
+        `api/users/view-notifications`,
+        { notifications },
         config
       );
 
@@ -424,7 +425,7 @@ export const viewNotification =
     }
   };
 
-export const getNotifications = (userId) => async (dispatch, getState) => {
+export const getNotifications = () => async (dispatch, getState) => {
   const { authToken } = getState().userSignIn;
   try {
     dispatch({ type: GET_NOTIFICATIONS_REQUEST });
@@ -436,15 +437,41 @@ export const getNotifications = (userId) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await gearedApi.get(
-      `api/users/notifications/${userId}`,
-      config
-    );
+    const { data } = await gearedApi.get(`api/users/notifications`, config);
 
     dispatch({ type: GET_NOTIFICATIONS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
       type: GET_NOTIFICATIONS_FAILURE,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const getUnreadNotifications = () => async (dispatch, getState) => {
+  const { authToken } = getState().userSignIn;
+  try {
+    dispatch({ type: GET_UNREAD_NOTIFICATIONS_REQUEST });
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authToken}`,
+      },
+    };
+
+    const { data } = await gearedApi.get(
+      `api/users/unread-notifications`,
+      config
+    );
+
+    dispatch({ type: GET_UNREAD_NOTIFICATIONS_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: GET_UNREAD_NOTIFICATIONS_FAILURE,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
