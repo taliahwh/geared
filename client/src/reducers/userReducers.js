@@ -35,6 +35,9 @@ import {
   GET_NOTIFICATIONS_REQUEST,
   GET_NOTIFICATIONS_SUCCESS,
   GET_NOTIFICATIONS_FAILURE,
+  GET_UNREAD_NOTIFICATIONS_REQUEST,
+  GET_UNREAD_NOTIFICATIONS_SUCCESS,
+  GET_UNREAD_NOTIFICATIONS_FAILURE,
   FOLLOW_USER_REQUEST,
   FOLLOW_USER_SUCCESS,
   FOLLOW_USER_FAILURE,
@@ -56,6 +59,7 @@ import {
   CLEAR_POSTS_DATA,
   CLEAR_SIGN_UP_DATA,
   USER_LOGOUT,
+  USER_SIGN_IN_RESET,
 } from '../constants/userConstants';
 
 const initialState = {
@@ -86,6 +90,11 @@ export const userSignInReducer = (state = initialState, action) => {
     case USER_SIGN_IN_FAILURE:
       return { ...state, error: action.payload };
     case USER_LOGOUT:
+      return {
+        authToken: null,
+        userInfo: {},
+      };
+    case USER_SIGN_IN_RESET:
       return {
         authToken: null,
         userInfo: {},
@@ -145,9 +154,6 @@ export const authUserDetailsReducer = (state = {}, action) => {
         loading: false,
         success: true,
         userDetails: action.payload,
-        unreadNotifications: action.payload.notifications.filter(
-          (notification) => notification.viewed !== true
-        ),
       };
     case AUTH_USER_DETAILS_FAILURE:
       return { loading: false, error: action.payload };
@@ -166,9 +172,6 @@ export const userDetailsReducer = (state = {}, action) => {
         loading: false,
         success: true,
         userDetails: action.payload,
-        unreadNotifications: action.payload.notifications.filter(
-          (notification) => notification.viewed !== true
-        ),
       };
     case USER_DETAILS_FAILURE:
       return { loading: false, error: action.payload };
@@ -276,11 +279,24 @@ export const notificationsReducer = (state = {}, action) => {
       return {
         success: true,
         notifications: action.payload,
-        unreadNotifications: action.payload.filter(
-          (notification) => notification.viewed !== true
-        ),
       };
     case GET_NOTIFICATIONS_FAILURE:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const unreadNotificationsReducer = (state = {}, action) => {
+  switch (action.type) {
+    case GET_UNREAD_NOTIFICATIONS_REQUEST:
+      return { loading: true };
+    case GET_UNREAD_NOTIFICATIONS_SUCCESS:
+      return {
+        success: true,
+        unreadNotifications: action.payload.unreadNotifications,
+      };
+    case GET_UNREAD_NOTIFICATIONS_FAILURE:
       return { loading: false, error: action.payload };
     default:
       return state;
