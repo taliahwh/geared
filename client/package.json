@@ -54,7 +54,8 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1",
     "socket.io-client": "^4.5.1",
-    "uninstall": "^0.0.0"
+    "uninstall": "^0.0.0",
+    "use-interval": "^1.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
