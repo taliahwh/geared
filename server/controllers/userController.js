@@ -372,35 +372,8 @@ const getPostsByUserId = asyncHandler(async (req, res) => {
 });
 
 /**
- * @desc Mark notification as viewed by notification id
- * @route PUT /users/notification/:id
- * @access Public
- */
-const markNotificationAsViewed = asyncHandler(async (req, res) => {
-  const { id: notificationId } = req.params;
-  const { id: userId } = req.user;
-
-  const user = await User.findOneAndUpdate(
-    {
-      _id: userId,
-      notifications: { $elemMatch: { _id: notificationId } },
-    },
-    { $set: { 'notifications.$.viewed': true } },
-    { new: true }
-  );
-
-  if (!user) {
-    res.status(404);
-    throw new Error('User not found');
-  }
-
-  // const notifications = user.notifications;
-  res.status(200).json({ message: 'Notification marked as viewed' });
-});
-
-/**
  * @desc Get user notifications by user id
- * @route GET /users/notification/:id
+ * @route GET /users/notifications/:id
  * @access Public
  */
 const getNotifications = asyncHandler(async (req, res) => {
@@ -412,10 +385,61 @@ const getNotifications = asyncHandler(async (req, res) => {
     throw new Error('User not found');
   }
 
-  // const notifications = user.notifications;
-  const notifications = await Notification.find({ requestTo: userId });
+  const userNotifications = user.notifications.map(mongoose.Types.ObjectId);
+  const notifications = await Notification.find({
+    _id: { $in: userNotifications },
+  });
 
   res.status(200).json(notifications);
+});
+
+/**
+ * @desc Mark all notifications as viewed by user id
+ * @route PUT /users/notifications
+ * @access Public
+ */
+const markNotificationsAsViewed = asyncHandler(async (req, res) => {
+  const { id: userId } = req.user;
+
+  const user = await User.findById(userId);
+  const userNotifications = user.notifications.map(mongoose.Types.ObjectId);
+  await Notification.updateMany(
+    {
+      _id: { $in: userNotifications },
+      viewed: false,
+    },
+    { $set: { viewed: true } }
+  );
+
+  // const notifications = user.notifications;
+  res.status(200).json({ message: 'Notifications marked as viewed' });
+});
+
+/**
+ * @desc Check for number of unread notifications
+ * @route GET /users/unread-notifications/:id
+ * @access Public
+ */
+const checkUnreadNotifications = asyncHandler(async (req, res) => {
+  const { id: userId } = req.user;
+
+  const user = await User.findById(userId);
+  if (!user) {
+    res.status(404);
+    throw new Error('User not found');
+  }
+
+  const userNotifications = user.notifications.map(mongoose.Types.ObjectId);
+  const unreadNotifications = await Notification.find({
+    _id: { $in: userNotifications },
+    viewed: false,
+  });
+
+  let numUnreadNotifications;
+  if (!unreadNotifications.length) numUnreadNotifications = null;
+  else numUnreadNotifications = unreadNotifications.length;
+
+  res.status(200).json({ unreadNotifications: numUnreadNotifications });
 });
 
 /**
@@ -491,7 +515,7 @@ const followUser = asyncHandler(async (req, res) => {
       },
     });
     await newNotification.save();
-    userToFollow.notifications.push(newNotification);
+    userToFollow.notifications.push(newNotification._id);
     await userToFollow.save();
   }
 
@@ -628,8 +652,9 @@ export {
   getPostsByUserId,
   updateUserProfile,
   updateUserPassword,
-  markNotificationAsViewed,
+  markNotificationsAsViewed,
   getNotifications,
+  checkUnreadNotifications,
   followUser,
   getFollowers,
   getFollowing,
