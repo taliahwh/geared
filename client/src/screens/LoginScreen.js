@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   View,
   Text,
@@ -24,6 +24,7 @@ import AlertMessage from '../components/AlertMessage';
 
 // Actions
 import { signIn } from '../actions/userActions';
+import { USER_SIGN_IN_RESET } from '../constants/userConstants';
 
 const LoginScreen = () => {
   // Hooks
@@ -49,6 +50,9 @@ const LoginScreen = () => {
   const onSubmit = async (data) => {
     const { username, password } = data;
 
+    // 3 second timer
+    setLoadingSignIn(true);
+    await delay(1000);
     dispatch(signIn(username, password));
   };
 
@@ -106,14 +110,14 @@ const LoginScreen = () => {
                 onPress={handleSubmit(onSubmit)}
                 activeOpacity={0.5}
               >
-                {/* {!loadingSignIn ? (
+                {!loadingSignIn || errorSignIn ? (
                   <Text style={styles.loginBtn}>Login</Text>
                 ) : (
                   <View style={styles.loadingBtn}>
                     <ActivityIndicator color={'#fff'} />
                   </View>
-                )} */}
-                <Text style={styles.loginBtn}>Login</Text>
+                )}
+                {/* <Text style={styles.loginBtn}>Login</Text> */}
               </TouchableOpacity>
 
               <View style={styles.signUpTextContainer}>
