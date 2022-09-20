@@ -10,8 +10,9 @@ import {
   getPostsByUserId,
   updateUserProfile,
   updateUserPassword,
-  markNotificationAsViewed,
+  markNotificationsAsViewed,
   getNotifications,
+  checkUnreadNotifications,
   followUser,
   getFollowers,
   getFollowing,
@@ -31,7 +32,7 @@ router.post('/reviews/:id', authMiddleware, postReview);
 
 router.put('/follow/:id', authMiddleware, followUser);
 
-router.put('/notifications/:id', authMiddleware, markNotificationAsViewed);
+router.put('/view-notifications', authMiddleware, markNotificationsAsViewed);
 
 router.put('/password', authMiddleware, updateUserPassword);
 
@@ -47,9 +48,11 @@ router.get('/followers/:id', authMiddleware, getFollowers);
 
 router.get('/following/:id', authMiddleware, getFollowing);
 
-router.get('/notifications/:id', authMiddleware, getNotifications);
+router.get('/notifications', authMiddleware, getNotifications);
 
 router.get('/reviews/:id', authMiddleware, getReviews);
+
+router.get('/unread-notifications', authMiddleware, checkUnreadNotifications);
 
 router.get('/:id', authMiddleware, getUserDetails);
 
