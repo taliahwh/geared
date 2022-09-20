@@ -216,7 +216,7 @@ const likePost = asyncHandler(async (req, res) => {
     sendPushNotification(pushToken, `@${user.username} liked your post`);
 
     await newNotification.save();
-    userOfPost.notifications.push(newNotification);
+    userOfPost.notifications.push(newNotification._id);
     await userOfPost.save();
   }
 
@@ -378,7 +378,7 @@ const createNewComment = asyncHandler(async (req, res) => {
     );
 
     await newNotification.save();
-    userOfPost.notifications.push(newNotification);
+    userOfPost.notifications.push(newNotification._id);
     await userOfPost.save();
   }
 
