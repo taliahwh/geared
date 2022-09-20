@@ -67,7 +67,7 @@ const userSchema = new mongoose.Schema(
       default: [],
     },
     notifications: {
-      type: [notificationSchema],
+      type: [String],
       default: [],
     },
     followers: {
