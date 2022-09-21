@@ -87,6 +87,7 @@ const NotificationScreen = () => {
             data={notifications}
             renderItem={renderItem}
             keyExtractor={(item) => item._id}
+            initialNumToRender={10}
           />
         </View>
       )}
