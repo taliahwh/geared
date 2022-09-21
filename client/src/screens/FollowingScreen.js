@@ -70,6 +70,7 @@ const FollowingScreen = ({ route }) => {
             data={following.reverse()}
             renderItem={renderItem}
             keyExtractor={(item) => item._id}
+            initialNumToRender={10}
           />
         </View>
       )}
@@ -86,11 +87,11 @@ const FollowingScreen = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.FEED_BACKGROUND,
   },
   centered: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.FEED_BACKGROUND,
     justifyContent: 'center',
     alignItems: 'center',
   },
