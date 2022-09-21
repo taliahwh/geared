@@ -16,6 +16,9 @@ import AlertMessage from '../components/AlertMessage';
 // Actions
 import { viewFollowers } from '../actions/userActions';
 
+// Styles
+import theme from '../styles/styles.theme';
+
 const FollowersScreen = ({ route }) => {
   const { userId } = route.params;
   // Hooks
@@ -68,7 +71,7 @@ const FollowersScreen = ({ route }) => {
             data={followers.reverse()}
             renderItem={renderItem}
             keyExtractor={(item) => item._id}
-            initialNumToRender={5}
+            initialNumToRender={10}
           />
         </View>
       )}
@@ -85,16 +88,17 @@ const FollowersScreen = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.FEED_BACKGROUND,
   },
   centered: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.FEED_BACKGROUND,
     justifyContent: 'center',
     alignItems: 'center',
   },
   text: {
     fontStyle: 'italic',
+    color: theme.LIGHT_GRAY,
   },
 });
 
