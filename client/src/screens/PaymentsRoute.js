@@ -6,10 +6,15 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
+  Linking,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
+import { WebView } from 'react-native-webview';
 import paypal from '../../assets/paypal-logo.png';
+
+// Reference to PayPal Button as a React Component
+// const PayPalButton = window.paypal.Buttons.d
 
 // Styles
 import theme from '../styles/styles.theme';
@@ -19,6 +24,13 @@ const PaymentRoute = () => {
 
   const navigateToPayPalScreen = () => {
     navigation.navigate('ConnectPayPal');
+  };
+
+  const openPayPalApp = () => {
+    const appURL =
+      'https://apps.apple.com/us/app/paypal-send-shop-manage/id283646709';
+    const deepLink = 'https://cash.app/$taliah/20';
+    Linking.openURL(appURL);
   };
   return (
     <ScrollView style={styles.container}>
@@ -36,14 +48,19 @@ const PaymentRoute = () => {
           <Text style={styles.paypalQuestion}>
             Looking for your PayPal balance?
           </Text>
-          <View style={styles.paypalBtn}>
+
+          <TouchableOpacity
+            style={styles.paypalBtn}
+            activeOpacity={0.8}
+            onPress={openPayPalApp}
+          >
             <Text style={styles.goTo}>Go to</Text>
             <Image
               source={paypal}
               style={styles.paypalBtnIcon}
               resizeMode="contain"
             />
-          </View>
+          </TouchableOpacity>
         </View>
 
         <TouchableOpacity
@@ -85,7 +102,7 @@ const styles = StyleSheet.create({
     paddingBottom: 5,
   },
   paypalCard: {
-    backgroundColor: theme.FEED_BACKGROUND,
+    backgroundColor: theme.MEDIUM_GRAY,
     padding: 20,
     width: '75%',
     height: 170,
