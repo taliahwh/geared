@@ -200,6 +200,7 @@ const SignUpDetailsScreen = ({ route }) => {
                   returnKeyType="next"
                   keyboardType="numeric"
                   maxLength={2}
+                  keyboardAppearance="dark"
                 />
                 <Text style={{ color: theme.MEDIUM_GRAY }}>/</Text>
                 <TextInput
@@ -215,6 +216,7 @@ const SignUpDetailsScreen = ({ route }) => {
                   returnKeyType="next"
                   keyboardType="numeric"
                   maxLength={2}
+                  keyboardAppearance="dark"
                 />
                 <Text style={{ color: theme.MEDIUM_GRAY }}>/</Text>
                 <TextInput
@@ -230,6 +232,7 @@ const SignUpDetailsScreen = ({ route }) => {
                   returnKeyType="done"
                   keyboardType="numeric"
                   maxLength={4}
+                  keyboardAppearance="dark"
                 />
               </View>
             </View>
@@ -314,6 +317,7 @@ const SignUpDetailsScreen = ({ route }) => {
                       autoFocus={true}
                       returnKeyType="done"
                       maxLength={128}
+                      keyboardAppearance="dark"
                     />
                   }
                 />

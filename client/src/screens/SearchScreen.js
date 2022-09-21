@@ -251,6 +251,7 @@ const SearchScreen = () => {
                 maxLength={50}
                 onSubmitEditing={searchQuery}
                 returnKeyType="search"
+                keyboardAppearance="dark"
               />
             </View>
             {!query.length ? (

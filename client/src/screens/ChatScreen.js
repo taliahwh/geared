@@ -133,6 +133,7 @@ const ChatScreen = ({ navigation, route }) => {
           placeholderTextColor={'#a1a1aa'}
           maxLength={400}
           multiline
+          keyboardAppearance="dark"
         />
         <TouchableOpacity onPress={handleSubmitComment}>
           <Text style={styles.sendBtn}>SEND</Text>

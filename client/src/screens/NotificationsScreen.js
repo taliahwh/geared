@@ -16,6 +16,10 @@ import AlertMessage from '../components/AlertMessage';
 // Actions
 import { getNotifications } from '../actions/userActions';
 
+// Styles
+import theme from '../styles/styles.theme';
+import { useEffect } from 'react';
+
 const NotificationScreen = () => {
   // Hooks
   const scrollRef = useRef(null);
@@ -52,17 +56,21 @@ const NotificationScreen = () => {
     );
   };
 
-  useFocusEffect(
-    React.useCallback(() => {
-      dispatch(getNotifications(userId));
-    }, [dispatch, userId, successViewNotification])
-  );
+  // useFocusEffect(
+  //   React.useCallback(() => {
+
+  //   }, [dispatch, userId, successViewNotification])
+  // );
+
+  useEffect(() => {
+    dispatch(getNotifications(userId));
+  }, [dispatch, userId, successViewNotification]);
 
   return (
     <>
       {errorNotifications && (
         <View style={styles.centered}>
-          <AlertMessage>{errorUserDetails}</AlertMessage>
+          <AlertMessage>{errorNotifications}</AlertMessage>
         </View>
       )}
 
@@ -88,21 +96,6 @@ const NotificationScreen = () => {
           <Text style={styles.text}>No notifications.</Text>
         </View>
       )}
-
-      {/* <Notification
-        profileImage={
-          'https://cdn.vox-cdn.com/thumbor/iDvzpmHdvj-DKCM1Vvbva-KW0Pw=/0x0:1930x2895/1200x800/filters:focal(758x559:1066x867)/cdn.vox-cdn.com/uploads/chorus_image/image/70931637/usa_today_18373357.0.jpg'
-        }
-        username={'juice777'}
-        timePosted={'A MINUTE AGO'}
-        notificationType={'Comment'}
-        postImage={
-          'https://cdn.vox-cdn.com/thumbor/iDvzpmHdvj-DKCM1Vvbva-KW0Pw=/0x0:1930x2895/1200x800/filters:focal(758x559:1066x867)/cdn.vox-cdn.com/uploads/chorus_image/image/70931637/usa_today_18373357.0.jpg'
-        }
-        commentBody={
-          'Aye man this is cool.. hopefully Spida comes to NY this summer, hopefully Spida comes to NY this summer'
-        }
-      /> */}
     </>
   );
 };
@@ -112,12 +105,13 @@ export default NotificationScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme.FEED_BACKGROUND,
   },
   centered: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: theme.FEED_BACKGROUND,
   },
   text: {
     fontStyle: 'italic',

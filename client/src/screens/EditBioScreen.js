@@ -9,6 +9,7 @@ const EditBioScreen = () => {
         value={'Edit Bio screen'}
         autoFocus={true}
         returnKeyType="done"
+        keyboardAppearance="dark"
       />
     </View>
   );

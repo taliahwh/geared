@@ -29,6 +29,7 @@ const ReportScreen = ({ route }) => {
             setReport(e);
             setWordCount(e.length);
           }}
+          keyboardAppearance="dark"
         />
         <Text style={styles.wordCount}>{400 - wordCount}</Text>
       </View>

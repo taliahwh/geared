@@ -68,6 +68,7 @@ const FollowersScreen = ({ route }) => {
             data={followers.reverse()}
             renderItem={renderItem}
             keyExtractor={(item) => item._id}
+            initialNumToRender={5}
           />
         </View>
       )}

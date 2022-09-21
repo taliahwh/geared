@@ -90,7 +90,7 @@ const SignUpScreen = () => {
                 placeholder="First name"
                 placeholderTextColor={theme.MEDIUM_GRAY}
                 autoCapitalize="words"
-                // returnKeyType="next"
+                keyboardAppearance="dark"
               />
 
               <TextInput
@@ -101,7 +101,7 @@ const SignUpScreen = () => {
                 placeholder="Last name"
                 placeholderTextColor={theme.MEDIUM_GRAY}
                 autoCapitalize="words"
-                // returnKeyType="next"
+                keyboardAppearance="dark"
                 ref={lastNameRef}
                 onSubmitEditing={() => {
                   emailRef.current.focus();
@@ -118,7 +118,7 @@ const SignUpScreen = () => {
                 autoCapitalize="none"
                 autoComplete="email"
                 autoCorrect={false}
-                // returnKeyType="next"
+                keyboardAppearance="dark"
                 ref={emailRef}
               />
 
@@ -130,7 +130,7 @@ const SignUpScreen = () => {
                 placeholderTextColor={theme.MEDIUM_GRAY}
                 autoCapitalize="none"
                 autoCorrect={false}
-                // returnKeyType="next"
+                keyboardAppearance="dark"
                 ref={usernameRef}
               />
 
@@ -143,6 +143,7 @@ const SignUpScreen = () => {
                 autoCapitalize="none"
                 ref={passwordRef}
                 secureTextEntry
+                keyboardAppearance="dark"
               />
 
               <TextInput
@@ -154,6 +155,7 @@ const SignUpScreen = () => {
                 autoCapitalize="none"
                 ref={confirmPasswordRef}
                 secureTextEntry
+                keyboardAppearance="dark"
               />
 
               <TouchableOpacity activeOpacity={0.5} onPress={handleSubmit}>

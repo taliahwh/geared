@@ -98,6 +98,7 @@ const ExploreRoute = () => {
             data={posts}
             renderItem={renderItem}
             keyExtractor={(item) => item._id}
+            initialNumToRender={5}
             refreshControl={
               <RefreshControl refreshing={isRefreshing} onRefresh={onRefresh} />
             }

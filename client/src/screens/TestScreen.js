@@ -55,6 +55,7 @@ const TestScreen = () => {
         placeholder={'Say something...'}
         placeholderTextColor={'#a1a1aa'}
         maxLength={400}
+        keyboardAppearance="dark"
       />
       <TouchableOpacity onPress={sendMessage}>
         <Text style={styles.btn}>Submit</Text>

@@ -85,6 +85,7 @@ const LoginScreen = () => {
                     onSubmitEditing={() => {
                       passwordRef.current.focus();
                     }}
+                    keyboardAppearance="dark"
                   />
                 )}
               />
@@ -102,6 +103,7 @@ const LoginScreen = () => {
                     autoCapitalize="none"
                     ref={passwordRef}
                     secureTextEntry
+                    keyboardAppearance="dark"
                   />
                 )}
               />

@@ -117,7 +117,6 @@ const LeaveFeedbackScreen = ({
   useEffect(() => {
     if (successPostReview) successAlert();
     if (errorPostReview) errorAlert();
-    console.log('test');
 
     return () => {
       dispatch({ type: CLEAR_REVIEW_DATA });
@@ -220,6 +219,7 @@ const LeaveFeedbackScreen = ({
               value={review}
               onChangeText={setReview}
               multiline
+              keyboardAppearance="dark"
             />
           </View>
 

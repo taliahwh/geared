@@ -425,6 +425,7 @@ const CreateListingScreen = () => {
             placeholderTextColor={'#a1a1aa'}
             maxLength={1000}
             autoCapitalize="sentences"
+            keyboardAppearance="dark"
           />
         </View>
         <Text style={styles.wordCount}>{descriptionCharRemaining}</Text>
@@ -445,6 +446,7 @@ const CreateListingScreen = () => {
             placeholderTextColor={'#a1a1aa'}
             maxLength={50}
             autoCapitalize="words"
+            keyboardAppearance="dark"
           />
           <TextInput
             style={[styles.tagInput]}
@@ -456,6 +458,7 @@ const CreateListingScreen = () => {
             placeholderTextColor={'#a1a1aa'}
             maxLength={50}
             autoCapitalize="words"
+            keyboardAppearance="dark"
           />
           <TextInput
             style={[styles.tagInput]}
@@ -467,6 +470,7 @@ const CreateListingScreen = () => {
             placeholderTextColor={'#a1a1aa'}
             maxLength={50}
             autoCapitalize="words"
+            keyboardAppearance="dark"
           />
         </View>
 
@@ -542,6 +546,7 @@ const CreateListingScreen = () => {
                     placeholderTextColor={'#a1a1aa'}
                     maxLength={10}
                     keyboardType="decimal-pad"
+                    keyboardAppearance="dark"
                   />
                 </View>
               </View>
@@ -562,6 +567,7 @@ const CreateListingScreen = () => {
                       placeholderTextColor={'#a1a1aa'}
                       maxLength={10}
                       keyboardType="decimal-pad"
+                      keyboardAppearance="dark"
                     />
                   </View>
                 </View>
@@ -1181,6 +1187,7 @@ const CreateListingScreen = () => {
                         placeholderTextColor={'#a1a1aa'}
                         // maxLength={45}
                         style={styles.textInput}
+                        keyboardAppearance="dark"
                       />
                     </View>
                   </View>
