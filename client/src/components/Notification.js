@@ -68,25 +68,29 @@ const Notification = ({
 
                 {notificationType === 'Like Post' && (
                   <Text>
-                    <Text style={styles.username}>{username}</Text> liked your
-                    post.
+                    <Text style={styles.username}>{username}</Text>{' '}
+                    <Text style={styles.subSentence}>liked your post.</Text>
                   </Text>
                 )}
 
                 {notificationType === 'Follow' && (
                   <Text>
-                    <Text style={styles.username}>{username}</Text> started
-                    following you.
+                    <Text style={styles.username}>{username}</Text>{' '}
+                    <Text style={styles.subSentence}>
+                      started following you.
+                    </Text>
                   </Text>
                 )}
 
                 {notificationType === 'Comment' && (
                   <Text>
-                    <Text style={styles.username}>{username}</Text> commented on
-                    your post:{' '}
-                    {commentBody.length > 80
-                      ? `${commentBody.slice(0, 80)}...`
-                      : commentBody}
+                    <Text style={styles.username}>{username}</Text>{' '}
+                    <Text style={styles.subSentence}>
+                      commented on your post:{' '}
+                      {commentBody.length > 80
+                        ? `${commentBody.slice(0, 80)}...`
+                        : commentBody}
+                    </Text>
                   </Text>
                 )}
               </View>
@@ -105,67 +109,6 @@ const Notification = ({
             )}
           </View>
         </TouchableOpacity>
-      )}
-
-      {!isViewed && (
-        <Pressable
-          onLongPress={() => handleViewNotification(user)}
-          onPress={() => {
-            // handleViewNotification(user);
-            handleNavigation();
-          }}
-        >
-          <View style={styles.notViewedContainer}>
-            <Image
-              style={styles.userImage}
-              source={{
-                uri: profileImage,
-              }}
-            />
-
-            <View style={styles.content}>
-              <View style={styles.sentence}>
-                {/* <Text style={styles.username}>{username}</Text> */}
-
-                {notificationType === 'Like Post' && (
-                  <Text>
-                    <Text style={styles.username}>{username}</Text> liked your
-                    post.
-                  </Text>
-                )}
-
-                {notificationType === 'Follow' && (
-                  <Text>
-                    <Text style={styles.username}>{username}</Text> started
-                    following you.
-                  </Text>
-                )}
-
-                {notificationType === 'Comment' && (
-                  <Text>
-                    <Text style={styles.username}>{username}</Text> commented on
-                    your post:{' '}
-                    {commentBody.length > 80
-                      ? `${commentBody.slice(0, 80)}...`
-                      : commentBody}
-                  </Text>
-                )}
-              </View>
-              <Text style={styles.timePosted}>
-                {moment(timePosted).startOf('minute').fromNow().toUpperCase()}
-              </Text>
-            </View>
-
-            {notificationType !== 'Follow' && (
-              <Image
-                style={styles.postImage}
-                source={{
-                  uri: postImage,
-                }}
-              />
-            )}
-          </View>
-        </Pressable>
       )}
     </>
   );
@@ -192,9 +135,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 8,
     justifyContent: 'space-between',
-    backgroundColor: '#fff',
+    backgroundColor: theme.DARK_MODE,
     borderBottomWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
   },
   userImage: {
     height: 40,
@@ -202,7 +145,7 @@ const styles = StyleSheet.create({
     borderRadius: 40 / 2,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
   },
   content: {
     flex: 1,
@@ -213,15 +156,19 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     fontSize: 15,
+    color: theme.LIGHT_GRAY,
   },
+  subSentence: { color: theme.LIGHT_GRAY },
   username: {
     fontWeight: '600',
     paddingRight: 4,
     fontSize: 15,
+    color: theme.LIGHT_GRAY,
   },
   timePosted: {
     fontSize: 10,
     marginTop: 2,
+    color: theme.MEDIUM_GRAY,
   },
   postImage: {
     height: 50,

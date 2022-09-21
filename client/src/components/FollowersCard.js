@@ -42,7 +42,7 @@ const FollowersCard = ({ name, username, profileImage, followerId }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: theme.DARK_MODE,
     paddingHorizontal: 15,
     paddingVertical: 10,
     display: 'flex',
@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    // backgroundColor: 'orange',
     flex: 3,
   },
   userImage: {
@@ -62,7 +61,7 @@ const styles = StyleSheet.create({
     borderRadius: 50 / 2,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: theme.BORDER_COLOR,
+    borderColor: theme.DARK_MODE_BORDER,
   },
   content: {
     marginLeft: 10,
@@ -70,9 +69,10 @@ const styles = StyleSheet.create({
   name: {
     fontWeight: '600',
     fontSize: 16,
+    color: theme.LIGHT_GRAY,
   },
   username: {
-    color: '#404040',
+    color: theme.MEDIUM_GRAY,
   },
   btnContainer: {
     flex: 1,
