@@ -98,6 +98,7 @@ const FollowingRoute = () => {
             ref={scrollRef}
             data={posts}
             renderItem={renderItem}
+            initialNumToRender={5}
             keyExtractor={(item) => `${item._id}1`}
             refreshControl={
               <RefreshControl
