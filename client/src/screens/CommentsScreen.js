@@ -104,6 +104,7 @@ const CommentsScreen = ({ route }) => {
             placeholderTextColor={'#a1a1aa'}
             maxLength={400}
             multiline
+            keyboardAppearance="dark"
           />
           {!commentBody.length ? (
             <Text style={styles.disabledSendBtn}>SEND</Text>
