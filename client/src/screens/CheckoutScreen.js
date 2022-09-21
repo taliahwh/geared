@@ -12,6 +12,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 // Components
 import SelectAddressModal from '../components/SelectAddressModal';
+import PayPalOrderModal from '../paypal/PayPalOrderModal';
 
 // Styles
 import styles from '../styles/CheckoutScreenStyles';
@@ -21,7 +22,10 @@ const CheckoutScreen = () => {
   // Hooks
   const navigation = useNavigation();
 
-  const [modalVisible, setModalVisible] = useState(false);
+  const [selectAddressModalVisible, setSelectAddressModalVisible] =
+    useState(false);
+
+  const [paypalOrderModalVisible, setPaypalOrderModalVisible] = useState(false);
 
   const navigateToEditAddress = () => {
     navigation.navigate('EditShippingAddress');
@@ -32,6 +36,10 @@ const CheckoutScreen = () => {
   };
 
   const navigateToPaymentTypeScreen = () => {};
+
+  const navigateToPayPalOrderScreen = () => {
+    setPaypalOrderModalVisible(true);
+  };
 
   return (
     <ScrollView style={styles.container}>
@@ -98,17 +106,22 @@ const CheckoutScreen = () => {
         </TouchableOpacity>
       </View>
 
-      <View style={styles.paypalCheckoutBtn}>
-        <Image
-          style={styles.paypalCheckoutBtnIcon}
-          source={{
-            uri: 'https://brandslogos.com/wp-content/uploads/images/large/paypal-logo-black-and-white.png',
-          }}
-        />
-        <Text style={styles.checkoutText}>Checkout</Text>
-      </View>
+      <TouchableOpacity
+        onPress={navigateToPayPalOrderScreen}
+        activeOpacity={0.8}
+      >
+        <View style={styles.paypalCheckoutBtn}>
+          <Image
+            style={styles.paypalCheckoutBtnIcon}
+            source={{
+              uri: 'https://brandslogos.com/wp-content/uploads/images/large/paypal-logo-black-and-white.png',
+            }}
+          />
+          <Text style={styles.checkoutText}>Checkout</Text>
+        </View>
+      </TouchableOpacity>
 
-      <TouchableOpacity onPress={navigateOrderConfirmation}>
+      <TouchableOpacity onPress={navigateOrderConfirmation} activeOpacity={0.8}>
         <View style={styles.paypalCheckoutBtn}>
           <Image
             style={styles.paypalCheckoutBtnIcon}
@@ -149,13 +162,27 @@ const CheckoutScreen = () => {
       <Modal
         animationType="slide"
         transparent={true}
-        visible={modalVisible}
+        visible={selectAddressModalVisible}
         onRequestClose={() => {
           console.log('Modal has been closed.');
-          setModalVisible(!modalVisible);
+          setSelectAddressModalVisible(!selectAddressModalVisible);
         }}
       >
-        <SelectAddressModal hideModal={() => setModalVisible(false)} />
+        <SelectAddressModal
+          hideModal={() => setSelectAddressModalVisible(false)}
+        />
+      </Modal>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={paypalOrderModalVisible}
+        onRequestClose={() => {
+          console.log('Modal has been closed.');
+          setSelectAddressModalVisible(!paypalOrderModalVisible);
+        }}
+      >
+        <PayPalOrderModal hideModal={() => setPaypalOrderModalVisible(false)} />
       </Modal>
     </ScrollView>
   );
