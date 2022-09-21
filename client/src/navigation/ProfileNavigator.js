@@ -39,8 +39,6 @@ const ProfileNavigator = () => {
             borderBottomWidth: 0,
             backgroundColor: theme.DARK_MODE,
           },
-
-          // headerLeft: HeaderNotification,
         }}
       />
       <Stack.Screen
@@ -62,6 +60,14 @@ const ProfileNavigator = () => {
           headerTitle: 'Notifications',
           headerBackTitleVisible: false,
           headerBackImage: HeaderBack,
+          headerStyle: {
+            backgroundColor: theme.DARK_MODE,
+            borderColor: theme.DARK_MODE_BORDER,
+          },
+          headerTitleStyle: {
+            color: theme.LIGHT_GRAY,
+            fontWeight: '700',
+          },
         }}
       />
       <Stack.Screen
@@ -71,6 +77,13 @@ const ProfileNavigator = () => {
           headerTitle: 'Comments',
           headerBackTitleVisible: false,
           headerBackImage: HeaderBack,
+          headerStyle: {
+            backgroundColor: theme.DARK_MODE,
+          },
+          headerTitleStyle: {
+            color: theme.LIGHT_GRAY,
+            fontWeight: '700',
+          },
         }}
       />
       <Stack.Screen
@@ -80,6 +93,13 @@ const ProfileNavigator = () => {
           headerTitle: 'Followers',
           headerBackTitleVisible: false,
           headerBackImage: HeaderBack,
+          headerStyle: {
+            backgroundColor: theme.DARK_MODE,
+          },
+          headerTitleStyle: {
+            color: theme.LIGHT_GRAY,
+            fontWeight: '700',
+          },
         }}
       />
       <Stack.Screen
@@ -89,6 +109,13 @@ const ProfileNavigator = () => {
           headerTitle: 'Following',
           headerBackTitleVisible: false,
           headerBackImage: HeaderBack,
+          headerStyle: {
+            backgroundColor: theme.DARK_MODE,
+          },
+          headerTitleStyle: {
+            color: theme.LIGHT_GRAY,
+            fontWeight: '700',
+          },
         }}
       />
       <Stack.Screen
@@ -102,6 +129,7 @@ const ProfileNavigator = () => {
             elevation: 0,
             shadowOpacity: 0,
             borderBottomWidth: 0,
+            backgroundColor: theme.DARK_MODE,
           },
         }}
       />
@@ -118,6 +146,7 @@ const ProfileNavigator = () => {
           },
           headerTitleStyle: {
             color: theme.LIGHT_GRAY,
+            fontWeight: '700',
           },
         }}
       />
