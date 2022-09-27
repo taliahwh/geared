@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import asyncHandler from 'express-async-handler';
 
 import Message from '../models/messageModel.js';
+import User from '../models/userModel.js';
 
 /**
  * @desc Get all messages between two users
@@ -34,6 +35,11 @@ const getMessages = asyncHandler(async (req, res) => {
  */
 const sendMessage = asyncHandler(async (req, res) => {
   const { from, to, message } = req.body;
+  const { id: authUserId } = req.user;
+
+  if (String(authUserId) !== String(from)) {
+    res.status(401).json({ message: 'Not authorized' });
+  }
 
   const newMessage = await Message.create({
     message: { text: message },
@@ -41,7 +47,29 @@ const sendMessage = asyncHandler(async (req, res) => {
     sender: from,
   });
 
+  // Add receiving user to active conversations arr if it does not already exist
+  const authUser = await User.findById(authUserId);
+  if (!authUser.activeConversations.includes(to)) {
+    authUser.activeConversations.push(to);
+  }
+  await authUser.save();
+
   res.status(201).json(newMessage);
 });
 
-export { getMessages, sendMessage };
+/**
+ * @desc Get all active coversations between auth user and other users
+ * @route GET /conversations
+ * @access Public
+ */
+const getConversations = asyncHandler(async (req, res) => {
+  const { id: authUserId } = req.user;
+  console.log(authUserId);
+
+  const authUser = await User.findById(authUserId);
+  const activeConversationsIds = authUser.activeConversations.map(
+    mongoose.Types.ObjectId
+  );
+});
+
+export { getMessages, sendMessage, getConversations };
