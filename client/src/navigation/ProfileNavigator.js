@@ -9,6 +9,7 @@ import FollowersScreen from '../screens/FollowersScreen';
 import FollowingScreen from '../screens/FollowingScreen';
 import ViewUserProfileScreen from '../screens/ViewUserProfileScreen';
 import PurchasedScreen from '../screens/PurchasedScreen';
+import ChatScreen from '../screens/ChatScreen';
 import OrderReceiptScreen from '../screens/OrderReceiptScreen';
 
 // Components
@@ -148,6 +149,13 @@ const ProfileNavigator = () => {
             color: theme.LIGHT_GRAY,
             fontWeight: '700',
           },
+        }}
+      />
+      <Stack.Screen
+        name="Chat"
+        component={ChatScreen}
+        options={{
+          headerShown: false,
         }}
       />
       {/* <Stack.Screen
