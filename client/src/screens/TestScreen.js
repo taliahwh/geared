@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Text,
   TextInput,
@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   StyleSheet,
   TouchableOpacity,
+  Pressable,
 } from 'react-native';
 import { io } from 'socket.io-client';
 import { NGROK_URL } from '../api/ngrok';
@@ -14,35 +15,33 @@ const TestScreen = () => {
   const [currentMessage, setCurrentMessage] = useState('');
   const [arrivalMessage, setArrivalMessage] = useState('');
 
-  const socket = io(NGROK_URL, { autoConnect: false });
+  const socketRef = useRef();
 
   const sendMessage = () => {
-    setArrivalMessage(currentMessage);
-    socket.emit('send_msg', {
+    socketRef.current.emit('send_msg', {
       to: 'Server',
       from: 'Client',
-      message: 'Hello',
+      message: currentMessage,
     });
+    setCurrentMessage('');
   };
 
   useEffect(() => {
-    socket.connect();
+    socketRef.current = io(NGROK_URL, { autoConnect: false });
+    socketRef.current.connect();
 
-    socket.on('welcome', (arg) => console.log(arg));
-    socket.emit('client', 'Hello from the client!');
+    socketRef.current.on('welcome', (arg) => console.log(arg));
+    socketRef.current.emit('client', 'Hello from the client!');
 
-    socket.on('receive_msg', ({ message }) => {
+    socketRef.current.on('receive_msg', ({ message }) => {
       console.log(`From receive msg: ${message}`);
+      setArrivalMessage(message);
     });
 
-    return () => socket.disconnect();
+    return () => {
+      socketRef.current.disconnect();
+    };
   }, []);
-
-  // useEffect(() => {
-  //   socket.on('receive_msg', ({ message }) => {
-  //     console.log(`From receive msg: ${message}`);
-  //   });
-  // }, [socket]);
 
   return (
     <View style={styles.container}>
