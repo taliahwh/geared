@@ -50,7 +50,7 @@ const LoginScreen = () => {
   const onSubmit = async (data) => {
     const { username, password } = data;
 
-    // 3 second timer
+    // 1 second timer
     setLoadingSignIn(true);
     await delay(1000);
     dispatch(signIn(username, password));
