@@ -1,11 +1,17 @@
 import express from 'express';
 
-import { getMessages, sendMessage } from '../controllers/messageController.js';
+import {
+  getMessages,
+  sendMessage,
+  getConversations,
+} from '../controllers/messageController.js';
 
 // Middleware
 import { authMiddleware } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
+
+router.get('/conversations', authMiddleware, getConversations);
 
 router.get('/:id', authMiddleware, getMessages);
 
