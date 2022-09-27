@@ -57,7 +57,7 @@ const io = new Server(httpServer, {
 
 const onSendMessage = (data) => {
   console.log(data);
-  io.emit('receive_msg', data);
+  io.emit('receive_message', data);
 };
 
 const onConnection = (socket) => {
@@ -68,7 +68,8 @@ const onConnection = (socket) => {
 
   // Receive message from the client
   socket.on('client', (arg) => console.log(arg));
-  socket.on('send_msg', onSendMessage);
+  // socket.on('send_msg', onSendMessage);
+  socket.on('send_message', onSendMessage);
 
   socket.on('disconnect', (reason) =>
     console.log(`User disconnected due to ${reason}.`)
