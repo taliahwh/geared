@@ -42,14 +42,13 @@ const styles = StyleSheet.create({
   },
   username: {
     fontWeight: '700',
-    fontSize: 16,
+    fontSize: 15,
     marginLeft: 7,
+    color: theme.LIGHT_GRAY,
   },
   productInfoContainer: {
     display: 'flex',
     flexDirection: 'row',
-    // marginTop: 15,
-    // backgroundColor: 'green',
     padding: 15,
     borderBottomWidth: 1,
     borderColor: theme.DARK_MODE_BORDER,
@@ -87,6 +86,8 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   chatInputContainer: {
+    flex: 1,
+    paddingTop: 15,
     paddingHorizontal: 10,
     backgroundColor: theme.FEED_BACKGROUND,
     height: chatContainerHeight,
@@ -95,8 +96,7 @@ const styles = StyleSheet.create({
   createCommentSection: {
     minHeight: minCommentInputContainerHeight,
     paddingHorizontal: 15,
-    // backgroundColor: 'pink',
-    // marginTop: 10,
+    marginTop: 3,
     borderBottomWidth: 1,
     borderColor: theme.DARK_MODE_BORDER,
     display: 'flex',
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    // backgroundColor: /',
+    color: theme.LIGHT_GRAY,
     borderWidth: 0.5,
     borderColor: theme.DARK_MODE_BORDER,
     paddingBottom: 10,
