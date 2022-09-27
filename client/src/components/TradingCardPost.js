@@ -29,18 +29,6 @@ import CarouselCards from './carousel/CarouselCards';
 // Actions
 import { likePost, savePost } from '../actions/postActions';
 
-const TagRender = ({ item }) => {
-  return <Text style={styles.postTags}>{item}</Text>;
-};
-
-const Separator = () => {
-  return <View style={{ width: 1, backgroundColor: theme.DARK_MODE }} />;
-};
-
-/**
- * todo - Create a skeleton loader for TradingCardComponent to show instead on ActivityIndicator
- */
-
 const TradingCardPost = ({
   forSale,
   offers,
@@ -231,14 +219,16 @@ const TradingCardPost = ({
             <Saved />
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={navigateToMessages} activeOpacity={0.8}>
-            <Ionicons
-              style={styles.btn}
-              name="paper-plane-outline"
-              size={26}
-              color={theme.LIGHT_GRAY}
-            />
-          </TouchableOpacity>
+          {authUserId !== userProfileId && (
+            <TouchableOpacity onPress={navigateToMessages} activeOpacity={0.8}>
+              <Ionicons
+                style={styles.btn}
+                name="paper-plane-outline"
+                size={26}
+                color={theme.LIGHT_GRAY}
+              />
+            </TouchableOpacity>
+          )}
 
           <Ionicons
             style={styles.btn}
