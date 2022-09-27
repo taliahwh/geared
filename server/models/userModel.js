@@ -97,6 +97,10 @@ const userSchema = new mongoose.Schema(
     reviews: {
       type: [mongoose.Types.ObjectId],
     },
+    activeConversations: {
+      type: [String],
+      default: [],
+    },
   },
   {
     // Automatically generates createdAt and updatedAt fields
