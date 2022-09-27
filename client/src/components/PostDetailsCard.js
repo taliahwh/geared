@@ -101,6 +101,14 @@ const PostDetailsCard = ({
     });
   };
 
+  const navigateToMessages = () => {
+    navigation.navigate('Chat', {
+      username,
+      profileImage,
+      userId,
+    });
+  };
+
   const confirmDeletePost = () => {
     Alert.alert(
       'Confirm delete post',
@@ -200,12 +208,7 @@ const PostDetailsCard = ({
                     />
                   </MenuOption>
                 )}
-                {/* <View
-                  style={{
-                    borderTopWidth: 0.5,
-                    borderColor: theme.DARK_MODE_BORDER,
-                  }}
-                /> */}
+
                 {userId !== authUserId && (
                   <MenuOption
                     onSelect={navigateToReportPost}
@@ -317,7 +320,7 @@ const PostDetailsCard = ({
 
           <View style={styles.menuOption}>
             <View style={styles.menuOptionContainer}>
-              <Text style={styles.menuTitle}>Selling</Text>
+              <Text style={styles.menuTitle}>Collection</Text>
               {/* <Text style={styles.menuQty}>67</Text> */}
             </View>
             <Ionicons
@@ -327,18 +330,22 @@ const PostDetailsCard = ({
               style={styles.menuArrow}
             />
           </View>
-          <View style={styles.menuOption}>
-            <View style={styles.menuOptionContainer}>
-              <Text style={styles.menuTitle}>Message seller</Text>
-              {/* <Text style={styles.menuQty}>22</Text> */}
-            </View>
-            <Ionicons
-              name="chevron-forward-outline"
-              size={24}
-              color={theme.LIGHT_GRAY}
-              style={styles.menuArrow}
-            />
-          </View>
+
+          {userId !== authUserId && (
+            <TouchableOpacity onPress={navigateToMessages} activeOpacity={0.8}>
+              <View style={styles.menuOption}>
+                <View style={styles.menuOptionContainer}>
+                  <Text style={styles.menuTitle}>Message seller</Text>
+                </View>
+                <Ionicons
+                  name="chevron-forward-outline"
+                  size={24}
+                  color={theme.LIGHT_GRAY}
+                  style={styles.menuArrow}
+                />
+              </View>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     </ScrollView>
