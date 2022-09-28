@@ -46,7 +46,11 @@ const ChatScreen = ({ navigation, route }) => {
 
   const renderItem = ({ item }) => {
     return (
-      <ChatInput sent={item.fromSelf} recieved={false} message={item.message} />
+      <ChatInput
+        sent={item.fromSelf}
+        recieved={!item.fromSelf}
+        message={item.message}
+      />
     );
   };
 
