@@ -53,6 +53,9 @@ import {
   POST_REVIEW_REQUEST,
   POST_REVIEW_SUCCESS,
   POST_REVIEW_FAILURE,
+  LATEST_MESSAGES_REQUEST,
+  LATEST_MESSAGES_SUCCESS,
+  LATEST_MESSAGES_FAILURE,
   CLEAR_REVIEW_DATA,
   CLEAR_PROFILE_DATA,
   CLEAR_PASSWORD_DATA,
@@ -383,6 +386,22 @@ export const postReviewReducer = (state = {}, action) => {
       return { loading: false, error: action.payload };
     case CLEAR_REVIEW_DATA:
       return { success: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const latestMessagesReducer = (state = { messages: {} }, action) => {
+  switch (action.type) {
+    case LATEST_MESSAGES_REQUEST:
+      return { loading: true };
+    case LATEST_MESSAGES_SUCCESS:
+      return {
+        loading: false,
+        messages: action.payload,
+      };
+    case LATEST_MESSAGES_FAILURE:
+      return { loading: false, error: action.payload };
     default:
       return state;
   }
