@@ -24,6 +24,7 @@ import {
   authUserDetailsReducer,
   authUserPostsReducer,
   followUserReducer,
+  latestMessagesReducer,
   notificationsReducer,
   postReviewReducer,
   savePushTokenReducer,
@@ -73,6 +74,7 @@ const reducer = combineReducers({
   newReview: postReviewReducer,
   savePushToken: savePushTokenReducer,
   searchPosts: searchPostsReducer,
+  latestMessages: latestMessagesReducer,
 });
 
 const persistConfig = {
