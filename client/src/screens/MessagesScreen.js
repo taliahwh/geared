@@ -1,67 +1,103 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  TouchableWithoutFeedback,
+  FlatList,
+  Text,
+  ActivityIndicator,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Components
 import MessagePreview from '../components/MessagePreview';
+import AlertMessage from '../components/AlertMessage';
+
+// Actions
+import { getLatestMessages } from '../actions/userActions';
 
 // Styles
 import theme from '../styles/styles.theme';
 
 const MessagesScreen = () => {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
+
+  const {
+    loading: loadingLatestMessages,
+    messages: latestMessages,
+    error: errorLatestMessage,
+  } = useSelector((state) => state.latestMessages);
 
   const navigateToTestScreen = () => {
     navigation.navigate('Test');
   };
-  return (
-    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+
+  const navigateToMessages = (username, profileImage, userId) => {
+    navigation.navigate('Chat', {
+      username,
+      profileImage,
+      userId,
+    });
+  };
+
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(getLatestMessages());
+    }, [dispatch])
+  );
+
+  const renderItem = ({ item }) => {
+    return (
       <TouchableOpacity
-        activeOpacity={0.5}
-        onPress={() => {
-          navigation.navigate('Chat', {
-            id: 22,
-          });
-        }}
+        activeOpacity={0.8}
+        onPress={() =>
+          navigateToMessages(item.username, item.profileImage, item.userId)
+        }
       >
         <MessagePreview
-          name="Dennis Rodman"
-          messagePreview={'Is this card still available?'}
-          dateSent={'2 WEEKS AGO'}
+          name={item.name}
+          messagePreview={item.message.text}
+          dateSent={item.timeSent}
           // productImage={'https://i.pinimg.com/originals/d8/aa/8f/d8aa8f6987714957e06ce0fb416641ef.jpg'}
-          senderImage={
-            'https://i.pinimg.com/originals/d8/aa/8f/d8aa8f6987714957e06ce0fb416641ef.jpg'
-          }
+          senderImage={item.profileImage}
         />
       </TouchableOpacity>
+    );
+  };
+  return (
+    <>
+      {errorLatestMessage && (
+        <View style={styles.centeredContainer}>
+          <AlertMessage>{errorLatestMessage}</AlertMessage>
+        </View>
+      )}
 
-      <MessagePreview
-        name="Rasheed Wallace"
-        messagePreview={'Will you take $250 instead?'}
-        dateSent={'5 HOURS AGO'}
-        // productImage={'https://i.pinimg.com/originals/d8/aa/8f/d8aa8f6987714957e06ce0fb416641ef.jpg'}
-        senderImage={
-          'https://cdn-wp.thesportsrush.com/2022/04/e44aae51-untitled-design-1.jpg'
-        }
-      />
-      <TouchableOpacity onPress={navigateToTestScreen}>
-        <MessagePreview
-          name="C Webb"
-          messagePreview={'Open 2 trade?'}
-          dateSent={'YESTERDAY'}
-          // productImage={'https://i.pinimg.com/originals/d8/aa/8f/d8aa8f6987714957e06ce0fb416641ef.jpg'}
-          senderImage={
-            'https://www.gannett-cdn.com/presto/2021/05/16/PDTF/ea67f359-089b-48a2-a9a2-8053a53b5969-dfpm27031.jpg?crop=1409,792,x430,y146&width=660&height=372&format=pjpg&auto=webp'
-          }
-        />
-      </TouchableOpacity>
-    </ScrollView>
+      {loadingLatestMessages && (
+        <View style={styles.container}>
+          <ActivityIndicator />
+        </View>
+      )}
+
+      {latestMessages && !latestMessages.length && (
+        <View style={styles.centeredContainer}>
+          <Text style={styles.noMessagesText}>No messages.</Text>
+        </View>
+      )}
+
+      {latestMessages && latestMessages.length > 0 && (
+        <View style={styles.container}>
+          <FlatList
+            data={latestMessages}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.userId}
+            initialNumToRender={10}
+          />
+        </View>
+      )}
+    </>
   );
 };
 
@@ -69,6 +105,17 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.FEED_BACKGROUND,
+  },
+  centeredContainer: {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: theme.FEED_BACKGROUND,
+  },
+  noMessagesText: {
+    fontStyle: 'italic',
+    color: theme.LIGHT_GRAY,
   },
   text: {
     fontWeight: '500',
