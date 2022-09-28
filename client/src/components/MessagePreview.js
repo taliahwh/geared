@@ -26,12 +26,12 @@ const MessagePreview = ({
         <Text style={styles.date}>{dateSent}</Text>
       </View>
 
-      <View style={styles.productImageContainer}>
+      {/* <View style={styles.productImageContainer}>
         <Image
           style={styles.productImage}
           source={require('../assets/test-images/maxey.jpg')}
         />
-      </View>
+      </View> */}
 
       <View style={styles.icon}>
         <Ionicons name="chevron-forward-outline" size={24} color="#737373" />
