@@ -53,6 +53,9 @@ import {
   POST_REVIEW_REQUEST,
   POST_REVIEW_SUCCESS,
   POST_REVIEW_FAILURE,
+  LATEST_MESSAGES_REQUEST,
+  LATEST_MESSAGES_SUCCESS,
+  LATEST_MESSAGES_FAILURE,
   USER_LOGOUT,
 } from '../constants/userConstants';
 
@@ -624,3 +627,29 @@ export const postReview =
       });
     }
   };
+
+export const getLatestMessages = () => async (dispatch, getState) => {
+  const { authToken } = getState().userSignIn;
+  try {
+    dispatch({ type: LATEST_MESSAGES_REQUEST });
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${authToken}`,
+      },
+    };
+
+    const { data } = await gearedApi.get(`api/messages/conversations`, config);
+
+    dispatch({ type: LATEST_MESSAGES_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: LATEST_MESSAGES_FAILURE,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
