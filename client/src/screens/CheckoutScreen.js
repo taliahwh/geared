@@ -12,13 +12,15 @@ import { Ionicons } from '@expo/vector-icons';
 
 // Components
 import SelectAddressModal from '../components/SelectAddressModal';
-import PayPalOrderModal from '../paypal/PayPalOrderModal';
+import PayPalOrderModal from '../components/PayPalOrderModal';
 
 // Styles
 import styles from '../styles/CheckoutScreenStyles';
 import theme from '../styles/styles.theme';
 
-const CheckoutScreen = () => {
+const CheckoutScreen = ({ route }) => {
+  const { userId, username, postId, productImage, description, itemPrice } =
+    route.params;
   // Hooks
   const navigation = useNavigation();
 
@@ -26,6 +28,7 @@ const CheckoutScreen = () => {
     useState(false);
 
   const [paypalOrderModalVisible, setPaypalOrderModalVisible] = useState(false);
+  const [orderStatus, setOrderStatus] = useState('Pending');
 
   const navigateToEditAddress = () => {
     navigation.navigate('EditShippingAddress');
@@ -46,19 +49,14 @@ const CheckoutScreen = () => {
       <View style={styles.itemAvailableContainer}>
         <Text style={{ textAlign: 'center', color: theme.LIGHT_GRAY }}>
           <Text style={{ fontWeight: '700' }}>1</Text> item available from{' '}
-          <Text style={{ fontWeight: '700' }}>antedwards</Text>
+          <Text style={{ fontWeight: '700' }}>{username}</Text>
         </Text>
       </View>
 
       <View style={styles.productDetailsContainer}>
-        <Image
-          style={styles.productImage}
-          source={require('../assets/test-images/maxey.jpg')}
-        />
-        <Text style={styles.productTitle}>
-          Tyrese Maxey Contenders Rookie Auto 30/99
-        </Text>
-        <Text style={styles.productPrice}>$140</Text>
+        <Image style={styles.productImage} source={{ uri: productImage }} />
+        <Text style={styles.productTitle}>{description}</Text>
+        <Text style={styles.productPrice}>${itemPrice}</Text>
       </View>
 
       <Text style={styles.containerTitle}>Shipping address</Text>
@@ -121,7 +119,7 @@ const CheckoutScreen = () => {
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={navigateOrderConfirmation} activeOpacity={0.8}>
+      {/* <TouchableOpacity onPress={navigateOrderConfirmation} activeOpacity={0.8}>
         <View style={styles.paypalCheckoutBtn}>
           <Image
             style={styles.paypalCheckoutBtnIcon}
@@ -130,8 +128,20 @@ const CheckoutScreen = () => {
             }}
           />
           <Text style={styles.checkoutText}>Order Confirmation</Text>
+          
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
+      <Text
+        style={{
+          fontSize: 15,
+          textAlign: 'center',
+          color: 'orange',
+          fontWeight: '700',
+          marginBottom: 10,
+        }}
+      >
+        {orderStatus}
+      </Text>
 
       <Text style={styles.paymentProcessedText}>
         This payment will be processed by PayPal
@@ -158,7 +168,7 @@ const CheckoutScreen = () => {
         </View>
       </View> */}
 
-      {/* Modal */}
+      {/* Select Address Modal */}
       <Modal
         animationType="slide"
         transparent={true}
@@ -173,6 +183,7 @@ const CheckoutScreen = () => {
         />
       </Modal>
 
+      {/* PayPal Modal */}
       <Modal
         animationType="slide"
         transparent={true}
@@ -182,7 +193,16 @@ const CheckoutScreen = () => {
           setSelectAddressModalVisible(!paypalOrderModalVisible);
         }}
       >
-        <PayPalOrderModal hideModal={() => setPaypalOrderModalVisible(false)} />
+        <PayPalOrderModal
+          hideModal={() => setPaypalOrderModalVisible(false)}
+          setOrderStatus={setOrderStatus}
+          username={username}
+          postId={postId}
+          productImage={productImage}
+          description={description}
+          itemPrice={itemPrice}
+          buyerId={userId}
+        />
       </Modal>
     </ScrollView>
   );
