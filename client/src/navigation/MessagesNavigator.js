@@ -29,14 +29,15 @@ const MessagesNavigator = () => {
         component={MessagesScreen}
         options={{
           headerTitle: 'Messages',
+
           headerStyle: {
             elevation: 0,
-            // shadowOpacity: 1,
-            borderBottomWidth: 0.1,
+            shadowOpacity: 0,
+            borderBottomWidth: 0,
             borderColor: theme.DARK_MODE_BORDER,
             backgroundColor: theme.DARK_MODE,
           },
-          headerTitleStyle: { color: theme.LIGHT_GRAY },
+          headerTitleStyle: { color: theme.LIGHT_GRAY, fontWeight: '700' },
           headerBackTitle: false,
         }}
       />
