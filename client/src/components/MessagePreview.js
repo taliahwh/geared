@@ -42,13 +42,13 @@ const MessagePreview = ({
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: theme.DARK_MODE,
     paddingHorizontal: 15,
     paddingVertical: 15,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    height: 90,
     borderBottomWidth: 1,
     borderColor: theme.DARK_MODE_BORDER,
   },
@@ -98,6 +98,8 @@ const styles = StyleSheet.create({
   messagePreview: {
     fontSize: 14,
     color: theme.MEDIUM_GRAY,
+    // color: 'yellow',
+    paddingBottom: 5,
   },
   date: {
     fontSize: 10,
