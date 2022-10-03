@@ -53,7 +53,14 @@ const PostDetailsScreen = ({ route, forSale, offers }) => {
   };
 
   const navigateToCheckoutScreen = () => {
-    navigation.navigate('Checkout');
+    navigation.navigate('Checkout', {
+      userId: postDetails.listedBy.userId,
+      username: postDetails.listedBy.username,
+      postId,
+      productImage: postDetails.images[0].imgUrl,
+      description: postDetails.description,
+      itemPrice: postDetails.itemPrice,
+    });
   };
 
   useEffect(() => {
@@ -133,7 +140,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.FEED_BACKGROUND,
   },
   footerContainer: {
-    height: footerHeight,
+    // height: footerHeight,
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
