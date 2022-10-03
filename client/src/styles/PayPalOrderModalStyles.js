@@ -2,7 +2,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 import theme from '../styles/styles.theme';
 
 const modalWidth = Dimensions.get('window').width;
-const modalHeight = Dimensions.get('window').height * 0.85;
+const modalHeight = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   screenView: {
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   modalView: {
     height: modalHeight,
     width: modalWidth,
-    backgroundColor: theme.FEED_BACKGROUND,
+    backgroundColor: theme.LIGHT_GRAY,
     borderRadius: 10,
   },
   header: {
@@ -27,6 +27,14 @@ const styles = StyleSheet.create({
   webViewContainer: {
     flex: 0,
     height: modalHeight,
+  },
+  centeredModal: {
+    backgroundColor: theme.LIGHT_GRAY,
+    height: modalHeight,
+    width: modalWidth,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
