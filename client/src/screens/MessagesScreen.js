@@ -105,6 +105,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme.FEED_BACKGROUND,
+    borderTopWidth: 1,
+    borderColor: theme.DARK_MODE_BORDER,
   },
   centeredContainer: {
     flex: 1,
