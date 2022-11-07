@@ -1,4 +1,6 @@
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import { TransitionPresets } from '@react-navigation/stack';
 
 // Screens
 import ProfileScreen from '../screens/ProfileScreen';
@@ -11,6 +13,7 @@ import ViewUserProfileScreen from '../screens/ViewUserProfileScreen';
 import PurchasedScreen from '../screens/PurchasedScreen';
 import ChatScreen from '../screens/ChatScreen';
 import OrderReceiptScreen from '../screens/OrderReceiptScreen';
+import EditListingScreen from '../screens/EditListingScreen';
 
 // Components
 import {
@@ -151,6 +154,28 @@ const ProfileNavigator = () => {
           },
         }}
       />
+      <Stack.Screen
+        name="EditListing"
+        component={EditListingScreen}
+        options={{
+          headerTitle: 'Edit Listing',
+          headerBackTitleVisible: false,
+          headerBackImage: HeaderBack,
+          ...TransitionPresets.ModalSlideFromBottomIOS,
+          headerTitleStyle: {
+            color: theme.LIGHT_GRAY,
+          },
+          headerStyle: {
+            backgroundColor: theme.DARK_MODE,
+            borderColor: theme.MEDIUM_GRAY,
+          },
+          headerTitleStyle: {
+            fontWeight: '700',
+            color: theme.LIGHT_GRAY,
+          },
+        }}
+      />
+
       <Stack.Screen
         name="Chat"
         component={ChatScreen}
