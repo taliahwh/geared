@@ -109,6 +109,12 @@ const PostDetailsCard = ({
     });
   };
 
+  const navigateToEditPost = () => {
+    navigation.navigate('EditListing', {
+      postDetails,
+    });
+  };
+
   const confirmDeletePost = () => {
     Alert.alert(
       'Confirm delete post',
@@ -185,6 +191,31 @@ const PostDetailsCard = ({
                 />
               </MenuTrigger>
               <MenuOptions style={styles.menu}>
+                {/* EDIT POST */}
+                {userId === authUserId && (
+                  <MenuOption
+                    onSelect={navigateToEditPost}
+                    style={styles.postMenuOption}
+                  >
+                    <Text
+                      style={{
+                        fontSize: 15,
+                        paddingVertical: 2,
+                        fontWeight: '500',
+                        color: theme.LIGHT_GRAY,
+                      }}
+                    >
+                      Edit
+                    </Text>
+                    <Ionicons
+                      name="create-outline"
+                      size={20}
+                      color={theme.LIGHT_GRAY}
+                    />
+                  </MenuOption>
+                )}
+
+                {/* DELETE POST  */}
                 {userId === authUserId && (
                   <MenuOption
                     onSelect={confirmDeletePost}
@@ -194,7 +225,7 @@ const PostDetailsCard = ({
                       style={{
                         fontSize: 15,
                         paddingVertical: 2,
-                        // textAlign: 'center',
+
                         fontWeight: '500',
                         color: '#ef4444',
                       }}
