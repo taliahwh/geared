@@ -111,12 +111,12 @@ const PostDetailsScreen = ({ route, forSale, offers }) => {
             <Text style={styles.price}>${postDetails.itemPrice}</Text>
 
             <View style={styles.btnContainer}>
-              <TouchableOpacity
+              {/* <TouchableOpacity
                 onPress={navigateToOfferScreen}
                 activeOpacity={0.8}
               >
                 <Text style={styles.makeOfferBtn}>Make offer</Text>
-              </TouchableOpacity>
+              </TouchableOpacity> */}
 
               <TouchableOpacity
                 onPress={navigateToCheckoutScreen}
