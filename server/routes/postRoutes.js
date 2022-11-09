@@ -4,6 +4,7 @@ import {
   getAllPosts,
   getFollowingUsersPosts,
   createNewPost,
+  editPost,
   getPostById,
   likePost,
   getLikedPosts,
@@ -39,6 +40,8 @@ router.get('/:id', authMiddleware, getPostById);
 router.put('/deletecomment/:id', authMiddleware, deleteComment);
 
 router.put('/:id/deletepost', authMiddleware, deletePost);
+
+router.put('/:id/editpost', authMiddleware, editPost);
 
 router.put('/:id/likepost', authMiddleware, likePost);
 
