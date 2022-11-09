@@ -43,10 +43,6 @@ export const postSchema = new mongoose.Schema(
       type: Boolean,
       required: true,
     },
-    openToOffers: {
-      type: Boolean,
-      required: true,
-    },
     itemPrice: {
       type: Number,
       required: true,
