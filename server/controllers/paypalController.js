@@ -2,9 +2,8 @@ import mongoose from 'mongoose';
 import asyncHandler from 'express-async-handler';
 import paypal from 'paypal-rest-sdk';
 
-import Message from '../models/messageModel.js';
 import User from '../models/userModel.js';
-// todo - Build Order Model
+import Order from '../models/orderModel.js';
 
 /**
  * @desc Create order
@@ -13,7 +12,10 @@ import User from '../models/userModel.js';
  */
 const createOrder = asyncHandler(async (req, res) => {
   // const { id: authId } = req.user;
+  const { username, postId, productImage, description, itemPrice, sellerId } =
+    req.body;
   console.log('CREATE ORDER');
+  console.log(username, postId, productImage, description, itemPrice, sellerId);
 
   const create_payment_json = {
     intent: 'sale',
@@ -45,6 +47,37 @@ const createOrder = asyncHandler(async (req, res) => {
       },
     ],
   };
+
+  // const create_payment_json = {
+  //   intent: 'sale',
+  //   payer: {
+  //     payment_method: 'paypal',
+  //   },
+  //   redirect_urls: {
+  //     return_url: 'http://localhost:5000/api/paypal/success',
+  //     cancel_url: 'http://localhost:5000/api/paypal/cancel',
+  //   },
+  //   transactions: [
+  //     {
+  //       item_list: {
+  //         items: [
+  //           {
+  //             name: description,
+  //             sku: postId,
+  //             price: String(itemPrice),
+  //             currency: 'USD',
+  //             quantity: 1,
+  //           },
+  //         ],
+  //       },
+  //       amount: {
+  //         currency: 'USD',
+  //         total: String(itemPrice),
+  //       },
+  //       description: description,
+  //     },
+  //   ],
+  // };
 
   paypal.payment.create(create_payment_json, (error, payment) => {
     if (error) {

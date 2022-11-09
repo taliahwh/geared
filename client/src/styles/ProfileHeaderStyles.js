@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
     // backgroundColor: 'orange',
     display: 'flex',
     marginLeft: 15,
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
+    alignSelf: 'center',
   },
   userDisplayName: {
     fontSize: 20,
