@@ -18,7 +18,7 @@ const renderScene = SceneMap({
   collection: AuthCollectionRoute,
   likes: LikesRoute,
   saved: SavedRoute,
-  reviews: ReviewsRoute,
+  // reviews: ReviewsRoute,
   test: TestRoute,
 });
 
@@ -37,7 +37,7 @@ const ProfileScreen = () => {
     { key: 'collection', title: 'Collection' },
     { key: 'likes', title: 'Likes' },
     { key: 'saved', title: 'Saved' },
-    { key: 'reviews', title: 'Reviews' },
+    // { key: 'reviews', title: 'Reviews' },
     // { key: 'test', title: 'Test' },
   ]);
 
