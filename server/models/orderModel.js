@@ -45,12 +45,62 @@ export const orderSchema = new mongoose.Schema(
         },
       },
     },
+    sellerInfo: {
+      sellerId: {
+        type: String,
+        required: true,
+      },
+      username: {
+        type: String,
+        required: true,
+      },
+    },
     transaction: {
       item: {
+        productId: {
+          type: String,
+          required: true,
+        },
         productName: {
           type: String,
           required: true,
         },
+        description: {
+          type: String,
+          required: true,
+        },
+        productImage: {
+          type: String,
+          required: true,
+        },
+        sport: {
+          type: String,
+          required: true,
+        },
+        condition: {
+          type: String,
+          required: true,
+        },
+        price: {
+          type: Number,
+          required: true,
+        },
+      },
+      subtotal: {
+        type: Number,
+        required: true,
+      },
+      shipping_fee: {
+        type: Number,
+        required: true,
+      },
+      state_sales_tax: {
+        type: Number,
+        required: true,
+      },
+      geared_hosting_fee: {
+        type: Number,
+        required: true,
       },
     },
   },
@@ -62,4 +112,4 @@ export const orderSchema = new mongoose.Schema(
 
 const Order = mongoose.model('Order', orderSchema);
 
-export default Review;
+export default Order;

@@ -13,15 +13,14 @@ import {
 
 const router = express.Router();
 
-// Render index.ejs file
-router.get('/', (req, res) => {
-  res.render('index');
-});
-
+// // Render index.ejs file
+// router.get('/', (req, res) => {
+//   res.render('index');
+// });
 router.get('/createorder', createOrder);
 
-router.get('/success', confirmOrder);
-
 router.get('/cancel', cancelOrder);
+
+router.get('/success', confirmOrder);
 
 export default router;
