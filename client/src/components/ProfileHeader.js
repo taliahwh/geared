@@ -93,12 +93,12 @@ const ProfileHeader = ({
           <Text style={styles.userDisplayName}>{name}</Text>
           <Text style={styles.username}>{`@${username}`}</Text>
 
-          <TouchableOpacity onPress={navigateToReviews} activeOpacity={0.9}>
+          {/* <TouchableOpacity onPress={navigateToReviews} activeOpacity={0.9}>
             <View style={styles.ratingsContainer}>
               <Ratings rating={reviewAvg} />
               <Text style={{ color: theme.LIGHT_GRAY }}>({numReviews})</Text>
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
 
         <View>
@@ -134,14 +134,15 @@ const ProfileHeader = ({
                   }}
                 />
 
-                <MenuOption onSelect={blockUser} style={styles.menuOption}>
+                {/* TODO: Implement block user feature */}
+                {/* <MenuOption onSelect={blockUser} style={styles.menuOption}>
                   <Text style={styles.menuOptionText}>Block User</Text>
                   <Ionicons
                     name="ios-flag-outline"
                     size={20}
                     color={'transparent'}
                   />
-                </MenuOption>
+                </MenuOption> */}
               </MenuOptions>
             </Menu>
           </Pressable>

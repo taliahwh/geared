@@ -7,7 +7,7 @@ import CreateListingScreen from '../screens/CreateListingScreen';
 import ConnectPayPalScreen from '../screens/ConnectPayPalScreen';
 import SoldItemsScreen from '../screens/SoldItemsScreen';
 
-import { HeaderBack } from '../components/HeaderBackImages';
+import { HeaderBack, HeaderClose } from '../components/HeaderBackImages';
 
 // Styles
 import theme from '../styles/styles.theme';
@@ -39,7 +39,7 @@ const DashboardNavigator = () => {
         options={{
           headerTitle: 'Create Listing',
           headerBackTitleVisible: false,
-          headerBackImage: HeaderBack,
+          headerBackImage: HeaderClose,
           ...TransitionPresets.ModalSlideFromBottomIOS,
           headerTitleStyle: {
             color: theme.LIGHT_GRAY,
