@@ -102,6 +102,87 @@ const createNewPost = asyncHandler(async (req, res) => {
 });
 
 /**
+ * @desc Create new post
+ * @route POST /posts/
+ * @access Public
+ */
+const editPost = asyncHandler(async (req, res) => {
+  const { id: userId } = req.user;
+  const { id: postId } = req.params;
+  const {
+    image1,
+    image2,
+    image3,
+    image4,
+    description,
+    tag1,
+    tag2,
+    tag3,
+    sportValue,
+    conditionValue,
+    showcase,
+    forSale,
+    itemPrice,
+    shippingPrice,
+    locationValue,
+  } = req.body;
+
+  const user = await User.findById(userId);
+  if (!user) {
+    res.status(401);
+    throw new Error('Not authorized');
+  }
+
+  // const userJoinedDate = moment(user.createdAt).format('MMMM YYYY');
+
+  const postToEdit = await Post.findById(postId);
+
+  if (!postToEdit) {
+    res.status(404);
+    throw new Error('Post not found');
+  }
+
+  postToEdit.description = description;
+  postToEdit.images[0].imgUrl = image1;
+  postToEdit.images[1].imgUrl = image2;
+  postToEdit.images[2].imgUrl = image3;
+  postToEdit.images[3].imgUrl = image4;
+  postToEdit.tagNames.tagOne = tag1;
+  postToEdit.tagNames.tagTwo = tag2;
+  postToEdit.tagNames.tagThree = tag3;
+  postToEdit.sport = sportValue;
+  postToEdit.condition = conditionValue;
+  postToEdit.showcase = showcase;
+  postToEdit.forSale = forSale;
+  postToEdit.itemPrice = itemPrice;
+  postToEdit.shippingPrice = shippingPrice;
+  postToEdit.locationValue = locationValue;
+
+  // const newPost = await Post.create({
+  //   images,
+  //   description,
+  //   tagNames: {
+  //     tagOne: tag1,
+  //     tagTwo: tag2,
+  //     tagThree: tag3,
+  //   },
+  //   sport: sportValue,
+  //   condition: conditionValue,
+  //   showcase,
+  //   forSale,
+  //   itemPrice: itemPrice,
+  //   shippingPrice: shippingPrice,
+  //   location: locationValue,
+  // });
+
+  // const createdPost = await newPost.save();
+  // res.status(201).json(createdPost);
+
+  await postToEdit.save();
+  res.status(200).json({ message: 'Post edited successfully' });
+});
+
+/**
  * @desc Fetch post details by post id
  * @route GET /posts/:id
  * @access Public
@@ -813,6 +894,7 @@ export {
   getAllPosts,
   getFollowingUsersPosts,
   createNewPost,
+  editPost,
   getPostById,
   likePost,
   getLikedPosts,
