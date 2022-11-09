@@ -10,6 +10,9 @@ import {
   CREATE_NEW_POST_REQUEST,
   CREATE_NEW_POST_SUCCESS,
   CREATE_NEW_POST_FAILURE,
+  EDIT_POST_REQUEST,
+  EDIT_POST_SUCCESS,
+  EDIT_POST_FAILURE,
   DELETE_POST_REQUEST,
   DELETE_POST_SUCCESS,
   DELETE_POST_FAILURE,
@@ -135,6 +138,66 @@ export const createPost =
       dispatch({ type: CREATE_NEW_POST_SUCCESS, payload: data });
     } catch (error) {
       dispatch({ type: CREATE_NEW_POST_FAILURE });
+      console.log(error.message);
+    }
+  };
+
+export const editPost =
+  (
+    postId,
+    image1,
+    image2,
+    image3,
+    image4,
+    description,
+    tag1,
+    tag2,
+    tag3,
+    sportValue,
+    conditionValue,
+    showcase,
+    forSale,
+    itemPrice,
+    shippingPrice,
+    locationValue
+  ) =>
+  async (dispatch, getState) => {
+    dispatch({ type: EDIT_POST_REQUEST });
+
+    const { authToken } = getState().userSignIn;
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${authToken}`,
+        },
+      };
+
+      const { data } = await geared.put(
+        `/api/posts/${postId}/editpost`,
+        {
+          image1,
+          image2,
+          image3,
+          image4,
+          description,
+          tag1,
+          tag2,
+          tag3,
+          sportValue,
+          conditionValue,
+          showcase,
+          forSale,
+          itemPrice,
+          shippingPrice,
+          locationValue,
+        },
+        config
+      );
+
+      dispatch({ type: EDIT_POST_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({ type: EDIT_POST_FAILURE });
       console.log(error.message);
     }
   };
