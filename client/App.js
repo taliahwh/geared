@@ -40,6 +40,10 @@ const App = () => {
   const notificationListener = useRef();
   const responseListener = useRef();
 
+  // Splash Screen
+  SplashScreen.preventAutoHideAsync();
+  setTimeout(SplashScreen.hideAsync, 2000);
+
   useEffect(() => {
     LogBox.ignoreLogs([
       `ViewPropTypes will be removed from React Native. Migrate to ViewPropTypes exported from 'deprecated-react-native-prop-types'.`,
