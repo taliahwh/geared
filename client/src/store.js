@@ -18,6 +18,7 @@ import {
   likePostFromDetailsScreenReducer,
   searchPostsReducer,
   deletePostReducer,
+  editPostReducer,
 } from './reducers/postReducers';
 
 import {
@@ -46,6 +47,7 @@ const reducer = combineReducers({
   explorePosts: explorePostsReducer,
   followingPosts: followingPostsReducer,
   createPost: createPostReducer,
+  editPost: editPostReducer,
   deletePost: deletePostReducer,
   postDetails: postDetailsReducer,
   likePost: likePostReducer,
