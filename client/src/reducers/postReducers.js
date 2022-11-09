@@ -11,6 +11,10 @@ import {
   DELETE_POST_REQUEST,
   DELETE_POST_SUCCESS,
   DELETE_POST_FAILURE,
+  EDIT_POST_REQUEST,
+  EDIT_POST_SUCCESS,
+  EDIT_POST_FAILURE,
+  EDIT_POST_RESET,
   POST_DETAILS_REQUEST,
   POST_DETAILS_SUCCESS,
   POST_DETAILS_FAILURE,
@@ -85,6 +89,24 @@ export const createPostReducer = (state = {}, action) => {
       };
     case CREATE_NEW_POST_FAILURE:
       return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const editPostReducer = (state = {}, action) => {
+  switch (action.type) {
+    case EDIT_POST_REQUEST:
+      return { loading: true };
+    case EDIT_POST_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+      };
+    case EDIT_POST_FAILURE:
+      return { loading: false, error: action.payload };
+    case EDIT_POST_RESET:
+      return { loading: false };
     default:
       return state;
   }
