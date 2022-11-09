@@ -333,54 +333,13 @@ const PostDetailsCard = ({
             >{`JOINED ${userDateJoined.toUpperCase()}`}</Text>
           </View>
         </View>
-        <View style={styles.sellerMenuContainer}>
-          <TouchableOpacity onPress={navigateToReviews} activeOpacity={0.8}>
-            <View style={styles.menuOption}>
-              <View style={styles.menuOptionContainer}>
-                <Text style={styles.menuTitle}>Sold reviews</Text>
-                {/* <Text style={styles.menuQty} >22</Text> */}
-              </View>
-              <Ionicons
-                name="chevron-forward-outline"
-                size={24}
-                color={theme.LIGHT_GRAY}
-                style={styles.menuArrow}
-              />
-            </View>
-          </TouchableOpacity>
-
-          <View style={styles.menuOption}>
-            <View style={styles.menuOptionContainer}>
-              <Text style={styles.menuTitle}>Collection</Text>
-              {/* <Text style={styles.menuQty}>67</Text> */}
-            </View>
-            <Ionicons
-              name="chevron-forward-outline"
-              size={24}
-              color={theme.LIGHT_GRAY}
-              style={styles.menuArrow}
-            />
-          </View>
-
-          {userId !== authUserId && (
-            <TouchableOpacity onPress={navigateToMessages} activeOpacity={0.8}>
-              <View style={styles.menuOption}>
-                <View style={styles.menuOptionContainer}>
-                  <Text style={styles.menuTitle}>Message seller</Text>
-                </View>
-                <Ionicons
-                  name="chevron-forward-outline"
-                  size={24}
-                  color={theme.LIGHT_GRAY}
-                  style={styles.menuArrow}
-                />
-              </View>
-            </TouchableOpacity>
-          )}
-        </View>
       </View>
     </ScrollView>
   );
 };
 
 export default PostDetailsCard;
+
+/**
+ *
+ */

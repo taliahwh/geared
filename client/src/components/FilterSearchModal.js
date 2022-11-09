@@ -233,7 +233,7 @@ const FilterSearchModal = ({
               </View>
             )}
             {/* For sale */}
-            <View style={styles.filterOption}>
+            {/* <View style={styles.filterOption}>
               <Text style={styles.optionHeadingBold}>For sale</Text>
               <Switch
                 trackColor={{ false: '#767577', true: '#81b0ff' }}
@@ -245,7 +245,7 @@ const FilterSearchModal = ({
                 }}
                 value={forSale}
               />
-            </View>
+            </View> */}
 
             {/* Card Type Options */}
             {/* Condition */}

@@ -1,3 +1,5 @@
+import axios from 'axios';
+import geared from '../api/geared';
 import React, { useState } from 'react';
 import {
   StyleSheet,
@@ -8,6 +10,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import { WebView } from 'react-native-webview';
+import { useSelector } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 
 const PAYPAL_SERVER_URL = 'http://localhost:5000/api/paypal/createorder';
@@ -24,15 +27,48 @@ const PayPalOrderModal = ({
   productImage,
   description,
   itemPrice,
-  buyerId,
+  sellerId,
 }) => {
+  const { authToken } = useSelector((state) => state.userSignIn);
+
   const handleNavigation = (e) => {
     console.log(e);
   };
 
-  const handleResponse = (data) => {
-    console.log(data);
+  const handleResponse = async (data) => {
     const { loading, url } = data;
+    console.log(data);
+
+    // Create new order
+    // if (!loading && url.includes('createorder')) {
+    //   try {
+    //     const config = {
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //         Authorization: `Bearer ${authToken}`,
+    //       },
+    //     };
+    //     console.log('TRYING TO SEND POST REQUEST');
+    //     await geared.get(
+    //       `/api/paypal/createorder`,
+    //       {
+    //         username,
+    //         postId,
+    //         productImage,
+    //         description,
+    //         itemPrice,
+    //         sellerId,
+    //       },
+    //       config
+    //     );
+    //     console.log('SENT POST REQUEST');
+    //   } catch (error) {
+    //     console.log('CREATE ORDER ERROR FROM CLIENT');
+    //     console.log(error);
+    //   }
+    // }
+
+    // Redirect to success page or cancel order
     if (!loading && url.includes('success')) {
       // close modal, set status to complete
       setOrderStatus('Complete');
@@ -61,10 +97,8 @@ const PayPalOrderModal = ({
         <WebView
           source={{ uri: PAYPAL_SERVER_URL }}
           containerStyle={styles.webViewContainer}
-          // onMessage={(e) => handleMessage(e)}
           onNavigationStateChange={(data) => handleResponse(data)}
           javaScriptEnabled
-          // injectedJavaScript={`document.paypalForm.submit()`}
           thirdPartyCookiesEnabled
           startInLoadingState={true}
           renderLoading={renderLoadingSpinner}
