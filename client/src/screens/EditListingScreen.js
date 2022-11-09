@@ -2,16 +2,13 @@ import React, { useState, useEffect } from 'react';
 import geared from '../api/geared';
 import {
   ScrollView,
-  ActivityIndicator,
   View,
   Text,
   Modal,
   TouchableOpacity,
   TextInput,
   Image,
-  Platform,
   Alert,
-  Pressable,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -27,11 +24,9 @@ import styles from '../styles/CreateListingStyles';
 import theme from '../styles/styles.theme';
 
 // Actions
-import {
-  createPost,
-  getExplorePosts,
-  getPostDetails,
-} from '../actions/postActions';
+import { editPost } from '../actions/postActions';
+
+import { EDIT_POST_RESET } from '../constants/postConstants';
 
 const EditListingScreen = ({ route }) => {
   const dispatch = useDispatch();
@@ -40,11 +35,9 @@ const EditListingScreen = ({ route }) => {
   const { postDetails } = route.params;
 
   // State from Redux
-  const { error: errorCreateListing } = useSelector(
-    (state) => state.createPost
+  const { success: successEditPost, error: errorEditPost } = useSelector(
+    (state) => state.editPost
   );
-
-  const { _id: userId } = useSelector((state) => state.userSignIn.userInfo);
 
   // Text input state
   const [description, setDescription] = useState(postDetails.description);
@@ -86,7 +79,7 @@ const EditListingScreen = ({ route }) => {
   const [tennis, setTennis] = useState(false);
   const [hockey, setHockey] = useState(false);
   const [womensBasketball, setWomensBasketball] = useState(false);
-  const [sportValue, setSportValue] = useState('Select');
+  const [sportValue, setSportValue] = useState(postDetails.sport);
 
   // Condition modal options
   const [brandNew, setBrandNew] = useState(false);
@@ -94,7 +87,7 @@ const EditListingScreen = ({ route }) => {
   const [excellent, setExcellent] = useState(false);
   const [good, setGood] = useState(false);
   const [fair, setFair] = useState(false);
-  const [conditionValue, setConditionValue] = useState('Select');
+  const [conditionValue, setConditionValue] = useState(postDetails.condition);
 
   // Listing type modal option
   const [showcase, setShowcase] = useState(postDetails.showcase);
@@ -104,17 +97,6 @@ const EditListingScreen = ({ route }) => {
 
   // Location modal
   const [locationValue, setLocationValue] = useState('');
-
-  // const askForPermission = async () => {
-  //   const permissionResult =
-  //   await Permissions.askAsync(Permissions.CAMERA)
-  //   if (permissionResult.status !== ‘granted’) {
-  //     Alert.alert(‘no permissions to access camera!’,
-  //     [{ text: ‘ok’}])
-  //     return false
-  //   }
-  //   return true
-  // }
 
   const pickImage = async (imageNum) => {
     // No permissions request is necessary for launching the image library
@@ -207,6 +189,7 @@ const EditListingScreen = ({ route }) => {
             }
           );
           console.log(cloudinaryURL);
+          setImage3(cloudinaryURL);
           setLoadingImage(false);
         } catch (error) {
           console.log(error);
@@ -246,68 +229,43 @@ const EditListingScreen = ({ route }) => {
   const navigateToProfile = () => {
     navigation.reset({
       index: 0,
-      routes: [{ name: 'Dashboard' }],
+      routes: [{ name: 'Profile' }],
     });
 
     navigation.navigate('Home');
   };
 
+  const handleAlertMessage = () => {
+    successEditPost &&
+      Alert.alert('Listing Updated', 'Listing updated successfully', [
+        {
+          text: 'OK',
+          onPress: () => {
+            dispatch({ type: EDIT_POST_RESET });
+            navigateToProfile();
+          },
+        },
+      ]);
+
+    errorEditPost &&
+      Alert.alert('Something went wrong', errorEditPost, [
+        {
+          text: 'OK',
+          onPress: () => {
+            dispatch({ type: EDIT_POST_RESET });
+          },
+        },
+      ]);
+  };
+
   const handleSubmit = () => {
-    const images = [
-      {
-        title: 'IMAGE_1',
-        imgUrl: image1,
-      },
-      {
-        title: 'IMAGE_2',
-        imgUrl: image2,
-      },
-      {
-        title: 'IMAGE_3',
-        imgUrl: image3,
-      },
-      {
-        title: 'IMAGE_4',
-        imgUrl: image4,
-      },
-    ];
-
-    const firstImageUploaded = images[0].imgUrl;
-
-    if (!firstImageUploaded) {
-      return setErrorMessage('Must upload at least one image');
-    }
-    if (!description) {
-      return setErrorMessage('A description of the item is required');
-    }
-    if (!tag1) {
-      return setErrorMessage('At least one tag is required');
-    }
-    if (sportValue === 'Select') {
-      return setErrorMessage('Please choose a sport for your item');
-    }
-    if (conditionValue === 'Select') {
-      return setErrorMessage('Please choose a condition for your item');
-    }
-    if (listingTypeValue === 'Select') {
-      return setErrorMessage('Please choose a listing type');
-    }
-
-    if (forSale) {
-      if (!itemPrice) {
-        return setErrorMessage('Item price is required');
-      }
-      if (!shippingPrice) {
-        return setErrorMessage('Shipping price is required');
-      }
-      if (!locationValue) {
-        return setErrorMessage('Location is required');
-      }
-    }
-
     dispatch(
-      createPost(
-        images,
+      editPost(
+        postDetails._id,
+        image1,
+        image2,
+        image3,
+        image4,
         description,
         tag1,
         tag2,
@@ -316,27 +274,23 @@ const EditListingScreen = ({ route }) => {
         conditionValue,
         showcase,
         forSale,
-        openToOffers,
         itemPrice,
         shippingPrice,
         locationValue
       )
     );
-    dispatch(getExplorePosts());
-    navigateToProfile();
   };
 
   useEffect(() => {
-    console.log(postDetails);
-    // dispatch(getPostDetails(postId));
-  }, []);
+    handleAlertMessage();
+  }, [successEditPost, errorEditPost]);
 
   return (
     <View style={styles.container}>
       <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
         {/* Error message */}
         {/* {errorMessage && <Text style={styles.error}>{errorMessage}</Text>} */}
-        {errorCreateListing && <Text>{errorCreateListing}</Text>}
+        {errorEditPost && <Text>{errorEditPost}</Text>}
 
         {loadingImage && (
           <View>
@@ -551,7 +505,11 @@ const EditListingScreen = ({ route }) => {
                     onChangeText={(value) => {
                       setItemPrice(value);
                     }}
-                    placeholder={'$'}
+                    placeholder={
+                      postDetails.itemPrice === 0
+                        ? '$'
+                        : String(postDetails.itemPrice)
+                    }
                     placeholderTextColor={'#a1a1aa'}
                     maxLength={10}
                     keyboardType="decimal-pad"
@@ -572,7 +530,7 @@ const EditListingScreen = ({ route }) => {
                       onChangeText={(value) => {
                         setShippingPrice(value);
                       }}
-                      placeholder={'$'}
+                      placeholder={String(postDetails.shippingPrice)}
                       placeholderTextColor={'#a1a1aa'}
                       maxLength={10}
                       keyboardType="decimal-pad"
@@ -1209,7 +1167,7 @@ const EditListingScreen = ({ route }) => {
 
       <View style={styles.footer}>
         <TouchableOpacity activeOpacity={0.8} onPress={handleSubmit}>
-          <Text style={styles.postListingBtn}>Post listing</Text>
+          <Text style={styles.postListingBtn}>Edit listing</Text>
         </TouchableOpacity>
       </View>
     </View>
