@@ -35,7 +35,7 @@ const ProfileNavigator = () => {
         component={ProfileScreen}
         options={{
           headerLeft: () => <HeaderNotification />,
-          headerRight: () => <HeaderPurchased />,
+          // headerRight: () => <HeaderPurchased />,
           headerTitle: '',
           headerStyle: {
             elevation: 0,

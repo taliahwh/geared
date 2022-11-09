@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+// import { StripeProvider } from '@stripe/stripe-react-native';
 
 // Components
 import SelectAddressModal from '../components/SelectAddressModal';
@@ -41,7 +42,7 @@ const CheckoutScreen = ({ route }) => {
   const navigateToPaymentTypeScreen = () => {};
 
   const navigateToPayPalOrderScreen = () => {
-    setPaypalOrderModalVisible(true);
+    // setPaypalOrderModalVisible(true);
   };
 
   return (
@@ -201,7 +202,7 @@ const CheckoutScreen = ({ route }) => {
           productImage={productImage}
           description={description}
           itemPrice={itemPrice}
-          buyerId={userId}
+          sellerId={userId}
         />
       </Modal>
     </ScrollView>
