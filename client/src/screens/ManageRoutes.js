@@ -102,12 +102,12 @@ const ManageRoute = () => {
   };
 
   return (
-    <>
+    <View style={{ backgroundColor: theme.DARK_MODE, flex: 1 }}>
       {loadingUserPosts && <ActivityIndicator />}
       {errorUserPosts && <AlertMessage>{errorUserPosts}</AlertMessage>}
       {posts && (
         <ScrollView style={styles.container}>
-          <View style={styles.soldContainer}>
+          {/* <View style={styles.soldContainer}>
             <Text style={styles.sectionTitle}>Sold</Text>
 
             <TouchableOpacity onPress={navigateToSoldItems} activeOpacity={0.8}>
@@ -128,7 +128,7 @@ const ManageRoute = () => {
                 />
               </View>
             </TouchableOpacity>
-          </View>
+          </View> */}
           <View style={styles.sellingContainer}>
             <Text style={styles.sectionTitle}>Your collection</Text>
             <View style={styles.flatlistContainer}>
@@ -152,7 +152,7 @@ const ManageRoute = () => {
           </View>
         </ScrollView>
       )}
-    </>
+    </View>
   );
 };
 

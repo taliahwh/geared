@@ -513,7 +513,7 @@ const CreateListingScreen = () => {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={() => setListingModalVisible(true)}
             activeOpacity={0.9}
           >
@@ -529,7 +529,7 @@ const CreateListingScreen = () => {
                 />
               </View>
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
           {forSale && (
             <>

@@ -26,7 +26,7 @@ const initialLayout = { width: Dimensions.get('window').width };
 
 const renderScene = SceneMap({
   manage: ManageRoute,
-  payments: PaymentsRoute,
+  // payments: PaymentsRoute,
   settings: ProfileSettingsRoute,
 });
 
@@ -48,7 +48,7 @@ const DashboardScreen = ({ navigation }) => {
   const [index, setIndex] = useState(0);
   const [routes] = useState([
     { key: 'manage', title: 'Manage' },
-    { key: 'payments', title: 'Payments' },
+    // { key: 'payments', title: 'Payments' },
     { key: 'settings', title: 'Settings' },
   ]);
 
@@ -146,6 +146,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: theme.DARK_MODE,
   },
 });
 
