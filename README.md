@@ -18,36 +18,25 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+
 
 
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
+ 
 
-<h3 align="center">project_title</h3>
+<h3 align="center">geared</h3>
 
   <p align="center">
-    project_description
-    <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    Sports trading card mobile app for archiving your collection and connecting with users
+   
+  
+    
   </p>
+  </br>
+  <a href="https://github.com/github_username/repo_name">View Demo</a>
 </div>
 
 
@@ -55,7 +44,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-A blogging platform for journalists covering the NBA to create, edit, save, and share articles. Uses Spotify API to feature a collection of league-related podcasts. Includes admin functionality to manage users and handle writer requests. 
+A sports trading-card mobile app inspired by depop that allows users to upload and archive their card collection to store in one place. Like, comment, search, or send messages between users and build a community with like-minded interests.
 
 ### Built With
 
@@ -199,15 +188,14 @@ Project Link: [https://github.com/github_username/repo_name](https://github.com/
 [Expo-url]: https://expo.dev/
 [React-Native-Badge]: https://img.shields.io/badge/react_native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-Native-url]: https://reactnative.dev/
-[MongoDB-Badge]: https://img.shields.io/badge/mongodb-001E2B?style=for-the-badge&logo=mongodb&logoColor=1B891A
+[MongoDB-Badge]: https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white
 [MongoDB-url]:https://www.mongodb.com/cloud/atlas
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
+[Node.js-Badge]: https://img.shields.io/badge/node.js-090B15?style=for-the-badge&logo=node.js&logoColor=6AA35D
+[Node.js-url]: https://nodejs.org/en/
+[Socket.io-Badge]: https://img.shields.io/badge/Socket.io-010101?&style=for-the-badge&logo=Socket.io&logoColor=white
+[Socket.io-url]: https://socket.io/
+[TailwindCSS-Badge]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
+[TailWindCSS-url]: https://tailwindcss.com/
+[Redux-Badge]: https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white
+[Redux-url]: https://redux.js.org/
+
