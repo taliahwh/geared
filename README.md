@@ -36,7 +36,7 @@
     
   </p>
   </br>
-  <a href="https://vimeo.com/775164435">View Demo</a>
+<!--   <a href="https://vimeo.com/775164435">View Demo</a> -->
   
   
 
